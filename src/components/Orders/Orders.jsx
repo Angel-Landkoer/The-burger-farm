@@ -10,3 +10,5 @@ export function Orders() {
 }
 
 const styles = StyleSheet.create({})
+
+const {} = styles;

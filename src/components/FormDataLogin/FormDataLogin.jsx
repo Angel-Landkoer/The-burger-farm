@@ -10,3 +10,5 @@ export function FormDataLogin() {
 }
 
 const styles = StyleSheet.create({})
+
+const {} = styles;
