@@ -1,49 +1,146 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 export function LoginCompleted() {
   return (
-    <View>
-      <Text>Information Genaral</Text>
+    <View style={container}>
+      <Text style={title}>Information Genaral</Text>
 
-      <View>
-        <TouchableOpacity onPress={() => null}>
-          <FontAwesome5 name="edit" size={24} color="black" />
+      <View style={infoUser}>
+        <TouchableOpacity style={btnEditUser} onPress={() => null}>
+          <FontAwesome5 name="edit" size={32} color="#E0B973" />
         </TouchableOpacity>
-        <View>
+        <View style={[subCotainerInfoUser]}>
           <Text>Name:</Text>
-          <Text>{null}</Text>
+          <Text>{"null"}</Text>
         </View>
-        <View>
+        <View style={[subCotainerInfoUser]}>
           <Text>Phone:</Text>
-          <Text>{null}</Text>
+          <Text>{"null"}</Text>
         </View>
-        <View>
+        <View style={[subCotainerInfoUser]}>
           <Text>Email:</Text>
-          <Text>{null}</Text>
+          <Text>{"null"}</Text>
         </View>
       </View>
 
-      <View>
-        <TouchableOpacity onPress={() => null}>
-          <FontAwesome5 name="plus-square" size={24} color="black" />
+      <TouchableOpacity style={btnCloseLogin} onPress={() => null}>
+        <FontAwesome5 name="window-close" size={45} color="red" />
+        <Text style={btnCloseLoginText}>Deleted Account</Text>
+      </TouchableOpacity>
+
+      <View style={infoAddress}>
+        <Text style={addressTitle}>Address</Text>
+        <TouchableOpacity style={btnEditAddress} onPress={() => null}>
+          <FontAwesome5 name="plus-square" size={32} color="#E0B973" />
         </TouchableOpacity>
-        <Text>Address</Text>
-        <View>
-          <Text>{""}</Text>
+        <View style={subCotainerInfoAddress}>
+          <Text style={addressText}>{"AddressText"}</Text>
         </View>
       </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
 
-const {} = styles;
+    padding: 20,
+    marginVertical: 15,
+    width: "100%",
+  },
+  title: {
+    alignSelf: "flex-start",
+
+    width: "70%",
+
+    fontSize: 35,
+    fontWeight: "700",
+  },
+  infoUser: {
+    justifyContent: "space-evenly",
+    alignItems: "flex-start",
+
+    width: "100%",
+    padding: 10,
+    marginVertical: 40,
+
+    borderColor: "black",
+  },
+  infoAddress: {
+    width: "100%",
+    padding: 10,
+    marginVertical: 40,
+  },
+  addressTitle: {
+    alignSelf: "flex-start",
+
+    fontSize: 30,
+    fontWeight: "700",
+  },
+  btnEditUser: {
+    position: "absolute",
+    left: "95%",
+    top: -30,
+  },
+  btnEditAddress: {
+    position: "absolute",
+    left: "90%",
+    top: "30%",
+  },
+  subCotainerInfoUser: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+
+    padding: 10,
+    width: "100%",
+    borderWidth: 1,
+
+    borderColor: "#E0B973",
+  },
+  subCotainerInfoAddress: {
+    alignItems: "flex-start",
+    justifyContent: "center",
+
+    width: "100%",
+    padding: 10,
+    marginVertical: 15,
+    borderBottomWidth: 1,
+
+    borderColor: "#E0B973",
+  },
+  addressText: {
+    paddingHorizontal: 3,
+  },
+  btnCloseLogin: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    width: "80%",
+  },
+  btnCloseLoginText: {
+    fontSize: 22,
+    fontWeight: "500",
+
+    color: "red",
+  },
+});
+
+const {
+  container,
+  title,
+  infoUser,
+  infoAddress,
+  addressTitle,
+  btnEditUser,
+  btnEditAddress,
+  subCotainerInfoUser,
+  subCotainerInfoAddress,
+  addressText,
+  btnCloseLogin,
+  btnCloseLoginText,
+} = styles;
