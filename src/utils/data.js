@@ -1,6 +1,8 @@
-export const data = {
-  type: {
-    burgers: [
+export const datas = {
+
+  burgers: {
+    type: "BURGERS",
+    data: [
       {
         name: "CLÁSICA",
         description: "Pan Artesanal, Carne de Res (150grs), Queso, Tomate, Lechuga, Salsa BBQ, Salsa de la Granja",
@@ -81,8 +83,12 @@ export const data = {
         description: "Pan Artesanal, Carne Certified Angus (175grs), Queso Americano, Tocineta Crocante, Cebolla Crispy, Salsa BBQ de la Casa.",
         price: 17_500
       },
-    ],
-    hotDogs: [
+    ]
+  },
+
+  hotDogs: {
+    type: "HOT DOGS",
+    data: [
       {
         name: "GRANJERO",
         description: "Pan Artesanal, Salchicha Parrilla, Maíz Tierno, Queso Gratinado, Trozos de Tocineta, Cebolla Crispy y Mayonesa de Chimichurri.",
@@ -104,7 +110,10 @@ export const data = {
         price: 11_500
       }
     ],
-    kids: [
+  },
+  kids: {
+    type: "KIDS",
+    data: [
       {
         name: "NUGGETS DE POLLO",
         description: "Nuggets de Pollo, Acompañados de Papa a la Francesa y Jugo HIT",
@@ -117,7 +126,11 @@ export const data = {
       }
 
     ],
-    specialities: [
+  },
+
+  specialities: {
+    type: "SPECIALITIES",
+    data: [
       {
         name: "MONTAÑERA",
         description: "Plátano de Temporada Picado, Carne de Res (150grs) Queso Rallado, Maíz Tierno, Lechuga, Tomate, Cebolla, Salsa BBQ y Salsa Especial de la Casa.",
@@ -149,7 +162,11 @@ export const data = {
         price: 15_900
       }
     ],
-    sandwichs: [
+  },
+
+  sandwichs: {
+    type: "SANDWICHIS",
+    data: [
       {
         name: "GRANJA",
         description: "Pan Artesanal, Pollo Desmechado, Queso Gratinado, Maíz Tierno, Lechuga y Mayonesa de Chimichurri",
@@ -166,7 +183,11 @@ export const data = {
         price: 11_500
       }
     ],
-    adicionals: [
+  },
+
+  adicionals: {
+    type: "ADICIONALS",
+    data: [
       {
         name: "CARNE ANGUS",
         price: 10_500
@@ -280,7 +301,11 @@ export const data = {
         price: 5_500
       }
     ],
-    milkshakesAndSlushies: [
+  },
+
+  milkshakesAndSlushies: {
+    type: "MILKSHKES AND SLUSHIES",
+    data: [
       { name: "GRANIZADO CHULUPA", price: 5_000 },
       { name: "GRANIZADO FRUTOS ROJOS", price: 5_000 },
       { name: "GRANIZADO LIMON", price: 5_000 },
@@ -290,13 +315,21 @@ export const data = {
       { name: "MALTEADA FRUTOS ROJOS YOGURT", price: 9_900 },
       { name: "MALTEADA VAINILLA (COCOSETTE)", price: 9_900 },
     ],
-    liquors: [
+  },
+
+  liquors: {
+    type: "LIQUORS",
+    data: [
       { name: "CERVEZA ANDINA (BOTELLA)", price: 4_000 },
       { name: "CERVEZA ANDINA (LATA)", price: 4_000 },
       { name: "CERVEZA HEINEKEN (BOTELLA)", price: 4_500 },
       { name: "CERVEZA HEINEKEN (LATA)", price: 4_500 }
     ],
-    watersAndJuicesAndSoftDrinks: [
+  },
+
+  watersAndJuicesAndSoftDrinks: {
+    type: "WATER AND JUICES AND SOFT DRINK",
+    data: [
       { name: "AGUA (BOTELLA)", price: 4_000 },
       { name: "AGUA BRISA CON GAS", price: 4_000 },
       { name: "GASEOSA 1.5", price: 7_000 },
@@ -307,7 +340,11 @@ export const data = {
       { name: "Mr TEA", price: 4_500 },
       { name: "TEA HATSU", price: 6_500 }
     ],
-    portions: [
+  },
+
+  portions: {
+    type: "PORTIONS",
+    data: [
       { name: "AROS DE CEBOLLA", price: 9_000 },
       { name: "PAPAS A LA FRANCESA", price: 5_000 },
       { name: "PAPAS CRIOLLAS", price: 5_000 },
@@ -318,6 +355,6 @@ export const data = {
       { name: "SOBRE SALSA BBQ", price: 200 },
       { name: "SOBRE SALSA ROSADA", price: 200 }
     ],
+  },
 
-  }
 }
