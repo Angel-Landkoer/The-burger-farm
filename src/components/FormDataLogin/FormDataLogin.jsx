@@ -5,12 +5,20 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 export function FormDataLogin() {
+  const [numberPhoneValue, setNumberPhoneValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+
+  const handleChangePhoneValue = (e) => setNumberPhoneValue(e);
+  const handleChangePasswordValue = (e) => setPasswordValue(e);
+
+  //  useEffect, fireBase, confirm data, yes=true or not=false
+
   return (
     <View>
-      <Text>Login</Text>
+      <Text>FormDataLogin</Text>
       <View>
         <Text>Phone Number</Text>
         <TextInput
@@ -18,20 +26,26 @@ export function FormDataLogin() {
           inputMode="number"
           keyboardType="phone-pad"
           maxLength={10}
+          onChangeText={handleChangePhoneValue}
         />
         <Text>Password</Text>
         <TextInput
           placeholder="Your password"
-          inputMode="text"  
+          inputMode="text"
           keyboardType="default"
+          onChangeText={handleChangePasswordValue}
         />
       </View>
 
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => console.warn("Data confirm And redirection")}
+        >
           <Text>Access</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => console.warn("Data confirm And redirection")}
+        >
           <Text>Sign Up</Text>
         </TouchableOpacity>
       </View>
