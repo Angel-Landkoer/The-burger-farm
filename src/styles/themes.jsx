@@ -4,30 +4,52 @@ import Constants from "expo-constants";
 export const themes = StyleSheet.create({
   // Color
   primaryColor: {
+    // Very dark grayish orange
     color: "#54423A",
   },
   secondaryColor: {
+    // Moderate orange
     color: "#CD973D",
   },
   tertiaryColor: {
+    // Very dark gray
     color: "#666666",
   },
   quaternaryColor: {
+    // Soft lime green
     color: "#4CD964",
+  },
+  quinaryColor: {
+    // Vivid red
+    color: "#ff3b30",
+  },
+  senaryColor: {
+    color: "#FFFFFF"
   },
   // Backgorund Color
   primaryBackground: {
+    // Very light gray.
     backgroundColor: "#EBEBEB",
   },
   secondaryBackground: {
-    color: "#CD973D",
+    // Moderate orange
+    backgroundColor: "#CD973D",
   },
-
+  tertiaryBackground: {
+    // Soft lime green
+    backgroundColor: "#4CD964",
+  },
+  quaternaryBackground: {
+    // Vivid red
+    backgroundColor: "#ff3b30",
+  },
   // Border-Color
   primaryBorderColor: {
+    // Moderate orange
     borderColor: "#CD973D",
   },
   secondaryBorderColor: {
+    // Very dark grayish orange
     borderColor: "#54423A",
   },
 
