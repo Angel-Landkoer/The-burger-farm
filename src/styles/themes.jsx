@@ -26,6 +26,7 @@ export const themes = StyleSheet.create({
   senaryColor: {
     color: "#FFFFFF"
   },
+
   // Backgorund Color
   primaryBackground: {
     // Very light gray.
@@ -100,7 +101,6 @@ export const themes = StyleSheet.create({
   textJustify: { textAlign: "justify" },
 
   // styles-Screens
-
   containerFontBox: {
     alignItems: "center",
     justifyContent: "center",

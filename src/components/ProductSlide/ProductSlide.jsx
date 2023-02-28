@@ -22,7 +22,7 @@ export function ProductSlide({ type, data }) {
             item.item ? (
               <DataCard data={item.item} />
             ) : (
-              <Loading color={`#aaa`} />
+              <Loading color={tertiaryColor.color} />
             )
           }
           keyExtractor={(item) => `Slide-${item.name}`}
@@ -80,4 +80,5 @@ const {
   fontBold,
   primaryBorderColor,
   primaryColor,
+  tertiaryColor,
 } = themes;

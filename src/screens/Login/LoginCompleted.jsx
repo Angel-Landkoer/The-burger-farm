@@ -6,37 +6,47 @@ import { themes } from "../../styles/themes";
 export function LoginCompleted() {
   return (
     <View style={[containerFontBox, primaryBackground]}>
-      <Text style={title}>Information Genaral</Text>
+      <Text style={[title, fontBold, text4Xl]}>Information Genaral</Text>
 
       <View style={infoUser}>
         <TouchableOpacity style={btnEditUser} onPress={() => null}>
-          <FontAwesome5 name="edit" size={32} color="#E0B973" />
+          <FontAwesome5 name="edit" size={32} color={secondaryColor.color} />
         </TouchableOpacity>
-        <View style={[subCotainerInfoUser]}>
+        <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <Text>Name:</Text>
           <Text>{"null"}</Text>
         </View>
-        <View style={[subCotainerInfoUser]}>
+        <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <Text>Phone:</Text>
           <Text>{"null"}</Text>
         </View>
-        <View style={[subCotainerInfoUser]}>
+        <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <Text>Email:</Text>
           <Text>{"null"}</Text>
         </View>
       </View>
 
       <TouchableOpacity style={btnCloseLogin} onPress={() => null}>
-        <FontAwesome5 name="window-close" size={45} color="red" />
-        <Text style={btnCloseLoginText}>Deleted Account</Text>
+        <FontAwesome5
+          name="window-close"
+          size={45}
+          color={quinaryColor.color}
+        />
+        <Text style={[btnCloseLoginText, text2Xl, fontMedium, quinaryColor]}>
+          Deleted Account
+        </Text>
       </TouchableOpacity>
 
       <View style={infoAddress}>
-        <Text style={addressTitle}>Address</Text>
+        <Text style={[addressTitle, text2Xl, fontBold]}>Address</Text>
         <TouchableOpacity style={btnEditAddress} onPress={() => null}>
-          <FontAwesome5 name="plus-square" size={32} color="#E0B973" />
+          <FontAwesome5
+            name="plus-square"
+            size={32}
+            color={secondaryColor.color}
+          />
         </TouchableOpacity>
-        <View style={subCotainerInfoAddress}>
+        <View style={[subCotainerInfoAddress, primaryBorderColor]}>
           <Text style={addressText}>{"AddressText"}</Text>
         </View>
       </View>
@@ -49,9 +59,6 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
 
     width: "70%",
-
-    fontSize: 35,
-    fontWeight: "700",
   },
   infoUser: {
     justifyContent: "space-evenly",
@@ -70,9 +77,6 @@ const styles = StyleSheet.create({
   },
   addressTitle: {
     alignSelf: "flex-start",
-
-    fontSize: 30,
-    fontWeight: "700",
   },
   btnEditUser: {
     position: "absolute",
@@ -92,8 +96,6 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "100%",
     borderWidth: 1,
-
-    borderColor: "#E0B973",
   },
   subCotainerInfoAddress: {
     alignItems: "flex-start",
@@ -103,8 +105,6 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 15,
     borderBottomWidth: 1,
-
-    borderColor: "#E0B973",
   },
   addressText: {
     paddingHorizontal: 3,
@@ -114,12 +114,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     width: "80%",
-  },
-  btnCloseLoginText: {
-    fontSize: 22,
-    fontWeight: "500",
-
-    color: "red",
   },
 });
 
@@ -134,7 +128,16 @@ const {
   subCotainerInfoAddress,
   addressText,
   btnCloseLogin,
-  btnCloseLoginText,
 } = styles;
 
-const { containerFontBox, primaryBackground } = themes;
+const {
+  containerFontBox,
+  primaryBackground,
+  text4Xl,
+  fontBold,
+  text2Xl,
+  fontMedium,
+  secondaryColor,
+  primaryBorderColor,
+  quinaryColor,
+} = themes;

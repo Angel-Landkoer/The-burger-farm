@@ -23,7 +23,7 @@ export function CartProduct({ data }) {
             }}
           />
         ) : (
-          <Loading color={"#aaa"} />
+          <Loading color={tertiaryColor.color} />
         )}
       </View>
       <View
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
 const { container, contentImg, picture, contentProductName, productName } =
   styles;
 
-const { text3Xl, textCenter, fontBold, primaryColor } = themes;
+const { text3Xl, textCenter, fontBold, primaryColor, tertiaryColor } = themes;
