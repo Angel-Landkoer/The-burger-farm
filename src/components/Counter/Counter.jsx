@@ -18,26 +18,26 @@ export function Counter({ price }) {
     <View style={container}>
       <View style={contentCount}>
         <TouchableOpacity
-          style={btnLess}
+          style={[tertiaryColor]}
           onPress={handleLess}
           disabled={count == 1}
         >
           <FontAwesome5
             name="minus-circle"
             size={28}
-            color={count == 1 ? "#aaa" : "red"}
+            color={count == 1 ? tertiaryColor.color : quinaryColor.color}
           />
         </TouchableOpacity>
         <Text style={[textCount, textBase, fontMedium]}>{count}</Text>
         <TouchableOpacity
-          style={btnPlus}
+          style={[tertiaryColor]}
           onPress={handlePlus}
           disabled={count == 99}
         >
           <FontAwesome5
             name="plus-circle"
             size={28}
-            color={count == 99 ? "#aaa" : "green"}
+            color={count == 99 ? tertiaryColor.color : quaternaryColor.color}
           />
         </TouchableOpacity>
       </View>
@@ -69,20 +69,17 @@ const styles = StyleSheet.create({
   contentPrice: {},
   textPrice: {},
   textCount: {},
-  btnLess: {
-    color: "#aaa",
-  },
-  btnPlus: {},
 });
 
-const {
-  container,
-  contentPrice,
-  contentCount,
-  btnLess,
-  btnPlus,
-  textPrice,
-  textCount,
-} = styles;
+const { container, contentPrice, contentCount, textPrice, textCount } = styles;
 
-const { fontMedium, fontSemiBold, text2Xl, textBase, secondaryColor } = themes;
+const {
+  fontMedium,
+  fontSemiBold,
+  text2Xl,
+  textBase,
+  secondaryColor,
+  quinaryColor,
+  quaternaryColor,
+  tertiaryColor,
+} = themes;
