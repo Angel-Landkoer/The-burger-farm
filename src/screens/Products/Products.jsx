@@ -1,28 +1,48 @@
 import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { ProductSlide } from "../../components/ProductSlide/ProductSlide";
-import { data } from "../../utils/data";
+import { themes } from "../../themes";
+import { datas } from "../../utils/data";
 
 export function Products() {
-  const { type } = data;
-  const { burgers, hotDogs, sandwichs, specialities, kids, adicionals } = type;
+  const {
+    burgers,
+    hotDogs,
+    sandwichs,
+    specialities,
+    kids,
+    adicionals,
+    milkshakesAndSlushies,
+    liquors,
+    portions,
+    watersAndJuicesAndSoftDrinks,
+  } = datas;
 
   return (
     <ScrollView>
-      <View style={container}>
-        <ProductSlide type={`BURBER`} data={burgers} />
-        <ProductSlide type={`KIDS`} data={kids} />
-        <ProductSlide type={`SPECIALITIES`} data={specialities} />
-        <ProductSlide type={`HOT DOG`} data={hotDogs} />
-        <ProductSlide type={`SANDWICHS`} data={sandwichs} />
-        <ProductSlide type={`ADICIONALS`} data={adicionals} />
+      <View style={[containerFontBox, primaryBackground]}>
+        <ProductSlide type={burgers?.type} data={burgers?.data} />
+        <ProductSlide type={kids?.type} data={kids?.data} />
+        <ProductSlide type={specialities?.type} data={specialities?.data} />
+        <ProductSlide type={hotDogs?.type} data={hotDogs?.data} />
+        <ProductSlide type={sandwichs?.type} data={sandwichs?.data} />
+        <ProductSlide type={adicionals?.type} data={adicionals?.data} />
+        <ProductSlide
+          type={milkshakesAndSlushies?.type}
+          data={milkshakesAndSlushies?.data}
+        />
+        <ProductSlide type={liquors?.type} data={liquors?.data} />
+        <ProductSlide
+          type={watersAndJuicesAndSoftDrinks?.type}
+          data={watersAndJuicesAndSoftDrinks?.data}
+        />
+        <ProductSlide type={portions?.type} data={portions?.data} />
       </View>
     </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: { width: "100%", padding: 20 },
-});
+const styles = StyleSheet.create({});
 
-const { container } = styles;
+const {} = styles;
+const { containerFontBox, primaryBackground } = themes;
