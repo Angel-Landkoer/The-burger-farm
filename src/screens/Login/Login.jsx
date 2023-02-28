@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { FormDataLogin } from "../../components/FormDataLogin/FormDataLogin";
+import { themes } from "../../themes";
 
 export function Login() {
   return (
-    <View>
+    <View style={[containerFontBox, primaryBackground]}>
       <Text>Login</Text>
+      <FormDataLogin />
     </View>
   );
 }
@@ -12,3 +15,5 @@ export function Login() {
 const styles = StyleSheet.create({});
 
 const {} = styles;
+
+const { containerFontBox, primaryBackground } = themes;

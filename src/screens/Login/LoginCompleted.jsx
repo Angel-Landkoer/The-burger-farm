@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { themes } from "../../themes";
 
 export function LoginCompleted() {
   return (
-    <View style={container}>
+    <View style={[containerFontBox, primaryBackground]}>
       <Text style={title}>Information Genaral</Text>
 
       <View style={infoUser}>
@@ -44,14 +45,6 @@ export function LoginCompleted() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-
-    padding: 20,
-    marginVertical: 15,
-    width: "100%",
-  },
   title: {
     alignSelf: "flex-start",
 
@@ -131,7 +124,6 @@ const styles = StyleSheet.create({
 });
 
 const {
-  container,
   title,
   infoUser,
   infoAddress,
@@ -144,3 +136,5 @@ const {
   btnCloseLogin,
   btnCloseLoginText,
 } = styles;
+
+const { containerFontBox, primaryBackground } = themes;

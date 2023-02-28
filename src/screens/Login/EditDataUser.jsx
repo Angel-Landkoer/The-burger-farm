@@ -6,10 +6,11 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+import { themes } from "../../themes";
 
 export function EditDataUser() {
   return (
-    <View>
+    <View style={[containerFontBox, primaryBackground]}>
       <Text>Information Gerenal</Text>
       <View>
         <TextInput
@@ -51,3 +52,7 @@ export function EditDataUser() {
 }
 
 const styles = StyleSheet.create({});
+
+const {} = styles;
+
+const { containerFontBox, primaryBackground } = themes;

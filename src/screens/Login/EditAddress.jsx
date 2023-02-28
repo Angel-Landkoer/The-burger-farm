@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
+import { themes } from "../../themes";
 
 // dato de los ciudades and departamentos
 
@@ -27,7 +28,7 @@ const seletions = ["select", "Street", "Race"];
 
 export function EditAddress() {
   return (
-    <View>
+    <View style={[containerFontBox, primaryBackground]}>
       <Text>
         It is important that you are precise and detailed when entering your
         address, this will ensure that your order can be delivered in the
@@ -90,3 +91,7 @@ export function EditAddress() {
 }
 
 const styles = StyleSheet.create({});
+
+const {} = styles;
+
+const { containerFontBox, primaryBackground } = themes;

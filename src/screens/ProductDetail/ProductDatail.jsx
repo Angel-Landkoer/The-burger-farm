@@ -1,25 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Detail } from "../../components/Detail/Detail";
-import { data } from "../../utils/data";
+import { datas } from "../../utils/data";
+import { themes } from "../../themes";
 
 export function ProductDatail() {
-  const { type } = data;
-  const { burgers } = type;
-  const dataObject = burgers[4];
+  const { burgers } = datas;
+  const dataObject = burgers.data;
+  const data = dataObject[3];
 
   return (
-    <View style={container}>
-      <Detail data={dataObject} />
-    </View>
+    <ScrollView>
+      <View style={[containerFontBox, primaryBackground]}>
+        <Detail data={data} />
+      </View>
+    </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    padding: 20,
-  },
-});
+const styles = StyleSheet.create({});
 
 const { container } = styles;
+const { containerFontBox, primaryBackground } = themes;

@@ -7,25 +7,36 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { themes } from "../../themes";
 import { DataCard } from "../DataCard/DataCard";
-// import { Loading } from "../Loading/Loading";
+import { Loading } from "../Loading/Loading";
 
 export function ProductSlide({ type, data }) {
   return (
     <ScrollView>
       <View style={container}>
-        <Text style={title}>{type}</Text>
+        <Text style={[title, text3Xl, fontBold, primaryColor]}>{type}</Text>
         <FlatList
           data={data}
-          renderItem={(item) => <DataCard data={item.item} />}
+          renderItem={(item) =>
+            item.item ? (
+              <DataCard data={item.item} />
+            ) : (
+              <Loading color={`#aaa`} />
+            )
+          }
           keyExtractor={(item) => `Slide-${item.name}`}
           horizontal
         />
         <TouchableOpacity
-          style={btn}
+          style={[btn, primaryBorderColor]}
           onPress={() => console.warn("Redirecting")}
         >
-          <Text style={btnTitle}>See complete list</Text>
+          <Text
+            style={[btnTitle, textBase, textCenter, fontMedium, primaryColor]}
+          >
+            See complete list
+          </Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -46,24 +57,27 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom: 10,
-
-    fontSize: 30,
-    fontWeight: "700",
   },
 
   btn: {
     width: 200,
     padding: 3,
     marginTop: 15,
-    borderWidth: 1,
+    borderWidth: 2,
 
     borderRadius: 20,
   },
-  btnTitle: {
-    fontSize: 15,
-    fontWeight: "500",
-    textAlign: "center",
-  },
+  btnTitle: {},
 });
 
 const { container, btn, btnTitle, title } = styles;
+
+const {
+  textBase,
+  fontMedium,
+  textCenter,
+  text3Xl,
+  fontBold,
+  primaryBorderColor,
+  primaryColor,
+} = themes;

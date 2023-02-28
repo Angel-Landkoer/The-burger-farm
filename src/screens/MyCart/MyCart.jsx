@@ -1,18 +1,20 @@
 import React from "react";
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { themes } from "../../themes";
+import { datas } from "../../utils/data";
+import { StatusBar } from "expo-status-bar";
 import { CartProduct } from "../../components/CartProduct/CartProduct";
-import { data } from "../../utils/data";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export function MyCart() {
-  const { type } = data;
-  const { burgers } = type;
+  // datos filtrado de selecction -- falta hacer en el estado global
+  const { burgers } = datas;
 
   return (
     <ScrollView>
-      <View style={container}>
-        <Text>MyCart</Text>
+      <StatusBar style="light" backgroundColor="black" />
+      <View style={[containerFontBox, primaryBackground]}>
         <FlatList
-          data={burgers}
+          data={burgers.data}
           renderItem={(item) => <CartProduct data={item.item} />}
           keyExtractor={(item) => `cartItem-${item.name}`}
         />
@@ -21,15 +23,7 @@ export function MyCart() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
+const styles = StyleSheet.create({});
+const {} = styles;
 
-    width: "100%",
-    padding: 20,
-    marginVertical: 15,
-  },
-});
-
-const { container } = styles;
+const { containerFontBox, primaryBackground } = themes;

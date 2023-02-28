@@ -1,18 +1,18 @@
 import React from "react";
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { themes } from "../../themes";
+import Constants from "expo-constants";
+import { datas } from "../../utils/data";
 import { DataCard } from "../../components/DataCard/DataCard";
-import { data } from "../../utils/data";
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
 
 export function AllProductSection() {
-  const { type } = data;
-  const { burgers } = type;
-
+  const { burgers } = datas;
+  //
   return (
     <ScrollView>
-      <View style={container}>
+      <View style={[container, primaryBackground]}>
         <FlatList
-          style={flat}
-          data={burgers}
+          data={burgers.data}
           renderItem={(item) => <DataCard data={item.item} />}
           keyExtractor={(item) => `AllProduct-${item.name}`}
         />
@@ -23,18 +23,12 @@ export function AllProductSection() {
 
 const styles = StyleSheet.create({
   container: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-
-    width: "100%",
     padding: 20,
-  },
-  flat: {
-    flexWrap: "wrap",
-    flexDirection: "row",
+    width: "100%",
+    marginVertical: Constants.statusBarHeight,
   },
 });
 
-const { container, flat } = styles;
+const { container } = styles;
+
+const { primaryBackground } = themes;
