@@ -1,44 +1,49 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Counter } from "../Counter/Counter";
+import { themes } from "../../styles/themes";
 
 export function Detail({ data }) {
   const { name, description, price, img } = data;
 
   return (
     <View style={container}>
-      <Text style={title}>{name}</Text>
+      <Text style={[title, fontBold, text3Xl]}>{name}</Text>
       <Image
         style={picture}
         source={{ uri: "http://www.smashbros.com/images/og/pikachu.jpg" }}
       />
-      <Text style={descriptions}>{description}</Text>
-      <TouchableOpacity style={btnCustom} onPress={() => null}>
-        <Text style={btnText}>Add or remove elements (customize)</Text>
+      <Text style={[descriptions, textJustify, textLg]}>{description}</Text>
+
+      <TouchableOpacity
+        style={[btnCustom, secondaryBackground]}
+        onPress={() => null}
+      >
+        <Text style={[senaryColor, textCenter]}>
+          Add or remove elements (customize)
+        </Text>
       </TouchableOpacity>
 
-      <View style={containerCounter}>
-        <TouchableOpacity style={btnLess} onPress={() => null}>
-          <FontAwesome5 name="minus" size={24} color="white" />
-        </TouchableOpacity>
-        <Text>{0}</Text>
-        <TouchableOpacity style={btnPlus} onPress={() => null}>
-          <FontAwesome5 name="plus" size={24} color="white" />
-        </TouchableOpacity>
-      </View>
-
-      <View style={viewPrice}>
-        <Text style={textPrice}>${price / 1_000}k</Text>
-      </View>
+      <Counter price={price} />
 
       <View style={containerDirection}>
-        <TouchableOpacity style={btnCancel} onPress={() => null}>
-          <MaterialIcons name="cancel" size={24} color="white" />
-          <Text style={btnText}>Cancel</Text>
+        <TouchableOpacity style={[btnCancel, quaternaryBackground]}>
+          <MaterialCommunityIcons
+            name="close-circle"
+            size={24}
+            color={senaryColor.color}
+          />
+          <Text style={[textCenter, textSm, fontMedium, senaryColor]}>
+            Cancel
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={btnAdd} onPress={() => null}>
-          <FontAwesome5 name="cart-plus" size={24} color="white" />
-          <Text style={btnText}>Add to Cart</Text>
+
+        <TouchableOpacity style={[btnAdd, tertiaryBackground]}>
+          <FontAwesome5 name="cart-plus" size={24} color={senaryColor.color} />
+          <Text style={[textCenter, textSm, fontMedium, senaryColor]}>
+            Add to Cart
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -46,35 +51,20 @@ export function Detail({ data }) {
 }
 
 const styles = StyleSheet.create({
-  container: { alignItems: "center", justifyContent: "center", padding: 20 },
+  container: { alignItems: "center", justifyContent: "center" },
   descriptions: {
     padding: 10,
-    textAlign: "justify",
-    fontSize: 17,
-    lineHeight: 23,
   },
-  title: { alignSelf: "flex-start", fontSize: 30, fontWeight: "700" },
+  title: { alignSelf: "flex-start", paddingHorizontal: 25, marginBottom: 25 },
   picture: { width: 200, height: 200 },
+
   btnCustom: {
-    width: 200,
+    width: "70%",
     paddingHorizontal: 15,
-    paddingVertical: 5,
+    paddingVertical: 10,
+    marginVertical: 20,
 
-    borderRadius: 15,
-    backgroundColor: "#E0B973",
-  },
-
-  viewPrice: {
-    alignSelf: "flex-end",
-    justifyContent: "center",
-  },
-  textPrice: { fontSize: 27, fontWeight: "600", color: "#E0B973" },
-  containerCounter: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-
-    width: "30%",
+    borderRadius: 50,
   },
   btnAdd: {
     flexDirection: "row",
@@ -83,17 +73,9 @@ const styles = StyleSheet.create({
 
     width: 150,
     paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingVertical: 8,
 
-    borderRadius: "50%",
-    backgroundColor: "green",
-  },
-  btnText: {
-    fontSize: 14,
-    fontWeight: "500",
-    textAlign: "center",
-
-    color: "white",
+    borderRadius: 20,
   },
   btnCancel: {
     flexDirection: "row",
@@ -102,37 +84,16 @@ const styles = StyleSheet.create({
 
     width: 100,
     paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingVertical: 8,
 
-    borderRadius: "50%",
-    backgroundColor: "red",
-  },
-
-  btnLess: {
-    alignItems: "center",
-    justifyContent: "center",
-
-    width: 35,
-    height: 35,
-
-    borderRadius: "50%",
-    backgroundColor: "red",
-  },
-  btnPlus: {
-    alignItems: "center",
-    justifyContent: "center",
-
-    width: 35,
-    height: 35,
-
-    borderRadius: "50%",
-    backgroundColor: "green",
+    borderRadius: 20,
   },
   containerDirection: {
     flexDirection: "row",
     justifyContent: "space-around",
 
     width: "100%",
+    marginVertical: 20,
   },
 });
 
@@ -141,14 +102,22 @@ const {
   descriptions,
   title,
   btnCustom,
-  containerCounter,
-  viewPrice,
-  textPrice,
   btnAdd,
   btnCancel,
   picture,
-  btnPlus,
-  btnLess,
   containerDirection,
-  btnText,
 } = styles;
+
+const {
+  textLg,
+  textJustify,
+  textCenter,
+  text3Xl,
+  textSm,
+  fontBold,
+  fontMedium,
+  secondaryBackground,
+  tertiaryBackground,
+  quaternaryBackground,
+  senaryColor,
+} = themes;
