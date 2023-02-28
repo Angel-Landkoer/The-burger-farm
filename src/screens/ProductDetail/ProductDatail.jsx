@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Detail } from "../../components/Detail/Detail";
 import { datas } from "../../utils/data";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 
 export function ProductDatail() {
   const { burgers } = datas;

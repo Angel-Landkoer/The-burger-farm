@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 
 export function Counter({ price }) {
   const [count, setCount] = useState(1);

@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { ProductSlide } from "../../components/ProductSlide/ProductSlide";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 import { datas } from "../../utils/data";
 
 export function Products() {

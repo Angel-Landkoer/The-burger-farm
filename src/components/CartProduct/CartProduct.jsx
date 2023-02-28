@@ -2,7 +2,7 @@ import React from "react";
 import { Counter } from "../Counter/Counter";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Loading } from "../Loading/Loading";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 
 export function CartProduct({ data }) {
   const {

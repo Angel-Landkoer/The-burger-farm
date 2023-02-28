@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 
 export function DataCard({ data }) {
   const { name, description, price } = data;

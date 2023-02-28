@@ -6,7 +6,7 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 
 export function EditDataUser() {
   return (

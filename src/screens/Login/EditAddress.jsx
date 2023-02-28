@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 
 // dato de los ciudades and departamentos
 

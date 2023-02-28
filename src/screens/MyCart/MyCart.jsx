@@ -1,5 +1,5 @@
 import React from "react";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 import { datas } from "../../utils/data";
 import { StatusBar } from "expo-status-bar";
 import { CartProduct } from "../../components/CartProduct/CartProduct";

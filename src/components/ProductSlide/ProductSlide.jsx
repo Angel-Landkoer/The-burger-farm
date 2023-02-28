@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 import { DataCard } from "../DataCard/DataCard";
 import { Loading } from "../Loading/Loading";
 

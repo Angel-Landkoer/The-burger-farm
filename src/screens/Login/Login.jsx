@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { FormDataLogin } from "../../components/FormDataLogin/FormDataLogin";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 
 export function Login() {
   return (

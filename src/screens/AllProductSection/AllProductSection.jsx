@@ -1,5 +1,5 @@
 import React from "react";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 import Constants from "expo-constants";
 import { datas } from "../../utils/data";
 import { DataCard } from "../../components/DataCard/DataCard";

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { themes } from "../../themes";
+import { themes } from "../../styles/themes";
 
 export function LoginCompleted() {
   return (
