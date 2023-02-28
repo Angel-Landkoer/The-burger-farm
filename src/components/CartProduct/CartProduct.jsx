@@ -2,6 +2,7 @@ import React from "react";
 import { Counter } from "../Counter/Counter";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Loading } from "../Loading/Loading";
+import { themes } from "../../themes";
 
 export function CartProduct({ data }) {
   const {
@@ -25,11 +26,6 @@ export function CartProduct({ data }) {
           <Loading color={"#aaa"} />
         )}
       </View>
-      {/* <View >
-        <Button color={`red`} onPress={() => null} title="-" />
-        <Text>{}</Text>
-        <Button color={`green`} onPress={() => null} title="+" />
-      </View> */}
       <View
         style={{
           alignItems: "flex-end",
@@ -39,7 +35,11 @@ export function CartProduct({ data }) {
         }}
       >
         <View style={contentProductName}>
-          <Text style={productName}>{name}</Text>
+          <Text
+            style={[productName, text3Xl, textCenter, fontBold, primaryColor]}
+          >
+            {name}
+          </Text>
         </View>
         <Counter price={price} />
       </View>
@@ -47,14 +47,12 @@ export function CartProduct({ data }) {
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
 
     width: "100%",
     padding: 10,
-
     borderWidth: 1,
   },
   contentImg: {
@@ -72,12 +70,10 @@ const styles = StyleSheet.create({
 
     marginBottom: 33,
   },
-  productName: {
-    fontSize: 30,
-    fontWeight: "700",
-    textAlign: "center",
-  },
+  productName: {},
 });
 
 const { container, contentImg, picture, contentProductName, productName } =
   styles;
+
+const { text3Xl, textCenter, fontBold, primaryColor } = themes;
