@@ -4,7 +4,7 @@ import { themes } from "../../styles/themes";
 export function Notes({ data, onPress }) {
   return (
     <View style={[container, tertiaryBorderColor]}>
-      <Text style={[styleText, textXl, textCenter, fontBold, senaryColor]}>
+      <Text style={[styleText, textXl, textCenter, fontSemiBold, senaryColor]}>
         {data.data}
       </Text>
       <Button title="deleted Info" onPress={onPress} />
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 50,
 
+    // borderColor: "red",
     borderRadius: 10,
   },
   styleText: {
@@ -28,5 +29,5 @@ const styles = StyleSheet.create({
 });
 
 const { container, styleText } = styles;
-const { tertiaryBorderColor, senaryColor, textCenter, fontBold, textXl } =
+const { tertiaryBorderColor, senaryColor, textCenter, fontSemiBold, textXl } =
   themes;

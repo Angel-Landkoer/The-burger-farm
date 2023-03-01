@@ -25,7 +25,7 @@ export const themes = StyleSheet.create({
   },
   senaryColor: {
     // white
-    color: "#FFFFFF",
+    color: "#fff",
   },
 
   // Backgorund Color
@@ -57,7 +57,7 @@ export const themes = StyleSheet.create({
 
   tertiaryBorderColor: {
     // white
-    borderColor: "#ffff",
+    borderColor: "#BDBFC3",
   },
 
   // Font-Size
