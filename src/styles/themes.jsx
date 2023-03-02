@@ -24,7 +24,7 @@ export const themes = StyleSheet.create({
     color: "#ff3b30",
   },
   senaryColor: {
-    color: "#FFFFFF"
+    color: "#FFFFFF",
   },
 
   // Backgorund Color
@@ -44,6 +44,11 @@ export const themes = StyleSheet.create({
     // Vivid red
     backgroundColor: "#ff3b30",
   },
+  quinaryBackground: {
+    // Strong blue.
+    backgroundColor: "#0275D8",
+  },
+
   // Border-Color
   primaryBorderColor: {
     // Moderate orange
