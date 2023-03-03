@@ -59,6 +59,11 @@ export const themes = StyleSheet.create({
     borderColor: "#54423A",
   },
 
+  tertiaryBorderColor: {
+    // Very dark gray
+    borderColor: "#666666",
+  },
+
   // Font-Size
   textXs: {
     fontSize: 12,
@@ -112,6 +117,6 @@ export const themes = StyleSheet.create({
 
     padding: 20,
     width: "100%",
-    marginVertical: Constants.statusBarHeight,
+    marginTop: Constants.statusBarHeight,
   },
 });

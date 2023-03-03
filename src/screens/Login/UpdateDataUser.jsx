@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { EditInfoGeneral } from "../../components/EditInfoGeneral/EditInfoGeneral";
+import { EditInfoGeneral } from "../../components/EditInfoGeneral/EditInfoGeneral.jsx";
 import { themes } from "../../styles/themes";
 
 export function UpdateDataUser() {
