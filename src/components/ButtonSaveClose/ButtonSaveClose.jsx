@@ -15,7 +15,7 @@ export function ButtonSaveClose({ onSaveData }) {
           size={24}
           color={senaryColor.color}
         />
-        <Text style={[btnText, btnTextCancel, senaryColor, textSm]}>
+        <Text style={[btnText, btnTextCancel, senaryColor, textLg]}>
           Cancel
         </Text>
       </TouchableOpacity>
@@ -25,7 +25,7 @@ export function ButtonSaveClose({ onSaveData }) {
       >
         <FontAwesome5 name="save" size={24} color={senaryColor.color} />
 
-        <Text style={[btnText, btnTextSave, senaryColor, textSm]}>Save</Text>
+        <Text style={[btnText, btnTextSave, senaryColor, textLg]}>Save</Text>
       </TouchableOpacity>
     </View>
   );
@@ -37,22 +37,23 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
 
-    width: 300,
+    width: 330,
   },
   touchBtn: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
 
-    padding: 2,
+    paddingVertical: 6,
+    paddingHorizontal: 20,
 
-    borderRadius: 20,
+    borderRadius: 30,
   },
   touchBtnCancel: {
-    width: 100,
+    width: 110,
   },
   touchSave: {
-    width: 150,
+    width: 160,
   },
   btnText: {
     padding: 5,
@@ -73,5 +74,5 @@ const {
   btnTextSave,
 } = styles;
 
-const { senaryColor, quaternaryBackground, tertiaryBackground, textSm } =
+const { senaryColor, quaternaryBackground, tertiaryBackground, textLg } =
   themes;
