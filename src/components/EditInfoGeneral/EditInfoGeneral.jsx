@@ -1,8 +1,8 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 
-import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
 import { themes } from "../../styles/themes";
+import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
 
 export function EditInfoGeneral() {
   return (

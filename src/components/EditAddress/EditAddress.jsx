@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";

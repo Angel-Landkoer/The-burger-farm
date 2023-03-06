@@ -2,13 +2,11 @@ import React from "react";
 import {
   StyleSheet,
   Text,
-  TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
-import { EditAddress } from "../../components/EditAddress/EditAddress";
 import { themes } from "../../styles/themes";
+import { EditAddress } from "../../components/EditAddress/EditAddress";
 
 // dato de los ciudades and departamentos
 

@@ -20,5 +20,5 @@ export function ProductDatail() {
 
 const styles = StyleSheet.create({});
 
-const { container } = styles;
+const {} = styles;
 const { containerFontBox, primaryBackground } = themes;

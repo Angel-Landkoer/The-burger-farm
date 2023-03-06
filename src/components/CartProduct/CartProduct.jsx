@@ -1,8 +1,8 @@
-import React from "react";
-import { Counter } from "../Counter/Counter";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { Loading } from "../Loading/Loading";
+import React from "react";
 import { themes } from "../../styles/themes";
+import { Counter } from "../Counter/Counter";
+import { Loading } from "../Loading/Loading";
 
 export function CartProduct({ data }) {
   const {
@@ -50,13 +50,15 @@ export function CartProduct({ data }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-
     width: "100%",
+    maxWidth: "100%",
     padding: 10,
     borderWidth: 1,
   },
   contentImg: {
-    width: "30%",
+    width: 200,
+    maxWidth: "",
+    height: 200
   },
   picture: {
     width: 130,

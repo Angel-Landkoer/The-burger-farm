@@ -1,9 +1,10 @@
 import React from "react";
-import { themes } from "../../styles/themes";
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
 import Constants from "expo-constants";
 import { datas } from "../../utils/data";
+import { themes } from "../../styles/themes";
 import { DataCard } from "../../components/DataCard/DataCard";
-import { FlatList, ScrollView, StyleSheet, View } from "react-native";
+import { RenderList } from "../../components/RenderList/RenderList";
 
 export function AllProductSection() {
   const { burgers } = datas;
@@ -11,10 +12,11 @@ export function AllProductSection() {
   return (
     <ScrollView>
       <View style={[container, primaryBackground]}>
-        <FlatList
+        <RenderList
           data={burgers.data}
-          renderItem={(item) => <DataCard data={item.item} />}
-          keyExtractor={(item) => `AllProduct-${item.name}`}
+          component={(item) => <DataCard data={item.item} />}
+          stringKey={(item) => `AllProduct-${item.name}`}
+          horizontal={true}
         />
       </View>
     </ScrollView>

@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -10,23 +9,20 @@ import {
 import { themes } from "../../styles/themes";
 import { DataCard } from "../DataCard/DataCard";
 import { Loading } from "../Loading/Loading";
+import { RenderList } from "../RenderList/RenderList";
 
 export function ProductSlide({ type, data }) {
   return (
     <ScrollView>
       <View style={container}>
         <Text style={[title, text3Xl, fontBold, primaryColor]}>{type}</Text>
-        <FlatList
+        <RenderList
+          loading={Boolean(data.name)}
+          component={(item) => <DataCard data={item.item} />}
           data={data}
-          renderItem={(item) =>
-            item.item ? (
-              <DataCard data={item.item} />
-            ) : (
-              <Loading color={tertiaryColor.color} />
-            )
-          }
-          keyExtractor={(item) => `Slide-${item.name}`}
-          horizontal
+          stringKey={(item) => `Slide-${item.name}`}
+          horizontal={true}
+          styles={{}}
         />
         <TouchableOpacity
           style={[btn, primaryBorderColor]}
@@ -60,7 +56,8 @@ const styles = StyleSheet.create({
   },
 
   btn: {
-    width: 200,
+    width: 500,
+    maxWidth: "60%",
     padding: 3,
     marginTop: 15,
     borderWidth: 2,
@@ -80,5 +77,4 @@ const {
   fontBold,
   primaryBorderColor,
   primaryColor,
-  tertiaryColor,
 } = themes;

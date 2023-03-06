@@ -1,9 +1,10 @@
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { StatusBar } from "expo-status-bar";
 import { themes } from "../../styles/themes";
 import { datas } from "../../utils/data";
-import { StatusBar } from "expo-status-bar";
 import { CartProduct } from "../../components/CartProduct/CartProduct";
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { RenderList } from "../../components/RenderList/RenderList";
 
 export function MyCart() {
   // datos filtrado de selecction -- falta hacer en el estado global
@@ -13,10 +14,11 @@ export function MyCart() {
     <ScrollView>
       <StatusBar style="light" backgroundColor="black" />
       <View style={[containerFontBox, primaryBackground]}>
-        <FlatList
+        <RenderList
           data={burgers.data}
-          renderItem={(item) => <CartProduct data={item.item} />}
-          keyExtractor={(item) => `cartItem-${item.name}`}
+          component={(item) => <CartProduct data={item.item} />}
+          stringKey={(item) => `CartItem-${item.name}`}
+          horizontal={false}
         />
       </View>
     </ScrollView>

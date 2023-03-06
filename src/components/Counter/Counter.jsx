@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 
 export function Counter({ price }) {
