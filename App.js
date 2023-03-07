@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { CustomText } from './src/components/CustomText/CustomText';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hola, Coder!</Text>
-      <Text>Welcome to The-burger-farm</Text>
+      <CustomText>
+        Hola, Coder!
+      </CustomText>
+      <CustomText>
+        Welcome to The-burger-farm
+      </CustomText>
       <StatusBar style="auto" />
     </View>
   );
