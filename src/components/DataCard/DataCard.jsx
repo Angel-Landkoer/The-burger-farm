@@ -1,20 +1,26 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { themes } from "../../styles/themes";
+import { CustomText } from "../CustomText/CustomText";
 
 export function DataCard({ data }) {
   const { name, description, price } = data;
 
   return (
     <View style={container}>
-      <Text style={[nameText, textSm, fontMedium, primaryColor]}>{name}</Text>
+      <CustomText style={[nameText, textSm, primaryColor]} fontF={"medium"}>
+        {name}
+      </CustomText>
       <Image
         style={[img, secondaryBorderColor]}
         source={{ uri: "http://www.smashbros.com/images/og/pikachu.jpg" }}
       />
-      <Text style={[priceText, fontSemiBold, textLg, secondaryColor]}>
+      <CustomText
+        style={[priceText, textLg, secondaryColor]}
+        fontF={"semiBold"}
+      >
         ${price / 1_000}k
-      </Text>
+      </CustomText>
     </View>
   );
 }
@@ -42,12 +48,5 @@ const styles = StyleSheet.create({
 
 const { container, img, nameText, priceText } = styles;
 
-const {
-  textSm,
-  fontMedium,
-  fontSemiBold,
-  textLg,
-  primaryColor,
-  secondaryColor,
-  secondaryBorderColor,
-} = themes;
+const { textSm, textLg, primaryColor, secondaryColor, secondaryBorderColor } =
+  themes;

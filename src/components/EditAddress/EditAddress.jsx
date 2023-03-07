@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import { themes } from "../../styles/themes";
 import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
+import { CustomText } from "../CustomText/CustomText";
 
 // dato de los ciudades and departamentos
 
@@ -73,7 +69,9 @@ export function EditAddress() {
           }}
         >
           <View style={[contentInput, primaryBorderColor]}>
-            <Text style={[labelText, secondaryColor]}>{""}</Text>
+            <CustomText style={[labelText, secondaryColor]} fontF={"regular"}>
+              {""}
+            </CustomText>
             <TextInput
               style={[input, textBase, secondaryColor, fontMedium]}
               keyboardType="default"
@@ -83,7 +81,9 @@ export function EditAddress() {
             />
           </View>
           <View style={[contentInput, primaryBorderColor]}>
-            <Text style={[labelText, secondaryColor]}>#</Text>
+            <CustomText style={[labelText, secondaryColor]} fontF={"regular"}>
+              #
+            </CustomText>
             <TextInput
               style={[input, textBase, secondaryColor, fontMedium]}
               keyboardType="numeric"
@@ -93,7 +93,9 @@ export function EditAddress() {
             />
           </View>
           <View style={[contentInput, primaryBorderColor]}>
-            <Text style={[labelText, secondaryColor]}>-</Text>
+            <CustomText style={[labelText, secondaryColor]} fontF={"regular"}>
+              -
+            </CustomText>
             <TextInput
               style={[input, textBase, secondaryColor, fontMedium]}
               keyboardType="default"
@@ -190,5 +192,4 @@ const {
   contentFormDropdown,
 } = styles;
 
-const { textBase, secondaryColor, fontMedium, primaryBorderColor, textLeft } =
-  themes;
+const { textBase, secondaryColor, fontMedium, primaryBorderColor } = themes;

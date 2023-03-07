@@ -1,7 +1,8 @@
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
+import { CustomText } from "../CustomText/CustomText";
 
 export function ButtonSaveClose({ onSaveData }) {
   return (
@@ -15,17 +16,24 @@ export function ButtonSaveClose({ onSaveData }) {
           size={24}
           color={senaryColor.color}
         />
-        <Text style={[btnText, btnTextCancel, senaryColor, textLg]}>
+        <CustomText
+          style={[btnText, btnTextCancel, senaryColor, textLg]}
+          fontF={"regular"}
+        >
           Cancel
-        </Text>
+        </CustomText>
       </TouchableOpacity>
       <TouchableOpacity
         style={[touchBtn, touchSave, tertiaryBackground]}
         onPress={() => console.warn("Save data")}
       >
         <FontAwesome5 name="save" size={24} color={senaryColor.color} />
-
-        <Text style={[btnText, btnTextSave, senaryColor, textLg]}>Save</Text>
+        <CustomText
+          style={[btnText, btnTextSave, senaryColor, textLg]}
+          fontF={"regular"}
+        >
+          Save
+        </CustomText>
       </TouchableOpacity>
     </View>
   );

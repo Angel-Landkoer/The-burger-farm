@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
+import { CustomText } from "../../components/CustomText/CustomText";
 
 export function FindUs() {
   return (
     <View>
-      <Text>FindUs</Text>
+      <CustomText fontF={"regular"}>FindUs</CustomText>
     </View>
   );
 }

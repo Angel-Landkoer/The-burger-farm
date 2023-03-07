@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
-import { FormDataSignUp } from "../../components/FormDataSignUp/FormDataSignUp";
 import { themes } from "../../styles/themes";
+import { CustomText } from "../../components/CustomText/CustomText";
+import { FormDataSignUp } from "../../components/FormDataSignUp/FormDataSignUp";
 
 export function SignUp() {
   return (
     <View style={[containerFontBox, primaryBackground]}>
-      <Text style={[text4Xl, fontBold, primaryColor]}>SignUp</Text>
+      <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
+        SignUp
+      </CustomText>
       <FormDataSignUp />
     </View>
   );
@@ -16,4 +19,4 @@ const styles = StyleSheet.create({});
 
 const {} = styles;
 
-const { containerFontBox, primaryBackground, fontBold, text4Xl, primaryColor } = themes;
+const { containerFontBox, primaryBackground, text4Xl, primaryColor } = themes;

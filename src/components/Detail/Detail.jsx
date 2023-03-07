@@ -1,28 +1,32 @@
 import React from "react";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Counter } from "../Counter/Counter";
 import { themes } from "../../styles/themes";
+import { CustomText } from "../CustomText/CustomText";
+import { Counter } from "../Counter/Counter";
 
 export function Detail({ data }) {
   const { name, description, price, img } = data;
 
   return (
     <View style={container}>
-      <Text style={[title, fontBold, text3Xl]}>{name}</Text>
+      <CustomText style={[title, text3Xl]} fontF={"bold"}>
+        {name}
+      </CustomText>
       <Image
         style={picture}
         source={{ uri: "http://www.smashbros.com/images/og/pikachu.jpg" }}
       />
-      <Text style={[descriptions, textJustify, textLg]}>{description}</Text>
-
+      <CustomText style={[descriptions, textJustify, textLg]} fontF={"medium"}>
+        {description}
+      </CustomText>
       <TouchableOpacity
         style={[btnCustom, secondaryBackground]}
         onPress={() => null}
       >
-        <Text style={[senaryColor, textCenter]}>
+        <CustomText style={[senaryColor, textCenter]} fontF={"regular"}>
           Add or remove elements (customize)
-        </Text>
+        </CustomText>
       </TouchableOpacity>
 
       <Counter price={price} />
@@ -34,16 +38,22 @@ export function Detail({ data }) {
             size={24}
             color={senaryColor.color}
           />
-          <Text style={[textCenter, textSm, fontMedium, senaryColor]}>
+          <CustomText
+            style={[textCenter, textSm, fontMedium, senaryColor]}
+            fontF={"medium"}
+          >
             Cancel
-          </Text>
+          </CustomText>
         </TouchableOpacity>
 
         <TouchableOpacity style={[btnAdd, tertiaryBackground]}>
           <FontAwesome5 name="cart-plus" size={24} color={senaryColor.color} />
-          <Text style={[textCenter, textSm, fontMedium, senaryColor]}>
+          <CustomText
+            style={[textCenter, textSm, fontMedium, senaryColor]}
+            fontF={"medium"}
+          >
             Add to Cart
-          </Text>
+          </CustomText>
         </TouchableOpacity>
       </View>
     </View>
@@ -51,7 +61,13 @@ export function Detail({ data }) {
 }
 
 const styles = StyleSheet.create({
-  container: { alignItems: "center", justifyContent: "center" },
+  container: {
+    justifyContent: "space-around",
+    alignItems: "center",
+
+    width: "100%",
+    height: "100%",
+  },
   descriptions: {
     padding: 10,
   },
@@ -114,7 +130,6 @@ const {
   textCenter,
   text3Xl,
   textSm,
-  fontBold,
   fontMedium,
   secondaryBackground,
   tertiaryBackground,

@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import Constants from "expo-constants";
 import { datas } from "../../utils/data";
 import { themes } from "../../styles/themes";

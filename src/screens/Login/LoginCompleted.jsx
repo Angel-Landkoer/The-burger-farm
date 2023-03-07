@@ -1,28 +1,30 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
+import { CustomText } from "../../components/CustomText/CustomText";
 
 export function LoginCompleted() {
   return (
     <View style={[containerFontBox, primaryBackground]}>
-      <Text style={[title, fontBold, text4Xl]}>Information Genaral</Text>
-
+      <CustomText style={[title, text4Xl]} fontF={"bold"}>
+        Information Genaral
+      </CustomText>
       <View style={infoUser}>
         <TouchableOpacity style={btnEditUser} onPress={() => null}>
           <FontAwesome5 name="edit" size={32} color={secondaryColor.color} />
         </TouchableOpacity>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
-          <Text>Name:</Text>
-          <Text>{"null"}</Text>
+          <CustomText fontF={"regular"}>Name:</CustomText>
+          <CustomText fontF={"regular"}>{"null"}</CustomText>
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
-          <Text>Phone:</Text>
-          <Text>{"null"}</Text>
+          <CustomText fontF={"regular"}>Phone:</CustomText>
+          <CustomText fontF={"regular"}>{"null"}</CustomText>
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
-          <Text>Email:</Text>
-          <Text>{"null"}</Text>
+          <CustomText fontF={"regular"}>Email:</CustomText>
+          <CustomText fontF={"regular"}>{"null"}</CustomText>
         </View>
       </View>
 
@@ -32,13 +34,15 @@ export function LoginCompleted() {
           size={45}
           color={quinaryColor.color}
         />
-        <Text style={[btnCloseLoginText, text2Xl, fontMedium, quinaryColor]}>
+        <CustomText style={[text2Xl, quinaryColor]} fontF={"medium"}>
           Deleted Account
-        </Text>
+        </CustomText>
       </TouchableOpacity>
 
       <View style={infoAddress}>
-        <Text style={[addressTitle, text2Xl, fontBold]}>Address</Text>
+        <CustomText style={[addressTitle, text2Xl]} fontF={"bold"}>
+          Address
+        </CustomText>
         <TouchableOpacity style={btnEditAddress} onPress={() => null}>
           <FontAwesome5
             name="plus-square"
@@ -47,7 +51,9 @@ export function LoginCompleted() {
           />
         </TouchableOpacity>
         <View style={[subCotainerInfoAddress, primaryBorderColor]}>
-          <Text style={addressText}>{"AddressText"}</Text>
+          <CustomText style={[addressText]} fontF={"regular"}>
+            {"AddressText"}
+          </CustomText>
         </View>
       </View>
     </View>
@@ -134,9 +140,7 @@ const {
   containerFontBox,
   primaryBackground,
   text4Xl,
-  fontBold,
   text2Xl,
-  fontMedium,
   secondaryColor,
   primaryBorderColor,
   quinaryColor,

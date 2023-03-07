@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { CustomText } from "../../components/CustomText/CustomText";
 
 export function MyOrders() {
   return (
     <View>
-      <Text>MyOrders</Text>
+      <CustomText fontF={"regular"}>MyOrders</CustomText>
     </View>
   );
 }

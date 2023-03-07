@@ -2,20 +2,21 @@ import React from "react";
 import {
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import { themes } from "../../styles/themes";
 import { DataCard } from "../DataCard/DataCard";
-import { Loading } from "../Loading/Loading";
 import { RenderList } from "../RenderList/RenderList";
+import { CustomText } from "../../components/CustomText/CustomText";
 
 export function ProductSlide({ type, data }) {
   return (
     <ScrollView>
       <View style={container}>
-        <Text style={[title, text3Xl, fontBold, primaryColor]}>{type}</Text>
+        <CustomText style={[title, text3Xl, primaryColor]} fontF={"bold"}>
+          {type}
+        </CustomText>
         <RenderList
           loading={Boolean(data.name)}
           component={(item) => <DataCard data={item.item} />}
@@ -28,11 +29,12 @@ export function ProductSlide({ type, data }) {
           style={[btn, primaryBorderColor]}
           onPress={() => console.warn("Redirecting")}
         >
-          <Text
-            style={[btnTitle, textBase, textCenter, fontMedium, primaryColor]}
+          <CustomText
+            style={[btnTitle, textBase, textCenter, primaryColor]}
+            fontF={"medium"}
           >
             See complete list
-          </Text>
+          </CustomText>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -71,10 +73,8 @@ const { container, btn, btnTitle, title } = styles;
 
 const {
   textBase,
-  fontMedium,
   textCenter,
   text3Xl,
-  fontBold,
   primaryBorderColor,
   primaryColor,
 } = themes;

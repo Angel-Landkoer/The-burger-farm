@@ -1,7 +1,8 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import React from "react";
 import { themes } from "../../styles/themes";
 import { Counter } from "../Counter/Counter";
+import { CustomText } from "../CustomText/CustomText";
 import { Loading } from "../Loading/Loading";
 
 export function CartProduct({ data }) {
@@ -35,11 +36,12 @@ export function CartProduct({ data }) {
         }}
       >
         <View style={contentProductName}>
-          <Text
-            style={[productName, text3Xl, textCenter, fontBold, primaryColor]}
+          <CustomText
+            style={[productName, text3Xl, textCenter, primaryColor]}
+            fontF={"bold"}
           >
             {name}
-          </Text>
+          </CustomText>
         </View>
         <Counter price={price} />
       </View>
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
   contentImg: {
     width: 200,
     maxWidth: "",
-    height: 200
+    height: 200,
   },
   picture: {
     width: 130,

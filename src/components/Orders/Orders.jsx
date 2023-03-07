@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, View } from "react-native";
+import React from "react";
+import { CustomText } from "../CustomText/CustomText";
 
 export function Orders() {
   return (
     <View>
-      <Text>Orders</Text>
+      <CustomText fontF={"regular"}>Orders</CustomText>
     </View>
-  )
+  );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
 
 const {} = styles;

@@ -1,14 +1,13 @@
 import {
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { themes } from "../../styles/themes";
-
 import { FontAwesome5 } from "@expo/vector-icons";
+import { themes } from "../../styles/themes";
+import { CustomText } from "../CustomText/CustomText";
 
 export function FormDataLogin() {
   const [numberPhoneValue, setNumberPhoneValue] = useState("");
@@ -22,7 +21,9 @@ export function FormDataLogin() {
   return (
     <View style={[container]}>
       <View style={[contentForm]}>
-        <Text style={[text3Xl, fontBold, primaryColor]}>Phone Number</Text>
+        <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
+          Phone Number
+        </CustomText>
         <TextInput
           style={[input, primaryBorderColor, fontSemiBold, textBase]}
           placeholderTextColor={tertiaryColor.color}
@@ -32,7 +33,9 @@ export function FormDataLogin() {
           maxLength={10}
           onChangeText={handleChangePhoneValue}
         />
-        <Text style={[text3Xl, fontBold, primaryColor]}>Password</Text>
+        <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
+          Password
+        </CustomText>
         <TextInput
           style={[input, primaryBorderColor, fontSemiBold, textBase]}
           placeholderTextColor={tertiaryColor.color}
@@ -49,14 +52,18 @@ export function FormDataLogin() {
           onPress={() => console.warn("Data confirm And redirection")}
         >
           <FontAwesome5 name="key" size={29} color={senaryColor.color} />
-          <Text style={[btnText, senaryColor, text2Xl, fontBold]}>Access</Text>
+          <CustomText style={[btnText, senaryColor, text2Xl]} fontF={"bold"}>
+            Access
+          </CustomText>
         </TouchableOpacity>
         <TouchableOpacity
           style={[touchBtn, quinaryBackground]}
           onPress={() => console.warn("Data confirm And redirection")}
         >
           <FontAwesome5 name="user-alt" size={29} color={senaryColor.color} />
-          <Text style={[btnText, senaryColor, text2Xl, fontBold]}>Sign Up</Text>
+          <CustomText style={[btnText, senaryColor, text2Xl]} fontF={"bold"}>
+            Sign Up
+          </CustomText>
         </TouchableOpacity>
       </View>
     </View>
@@ -106,7 +113,6 @@ const { container, contentForm, input, contentBtns, touchBtn, btnText } =
 
 const {
   text3Xl,
-  fontBold,
   primaryBorderColor,
   primaryColor,
   text2Xl,

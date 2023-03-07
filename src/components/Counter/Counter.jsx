@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
+import { CustomText } from "../CustomText/CustomText";
 
 export function Counter({ price }) {
   const [count, setCount] = useState(1);
@@ -28,7 +29,9 @@ export function Counter({ price }) {
             color={count == 1 ? tertiaryColor.color : quinaryColor.color}
           />
         </TouchableOpacity>
-        <Text style={[textCount, textBase, fontMedium]}>{count}</Text>
+        <CustomText style={[textCount, textBase]} fontF={"medium"}>
+          {count}
+        </CustomText>
         <TouchableOpacity
           style={[tertiaryColor]}
           onPress={handlePlus}
@@ -42,9 +45,12 @@ export function Counter({ price }) {
         </TouchableOpacity>
       </View>
       <View style={contentPrice}>
-        <Text style={[textPrice, text2Xl, fontSemiBold, secondaryColor]}>
+        <CustomText
+          style={[textPrice, text2Xl, secondaryColor]}
+          fontF={"semiBold"}
+        >
           {price ? `$${sum()}K` : "Loading Price..."}
-        </Text>
+        </CustomText>
       </View>
     </View>
   );
