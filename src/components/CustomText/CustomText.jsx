@@ -12,8 +12,6 @@ export function CustomText({ fontF, style, children }) {
     "Hind-Madurai-Bold": require("../../assets/font/Hind_Madurai/HindMadurai-Bold.ttf"),
   });
 
-  console.log("FONTFF: ", fontF);
-
   useEffect(() => {
     if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded]);
@@ -37,7 +35,6 @@ export function CustomText({ fontF, style, children }) {
       default:
         return familyDefault;
     }
-    console.log("FONTFF2: ", fontF);
   };
 
   return (
