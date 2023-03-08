@@ -58,9 +58,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   contentImg: {
-    width: 200,
-    maxWidth: "",
-    height: 200,
+    width: 100,
+    // maxWidth: "",
+    height: 100,
   },
   picture: {
     width: 130,

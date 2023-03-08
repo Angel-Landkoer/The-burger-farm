@@ -10,8 +10,6 @@ export function RenderList({
   loading,
   styles,
 }) {
-  console.log("Component: ", component);
-
   return (
     <>
       <FlatList

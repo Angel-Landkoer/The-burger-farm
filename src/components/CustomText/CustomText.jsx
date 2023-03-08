@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
+SplashScreen.preventAutoHideAsync();
+
 export function CustomText({ fontF, style, children }) {
   const [fontsLoaded] = useFonts({
     "Hind-Madurai": require("../../assets/font/Hind_Madurai/HindMadurai-Light.ttf"),
