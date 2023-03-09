@@ -1,6 +1,5 @@
 import { FlatList } from "react-native";
 import React from "react";
-import { Loading } from "../Loading/Loading";
 
 export function RenderList({
   data,

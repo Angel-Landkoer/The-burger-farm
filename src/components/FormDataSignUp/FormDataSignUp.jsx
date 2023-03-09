@@ -1,7 +1,6 @@
 import { StyleSheet, TouchableOpacity, View, TextInput } from "react-native";
 import React from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
-
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 
@@ -13,7 +12,7 @@ export function FormDataSignUp() {
           Phone Number
         </CustomText>
         <TextInput
-          style={[input, primaryBorderColor, fontSemiBold, textBase]}
+          style={[input, primaryBorderColor, fontBold, textBase]}
           placeholder="Your phone number"
           inputMode="number"
           keyboardType="phone-pad"
@@ -23,7 +22,7 @@ export function FormDataSignUp() {
           Password
         </CustomText>
         <TextInput
-          style={[input, primaryBorderColor, fontSemiBold, textBase]}
+          style={[input, primaryBorderColor, fontBold, textBase]}
           placeholder="Your password"
           inputMode="text"
           keyboardType="default"
@@ -32,14 +31,17 @@ export function FormDataSignUp() {
           Confirm Password
         </CustomText>
         <TextInput
-          style={[input, primaryBorderColor, fontSemiBold, textBase]}
+          style={[input, primaryBorderColor, fontBold, textBase]}
           placeholder="Your password"
           inputMode="text"
           keyboardType="default"
         />
       </View>
       <View style={[contentBtn]}>
-        <TouchableOpacity style={[touchBtn, tertiaryBackground]}>
+        <TouchableOpacity
+          style={[touchBtn, tertiaryBackground]}
+          onPress={() => console.warn("Create new User, loading...")}
+        >
           <FontAwesome5 name="save" size={24} color={senaryColor.color} />
           <CustomText style={[btnText, senaryColor, text2Xl]} fontF={"bold"}>
             Sign Up
@@ -97,6 +99,6 @@ const {
   text2Xl,
   senaryColor,
   tertiaryBackground,
-  fontSemiBold,
+  fontBold,
   textBase,
 } = themes;

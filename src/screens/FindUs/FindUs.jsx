@@ -5,7 +5,7 @@ import { CustomText } from "../../components/CustomText/CustomText";
 export function FindUs({ screens, setScreens }) {
   return (
     <View>
-      <View
+      {/* <View
         style={{
           flexDirection: "row",
           justifyContent: "space-evenly",
@@ -82,7 +82,7 @@ export function FindUs({ screens, setScreens }) {
         >
           <CustomText fontF={"medium"}>FindUs</CustomText>
         </Pressable>
-      </View>
+      </View> */}
       <CustomText fontF={"regular"}>FindUs</CustomText>
     </View>
   );

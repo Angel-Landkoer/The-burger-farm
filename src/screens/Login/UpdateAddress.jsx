@@ -1,28 +1,16 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { themes } from "../../styles/themes";
 import { EditAddress } from "../../components/EditAddress/EditAddress";
 import { CustomText } from "../../components/CustomText/CustomText";
 
 // dato de los ciudades and departamentos
 
-// EJ: Datos estaticos
-const countries = [
-  "Colombia",
-  "Peru",
-  "Argentina",
-  "Bolivia",
-  "Uruguai",
-  "Mexico",
-  "Canada",
-  "Chile",
-];
-
-const seletions = ["select", "Street", "Race"];
-
 export function UpdateAddress() {
   return (
     <View style={[containerFontBox, primaryBackground]}>
+      <StatusBar style="light" backgroundColor="black" />
       <CustomText style={[primaryColor, textLg, textJustify]} fontF={"bold"}>
         It is important that you are precise and detailed when entering your
         address, this will ensure that your order can be delivered in the

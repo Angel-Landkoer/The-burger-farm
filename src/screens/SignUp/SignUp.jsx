@@ -1,5 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
+import { StatusBar } from "expo-status-bar";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
 import { FormDataSignUp } from "../../components/FormDataSignUp/FormDataSignUp";
@@ -7,6 +8,7 @@ import { FormDataSignUp } from "../../components/FormDataSignUp/FormDataSignUp";
 export function SignUp() {
   return (
     <View style={[containerFontBox, primaryBackground]}>
+      <StatusBar style="light" backgroundColor="black" />
       <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
         SignUp
       </CustomText>

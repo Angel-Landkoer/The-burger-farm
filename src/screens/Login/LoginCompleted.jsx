@@ -6,25 +6,29 @@ import { CustomText } from "../../components/CustomText/CustomText";
 
 export function LoginCompleted() {
   return (
-    <View style={[containerFontBox, primaryBackground]}>
-      <CustomText style={[title, text4Xl]} fontF={"bold"}>
+    <View style={[containerFontBox, container, primaryBackground]}>
+      <CustomText style={[title, text4Xl, primaryColor]} fontF={"bold"}>
         Information Genaral
       </CustomText>
+
       <View style={infoUser}>
-        <TouchableOpacity style={btnEditUser} onPress={() => null}>
+        <TouchableOpacity
+          style={btnEditUser}
+          onPress={() => console.warn("Redirection")}
+        >
           <FontAwesome5 name="edit" size={32} color={secondaryColor.color} />
         </TouchableOpacity>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
-          <CustomText fontF={"regular"}>Name:</CustomText>
-          <CustomText fontF={"regular"}>{"null"}</CustomText>
+          <CustomText fontF={"bold"}>Name:</CustomText>
+          <CustomText fontF={"bold"}>{"null"}</CustomText>
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
-          <CustomText fontF={"regular"}>Phone:</CustomText>
-          <CustomText fontF={"regular"}>{"null"}</CustomText>
+          <CustomText fontF={"bold"}>Phone:</CustomText>
+          <CustomText fontF={"bold"}>{"null"}</CustomText>
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
-          <CustomText fontF={"regular"}>Email:</CustomText>
-          <CustomText fontF={"regular"}>{"null"}</CustomText>
+          <CustomText fontF={"bold"}>Email:</CustomText>
+          <CustomText fontF={"bold"}>{"null"}</CustomText>
         </View>
       </View>
 
@@ -34,16 +38,22 @@ export function LoginCompleted() {
           size={45}
           color={quinaryColor.color}
         />
-        <CustomText style={[text2Xl, quinaryColor]} fontF={"medium"}>
+        <CustomText style={[text2Xl, quinaryColor]} fontF={"semiBold"}>
           Deleted Account
         </CustomText>
       </TouchableOpacity>
 
       <View style={infoAddress}>
-        <CustomText style={[addressTitle, text2Xl]} fontF={"bold"}>
+        <CustomText
+          style={[addressTitle, text4Xl, primaryColor]}
+          fontF={"bold"}
+        >
           Address
         </CustomText>
-        <TouchableOpacity style={btnEditAddress} onPress={() => null}>
+        <TouchableOpacity
+          style={btnEditAddress}
+          onPress={() => console.warn("Redirection")}
+        >
           <FontAwesome5
             name="plus-square"
             size={32}
@@ -51,7 +61,7 @@ export function LoginCompleted() {
           />
         </TouchableOpacity>
         <View style={[subCotainerInfoAddress, primaryBorderColor]}>
-          <CustomText style={[addressText]} fontF={"regular"}>
+          <CustomText style={[addressText]} fontF={"bold"}>
             {"AddressText"}
           </CustomText>
         </View>
@@ -61,6 +71,7 @@ export function LoginCompleted() {
 }
 
 const styles = StyleSheet.create({
+  container: {},
   title: {
     alignSelf: "flex-start",
 
@@ -124,6 +135,7 @@ const styles = StyleSheet.create({
 });
 
 const {
+  container,
   title,
   infoUser,
   infoAddress,
@@ -144,4 +156,5 @@ const {
   secondaryColor,
   primaryBorderColor,
   quinaryColor,
+  primaryColor,
 } = themes;

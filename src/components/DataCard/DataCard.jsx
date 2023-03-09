@@ -4,11 +4,14 @@ import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 
 export function DataCard({ data }) {
-  const { name, description, price } = data;
+  const { name, price } = data;
 
   return (
     <View style={container}>
-      <CustomText style={[nameText, textSm, primaryColor]} fontF={"medium"}>
+      <CustomText
+        style={[nameText, textSm, primaryColor, textCenter]}
+        fontF={"bold"}
+      >
         {name}
       </CustomText>
       <Image
@@ -37,7 +40,7 @@ const styles = StyleSheet.create({
   priceText: {
     marginTop: 7,
   },
-  nameText: { marginBottom: 7 },
+  nameText: { marginBottom: 7, width: "90%" },
   img: {
     width: 100,
     height: 100,
@@ -48,5 +51,11 @@ const styles = StyleSheet.create({
 
 const { container, img, nameText, priceText } = styles;
 
-const { textSm, textLg, primaryColor, secondaryColor, secondaryBorderColor } =
-  themes;
+const {
+  textSm,
+  textCenter,
+  textLg,
+  primaryColor,
+  secondaryColor,
+  secondaryBorderColor,
+} = themes;

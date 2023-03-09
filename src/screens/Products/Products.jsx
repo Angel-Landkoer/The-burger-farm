@@ -22,7 +22,7 @@ export function Products({ screens, setScreens }) {
   return (
     <ScrollView>
       <View style={[containerFontBox, primaryBackground]}>
-        <View
+        {/* <View
           style={{
             flexDirection: "row",
             justifyContent: "space-evenly",
@@ -99,7 +99,7 @@ export function Products({ screens, setScreens }) {
           >
             <CustomText fontF={"medium"}>FindUs</CustomText>
           </Pressable>
-        </View>
+        </View> */}
         <ProductSlide type={burgers?.type} data={burgers?.data} />
         <ProductSlide type={kids?.type} data={kids?.data} />
         <ProductSlide type={specialities?.type} data={specialities?.data} />

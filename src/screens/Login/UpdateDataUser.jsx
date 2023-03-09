@@ -7,7 +7,7 @@ import { CustomText } from "../../components/CustomText/CustomText";
 export function UpdateDataUser() {
   return (
     <View style={[containerFontBox, primaryBackground]}>
-      <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
+      <CustomText style={[text4Xl, primaryColor , textLeft]} fontF={"bold"}>
         Information Gerenal
       </CustomText>
       <EditInfoGeneral />
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({});
 
 const {} = styles;
 
-const { containerFontBox, primaryBackground, text4Xl, primaryColor } = themes;
+const { containerFontBox, primaryBackground, text4Xl, primaryColor, textLeft } = themes;

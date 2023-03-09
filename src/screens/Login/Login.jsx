@@ -7,7 +7,7 @@ import { CustomText } from "../../components/CustomText/CustomText";
 export function Login({ screens, setScreens }) {
   return (
     <View style={[containerFontBox, primaryBackground]}>
-      <View
+      {/* <View
         style={{
           flexDirection: "row",
           justifyContent: "space-evenly",
@@ -83,7 +83,7 @@ export function Login({ screens, setScreens }) {
         >
           <CustomText fontF={"medium"}>FindUs</CustomText>
         </Pressable>
-      </View>
+      </View> */}
       <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
         Login
       </CustomText>

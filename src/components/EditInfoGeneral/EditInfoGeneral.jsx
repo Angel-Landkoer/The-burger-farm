@@ -9,13 +9,7 @@ export function EditInfoGeneral() {
     <View style={[container]}>
       <View style={[contentInput, primaryBorderColor]}>
         <TextInput
-          style={[
-            input,
-            primaryColor,
-            textBase,
-            fontBold,
-            tertiaryBorderColor,
-          ]}
+          style={[input, primaryColor, textBase, fontBold, tertiaryBorderColor]}
           placeholder="Name"
           placeholderTextColor={tertiaryColor.color}
           inputMode="text"
@@ -49,6 +43,8 @@ export function EditInfoGeneral() {
           inputMode="numeric"
           keyboardType="phone-pad"
           onChangeText={null}
+          // el dato por defecto es el mismo con el que se inicio la cuenta
+          defaultValue={null}
         />
         <TextInput
           style={[
@@ -81,7 +77,9 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   contentInput: {
-    width: "100%",
+    minWidth: 280,
+    width: "90%",
+    maxWidth: "100%",
     padding: 12,
     borderWidth: 1,
 

@@ -28,32 +28,16 @@ export function EditAddress() {
       <View style={[allForms, primaryBorderColor]}>
         <View style={[contentFormDropdown]}>
           <SelectDropdown
-            buttonStyle={{
-              borderBottomWidth: 1,
-              width: "80%",
-              height: 35,
-              borderColor: primaryBorderColor.borderColor,
-            }}
-            buttonTextStyle={{
-              padding: 0,
-              color: secondaryColor.color,
-            }}
+            buttonStyle={selectDropdowns}
+            buttonTextStyle={selectDropdownText}
             data={countries}
             onSelect={(selectedItem, index) => console.log(selectedItem, index)}
             buttonTextAfterSelection={(selectedItem, index) => selectedItem}
             rowTextForSelection={(item, index) => item}
           />
           <SelectDropdown
-            buttonStyle={{
-              borderBottomWidth: 1,
-              width: "80%",
-              height: 35,
-              borderColor: primaryBorderColor.borderColor,
-            }}
-            buttonTextStyle={{
-              padding: 0,
-              color: secondaryColor.color,
-            }}
+            buttonStyle={selectDropdowns}
+            buttonTextStyle={selectDropdownText}
             data={seletions}
             onSelect={(selectedItem, i) => console.log(selectedItem, i)}
             buttonTextAfterSelection={(selectedItem, i) => selectedItem}
@@ -69,11 +53,11 @@ export function EditAddress() {
           }}
         >
           <View style={[contentInput, primaryBorderColor]}>
-            <CustomText style={[labelText, secondaryColor]} fontF={"regular"}>
+            <CustomText style={[labelText, secondaryColor]} fontF={"bold"}>
               {""}
             </CustomText>
             <TextInput
-              style={[input, textBase, secondaryColor, fontMedium]}
+              style={[input, textLg, secondaryColor, fontBold]}
               keyboardType="default"
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
@@ -81,11 +65,11 @@ export function EditAddress() {
             />
           </View>
           <View style={[contentInput, primaryBorderColor]}>
-            <CustomText style={[labelText, secondaryColor]} fontF={"regular"}>
+            <CustomText style={[labelText, secondaryColor]} fontF={"bold"}>
               #
             </CustomText>
             <TextInput
-              style={[input, textBase, secondaryColor, fontMedium]}
+              style={[input, textLg, secondaryColor, fontBold]}
               keyboardType="numeric"
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
@@ -93,11 +77,11 @@ export function EditAddress() {
             />
           </View>
           <View style={[contentInput, primaryBorderColor]}>
-            <CustomText style={[labelText, secondaryColor]} fontF={"regular"}>
+            <CustomText style={[labelText, secondaryColor]} fontF={"bold"}>
               -
             </CustomText>
             <TextInput
-              style={[input, textBase, secondaryColor, fontMedium]}
+              style={[input, textLg, secondaryColor, fontBold]}
               keyboardType="default"
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
@@ -111,9 +95,9 @@ export function EditAddress() {
             style={[
               adicionalInpunt,
               primaryBorderColor,
-              textBase,
+              textLg,
               secondaryColor,
-              fontMedium,
+              fontBold,
             ]}
             placeholder="District"
             placeholderTextColor={secondaryColor.color}
@@ -122,9 +106,9 @@ export function EditAddress() {
             style={[
               adicionalInpunt,
               primaryBorderColor,
-              textBase,
+              textLg,
               secondaryColor,
-              fontMedium,
+              fontBold,
             ]}
             placeholder="Additional Infotmation"
             placeholderTextColor={secondaryColor.color}
@@ -155,6 +139,23 @@ const styles = StyleSheet.create({
   contentFormDropdown: {
     width: "90%",
     marginVertical: 10,
+  },
+  selectDropdowns: {
+    width: "80%",
+    height: 35,
+    borderBottomWidth: 1,
+
+    borderColor: "#CD973D",
+  },
+  selectDropdownText: {
+    padding: 0,
+
+    fontSize: 18,
+    lineHeight: 28,
+    fontWeight: "700",
+    textAlign: "center",
+
+    color: "#CD973D",
   },
   input: {
     padding: 5,
@@ -190,6 +191,8 @@ const {
   contentDataForm,
   adicionalInpunt,
   contentFormDropdown,
+  selectDropdowns,
+  selectDropdownText,
 } = styles;
 
-const { textBase, secondaryColor, fontMedium, primaryBorderColor } = themes;
+const { textLg, secondaryColor, fontBold, primaryBorderColor } = themes;

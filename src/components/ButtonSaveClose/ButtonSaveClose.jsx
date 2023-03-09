@@ -18,7 +18,7 @@ export function ButtonSaveClose({ onSaveData }) {
         />
         <CustomText
           style={[btnText, btnTextCancel, senaryColor, textLg]}
-          fontF={"regular"}
+          fontF={"bold"}
         >
           Cancel
         </CustomText>
@@ -30,7 +30,7 @@ export function ButtonSaveClose({ onSaveData }) {
         <FontAwesome5 name="save" size={24} color={senaryColor.color} />
         <CustomText
           style={[btnText, btnTextSave, senaryColor, textLg]}
-          fontF={"regular"}
+          fontF={"bold"}
         >
           Save
         </CustomText>

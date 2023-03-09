@@ -5,6 +5,7 @@ import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 
 export function Counter({ price }) {
+  // al final, llegar al "count" al estodo global
   const [count, setCount] = useState(1);
 
   const handlePlus = () => (count >= 99 ? setCount(99) : setCount(count + 1));
@@ -29,7 +30,7 @@ export function Counter({ price }) {
             color={count == 1 ? tertiaryColor.color : quinaryColor.color}
           />
         </TouchableOpacity>
-        <CustomText style={[textCount, textBase]} fontF={"medium"}>
+        <CustomText style={[textCount, textBase]} fontF={"bold"}>
           {count}
         </CustomText>
         <TouchableOpacity
@@ -74,7 +75,9 @@ const styles = StyleSheet.create({
   },
   contentPrice: {},
   textPrice: {},
-  textCount: {},
+  textCount: {
+    marginHorizontal: 7,
+  },
 });
 
 const { container, contentPrice, contentCount, textPrice, textCount } = styles;
