@@ -1,11 +1,13 @@
 import { StyleSheet, View, Pressable } from "react-native";
 import React from "react";
 import { CustomText } from "../../components/CustomText/CustomText";
+import { themes } from "../../styles/themes";
+import { Orders } from "../../components/Orders/Orders";
 
 export function MyOrders({ screens, setScreens }) {
   return (
-    <View>
-      <View
+    <View style={[containerFontBox, primaryBackground]}>
+      {/* <View
         style={{
           flexDirection: "row",
           justifyContent: "space-evenly",
@@ -82,8 +84,13 @@ export function MyOrders({ screens, setScreens }) {
         >
           <CustomText fontF={"medium"}>FindUs</CustomText>
         </Pressable>
-      </View>
-      <CustomText fontF={"regular"}>MyOrders</CustomText>
+      </View> */}
+      <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
+        My Orders
+      </CustomText>
+      {/* Usuario no registrado no pasa se redireccion a Login */}
+
+      <Orders />
     </View>
   );
 }
@@ -91,3 +98,5 @@ export function MyOrders({ screens, setScreens }) {
 const styles = StyleSheet.create({});
 
 const {} = styles;
+
+const { containerFontBox, primaryBackground, text4Xl, primaryColor, } = themes;
