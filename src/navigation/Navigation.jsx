@@ -14,7 +14,7 @@ export function Navigation() {
     <NavigationContainer>
       <Navigator>
         <Screen name="Products" component={Products} />
-        <Screen name="MyCard" component={MyCart} />
+        <Screen name="MyCart" component={MyCart} />
         <Screen name="MyData" component={Login} />
         <Screen name="MyOrders" component={MyOrders} />
         <Screen name="FindUs" component={FindUs} />
