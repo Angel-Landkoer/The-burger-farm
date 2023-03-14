@@ -8,6 +8,8 @@ export function RenderList({
   stringKey,
   loading,
   styles,
+  numColumns = 1,
+  contentContainerStyle,
 }) {
   return (
     <>
@@ -17,6 +19,9 @@ export function RenderList({
         renderItem={component}
         keyExtractor={stringKey}
         horizontal={horizontal}
+        numColumns={numColumns}
+        contentContainerStyle={contentContainerStyle}
+        showsHorizontalScrollIndicator={false}
       />
     </>
   );
