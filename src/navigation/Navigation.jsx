@@ -12,12 +12,41 @@ export function Navigation() {
 
   return (
     <NavigationContainer>
-      <Navigator>
-        <Screen name="Products" component={Products} options={{title: "Products"}} />
-        <Screen name="MyCart" component={MyCart} options={{title: "My Cart"}} />
-        <Screen name="MyData" component={Login} options={{title: "My Data"}} />
-        <Screen name="MyOrders" component={MyOrders} options={{title: "My Orders"}} />
-        <Screen name="FindUs" component={FindUs} options={{title: " Find Us"}} />
+      <Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: "#EBEBEB" },
+          headerTitleStyle: {
+            fontSize: 36,
+            fontWeight: "700",
+            color: "#54423A",
+          },
+        }}
+      >
+        <Screen
+          name="Products"
+          component={Products}
+          options={{ title: "Products" }}
+        />
+        <Screen
+          name="MyCart"
+          component={MyCart}
+          options={{ title: "My Cart" }}
+        />
+        <Screen
+          name="MyData"
+          component={Login}
+          options={{ title: "My Data" }}
+        />
+        <Screen
+          name="MyOrders"
+          component={MyOrders}
+          options={{ title: "My Orders" }}
+        />
+        <Screen
+          name="FindUs"
+          component={FindUs}
+          options={{ title: " Find Us" }}
+        />
       </Navigator>
     </NavigationContainer>
   );
