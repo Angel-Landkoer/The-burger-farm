@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { StatusBar } from "expo-status-bar";
 import { themes } from "../../styles/themes";
 import { datas } from "../../utils/data";
 import { CartProduct } from "../../components/CartProduct/CartProduct";
@@ -19,7 +18,6 @@ export function MyCart({ navigation }) {
 
   return (
     <ScrollView>
-      <StatusBar style="light" backgroundColor="black" />
       <View style={[containerFontBox, primaryBackground]}>
         <View
           style={{
