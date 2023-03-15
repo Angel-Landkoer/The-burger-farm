@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import Constants from "expo-constants";
+// import Constants from "expo-constants";
 
 export const themes = StyleSheet.create({
   // Color
@@ -47,6 +47,16 @@ export const themes = StyleSheet.create({
   quinaryBackground: {
     // Strong blue.
     backgroundColor: "#0275D8",
+  },
+  // octonary nonary denary
+  senaryBackground: {
+    // Dark moderate cyan - lime green.
+    backgroundColor: "#36846B",
+  },
+
+  septenaryBackground: {
+    // Moderate cyan
+    backgroundColor: "#4bb39a",
   },
 
   // Border-Color
@@ -115,8 +125,8 @@ export const themes = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
 
-    padding: 20,
+    paddingHorizontal: 20,
     width: "100%",
-    marginTop: Constants.statusBarHeight,
+    // marginTop: Constants.statusBarHeight,
   },
 });
