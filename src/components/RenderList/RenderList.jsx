@@ -6,7 +6,6 @@ export function RenderList({
   component,
   horizontal,
   stringKey,
-  loading,
   styles,
   numColumns = 1,
   contentContainerStyle,
@@ -22,6 +21,7 @@ export function RenderList({
         numColumns={numColumns}
         contentContainerStyle={contentContainerStyle}
         showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
       />
     </>
   );
