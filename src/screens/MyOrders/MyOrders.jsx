@@ -30,11 +30,7 @@ export function MyOrders({ navigation }) {
           <CustomText fontF={"medium"}>FindUs</CustomText>
         </Pressable>
       </View>
-      <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
-        My Orders
-      </CustomText>
       {/* Usuario no registrado no pasa se redireccion a Login */}
-
       <Orders />
     </View>
   );
