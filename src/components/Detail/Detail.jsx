@@ -6,25 +6,30 @@ import { CustomText } from "../CustomText/CustomText";
 import { Counter } from "../Counter/Counter";
 
 export function Detail({ data }) {
-  const { name, description, price, img } = data;
+  const {
+    name,
+    description,
+    price,
+    img = "http://www.smashbros.com/images/og/pikachu.jpg",
+  } = data;
 
   return (
     <View style={container}>
-      <CustomText style={[title, text3Xl]} fontF={"bold"}>
+      <CustomText style={[title, text3Xl, primaryColor]} fontF={"bold"}>
         {name}
       </CustomText>
-      <Image
-        style={picture}
-        source={{ uri: "http://www.smashbros.com/images/og/pikachu.jpg" }}
-      />
-      <CustomText style={[descriptions, textJustify, textLg]} fontF={"medium"}>
+      <Image style={picture} source={{ uri: img }} />
+      <CustomText
+        style={[descriptions, textJustify, textLg, primaryColor]}
+        fontF={"medium"}
+      >
         {description}
       </CustomText>
-      <TouchableOpacity
-        style={[btnCustom, secondaryBackground]}
-        onPress={() => null}
-      >
-        <CustomText style={[senaryColor, textCenter]} fontF={"regular"}>
+      <TouchableOpacity style={[btnCustom, secondaryBackground]}>
+        <CustomText
+          style={[senaryColor, textCenter, textBase]}
+          fontF={"semiBold"}
+        >
           Add or remove elements (customize)
         </CustomText>
       </TouchableOpacity>
@@ -32,25 +37,31 @@ export function Detail({ data }) {
       <Counter price={price} />
 
       <View style={containerDirection}>
-        <TouchableOpacity style={[btnCancel, quaternaryBackground]}>
+        <TouchableOpacity
+          style={[btnCancel, quaternaryBackground]}
+          onPress={() => console.warn("GoBack")}
+        >
           <MaterialCommunityIcons
             name="close-circle"
             size={24}
             color={senaryColor.color}
           />
           <CustomText
-            style={[textCenter, textSm, fontMedium, senaryColor]}
-            fontF={"medium"}
+            style={[textCenter, textBase, fontMedium, senaryColor]}
+            fontF={"semiBold"}
           >
             Cancel
           </CustomText>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[btnAdd, tertiaryBackground]}>
+        <TouchableOpacity
+          style={[btnAdd, tertiaryBackground]}
+          onPress={() => console.warn("Add Product")}
+        >
           <FontAwesome5 name="cart-plus" size={24} color={senaryColor.color} />
           <CustomText
-            style={[textCenter, textSm, fontMedium, senaryColor]}
-            fontF={"medium"}
+            style={[textCenter, textBase, fontMedium, senaryColor]}
+            fontF={"semiBold"}
           >
             Add to Cart
           </CustomText>
@@ -129,8 +140,9 @@ const {
   textJustify,
   textCenter,
   text3Xl,
-  textSm,
+  textBase,
   fontMedium,
+  primaryColor,
   secondaryBackground,
   tertiaryBackground,
   quaternaryBackground,
