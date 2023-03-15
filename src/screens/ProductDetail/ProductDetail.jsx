@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Detail } from "../../components/Detail/Detail";
 import { datas } from "../../utils/data";
@@ -10,11 +10,11 @@ export function ProductDetail() {
   const data = dataObject[3];
 
   return (
-    <ScrollView>
+    <>
       <View style={[containerFontBox, primaryBackground]}>
         <Detail data={data} />
       </View>
-    </ScrollView>
+    </>
   );
 }
 
