@@ -4,7 +4,7 @@ import { Detail } from "../../components/Detail/Detail";
 import { datas } from "../../utils/data";
 import { themes } from "../../styles/themes";
 
-export function ProductDatail() {
+export function ProductDetail() {
   const { burgers } = datas;
   const dataObject = burgers.data;
   const data = dataObject[3];
