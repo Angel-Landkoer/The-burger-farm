@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   priceText: {
     marginTop: 7,
   },
-  nameText: { marginBottom: 7, width: "90%" },
+  nameText: { marginBottom: 7 },
   img: {
     width: 100,
     height: 100,

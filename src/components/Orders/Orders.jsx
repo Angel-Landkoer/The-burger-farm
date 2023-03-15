@@ -11,12 +11,13 @@ export function Orders({ data }) {
       <View
         style={{
           flexDirection: "row",
-          justifyContent: "center",
+          justifyContent: "space-around",
           alignItems: "center",
+          width: "100%"
         }}
       >
         <CustomText style={[textLg]} fontF={"bold"}>
-          COde
+          Code
         </CustomText>
         <CustomText style={[textLg]} fontF={"bold"}>
           State
@@ -58,6 +59,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
 
     width: "100%",
+    marginTop: 10,
+    paddingTop: 5,
   },
   tableContent: {
     flexDirection: "row",
@@ -69,36 +72,36 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   codeStyle: {
-    alignContent:"center",
+    alignContent: "center",
     justifyContent: "center",
 
     borderEndWidth: 1,
     borderStartWidth: 1,
-    paddingHorizontal: 5
+    paddingHorizontal: 5,
   },
   stateStyle: {
-    alignContent:"center",
+    alignContent: "center",
     justifyContent: "center",
 
     borderEndWidth: 1,
     borderStartWidth: 1,
-    paddingHorizontal: 5
+    paddingHorizontal: 5,
   },
   dateStyle: {
-    alignContent:"center",
+    alignContent: "center",
     justifyContent: "center",
 
     borderEndWidth: 1,
     borderStartWidth: 1,
-    paddingHorizontal: 5
+    paddingHorizontal: 5,
   },
   seeStyle: {
-    alignContent:"center",
+    alignContent: "center",
     justifyContent: "center",
 
     borderEndWidth: 1,
     borderStartWidth: 1,
-    paddingHorizontal: 5
+    paddingHorizontal: 5,
   },
 });
 

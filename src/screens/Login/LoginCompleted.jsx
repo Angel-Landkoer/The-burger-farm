@@ -32,7 +32,7 @@ export function LoginCompleted() {
         </View>
       </View>
 
-      <TouchableOpacity style={btnCloseLogin} onPress={() => null}>
+      <TouchableOpacity style={btnCloseLogin} onPress={() => console.warn('Modal')}>
         <FontAwesome5
           name="window-close"
           size={45}
@@ -71,7 +71,9 @@ export function LoginCompleted() {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    height: "80%"
+  },
   title: {
     alignSelf: "flex-start",
 

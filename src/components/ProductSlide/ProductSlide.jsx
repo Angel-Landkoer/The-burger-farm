@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   btn: {
     minWidth: 200,
     width: 300,
-    maxWidth : "100%",
+    maxWidth: "100%",
     padding: 3,
     marginTop: 15,
     borderWidth: 2,
