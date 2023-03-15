@@ -26,7 +26,7 @@ export function Counter({ price }) {
         >
           <FontAwesome5
             name="minus-circle"
-            size={28}
+            size={32}
             color={count == 1 ? tertiaryColor.color : quinaryColor.color}
           />
         </TouchableOpacity>
@@ -40,7 +40,7 @@ export function Counter({ price }) {
         >
           <FontAwesome5
             name="plus-circle"
-            size={28}
+            size={32}
             color={count == 99 ? tertiaryColor.color : quaternaryColor.color}
           />
         </TouchableOpacity>
@@ -83,8 +83,6 @@ const styles = StyleSheet.create({
 const { container, contentPrice, contentCount, textPrice, textCount } = styles;
 
 const {
-  fontMedium,
-  fontSemiBold,
   text2Xl,
   textBase,
   secondaryColor,
