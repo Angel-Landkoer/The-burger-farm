@@ -1,10 +1,11 @@
 import { StyleSheet, View, Pressable } from "react-native";
 import React from "react";
 import { CustomText } from "../../components/CustomText/CustomText";
+import { themes } from "../../styles/themes";
 
 export function FindUs({ navigation }) {
   return (
-    <View>
+    <View style={[primaryBackground, containerFontBox]}>
       <View
         style={{
           flexDirection: "row",
@@ -28,7 +29,9 @@ export function FindUs({ navigation }) {
           <CustomText fontF={"medium"}>FindUs</CustomText>
         </Pressable>
       </View>
-      <CustomText fontF={"regular"}>FindUs</CustomText>
+      <CustomText style={[text4Xl, textCenter, primaryColor]} fontF={"bold"}>
+        Map
+      </CustomText>
     </View>
   );
 }
@@ -36,3 +39,11 @@ export function FindUs({ navigation }) {
 const styles = StyleSheet.create({});
 
 const {} = styles;
+
+const {
+  text4Xl,
+  textCenter,
+  primaryBackground,
+  primaryColor,
+  containerFontBox,
+} = themes;
