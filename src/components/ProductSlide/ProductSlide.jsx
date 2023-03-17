@@ -13,8 +13,7 @@ export function ProductSlide({ type, data }) {
           {type}
         </CustomText>
         <RenderList
-          loading={Boolean(data.name)}
-          component={(item) => <DataCard data={item.item} />}
+          component={({ item }) => <DataCard data={item} />}
           data={data}
           stringKey={(item) => `Slide-${item.name}`}
           horizontal={true}
