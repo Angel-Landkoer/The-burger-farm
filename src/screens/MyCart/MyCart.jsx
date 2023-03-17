@@ -16,6 +16,8 @@ export function MyCart({ navigation }) {
   // datos filtrado de selecction -- falta hacer en el estado global
   const { burgers } = datas;
 
+  const lessData = burgers.data.splice(0, 5)
+
   return (
     <ScrollView>
       <View style={[containerFontBox, primaryBackground]}>
@@ -43,12 +45,13 @@ export function MyCart({ navigation }) {
           </Pressable>
         </View>
         <RenderList
-          data={burgers.data}
-          component={(item) => <CartProduct data={item.item} />}
+          data={lessData}
+          component={({item}) => <CartProduct data={item} />}
           stringKey={(item) => `CartItem-${item.name}`}
           horizontal={false}
         />
         <View style={[resultData]}>
+
           {/* Traer el calculo total del los productos, function */}
           <CustomText
             style={[text2Xl, textCenter, secondaryColor]}
