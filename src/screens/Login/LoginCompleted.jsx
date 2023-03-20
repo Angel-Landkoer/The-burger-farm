@@ -1,10 +1,18 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, TouchableOpacity, View, Pressable } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
+import { Modall } from "../../components/Modal/Modall";
 
 export function LoginCompleted() {
+  const [toggleModal, setToggleModal] = useState(false);
+
+  const handleConfirmDeleteAccount = () => {
+    setToggleModal(!toggleModal);
+    console.warn("Close Account");
+  };
+
   return (
     <View style={[containerFontBox, container, primaryBackground]}>
       <CustomText style={[title, text4Xl, primaryColor]} fontF={"bold"}>
@@ -32,7 +40,39 @@ export function LoginCompleted() {
         </View>
       </View>
 
-      <TouchableOpacity style={btnCloseLogin} onPress={() => console.warn('Modal')}>
+      <Modall
+        state={toggleModal}
+        changeState={setToggleModal}
+        text={"Do you really want to delete your account?"}
+      >
+        <Pressable
+          style={[modalBtn, septenaryBackground]}
+          onPress={handleConfirmDeleteAccount}
+        >
+          <CustomText
+            fontF={"semiBold"}
+            style={[textModalBtn, senaryColor, textLg]}
+          >
+            Yes
+          </CustomText>
+        </Pressable>
+        <Pressable
+          style={[modalBtn, septenaryBackground]}
+          onPress={() => setToggleModal(!toggleModal)}
+        >
+          <CustomText
+            fontF={"semiBold"}
+            style={[textModalBtn, senaryColor, textLg]}
+          >
+            No
+          </CustomText>
+        </Pressable>
+      </Modall>
+
+      <TouchableOpacity
+        style={btnCloseLogin}
+        onPress={() => setToggleModal(!toggleModal)}
+      >
         <FontAwesome5
           name="window-close"
           size={45}
@@ -72,7 +112,7 @@ export function LoginCompleted() {
 
 const styles = StyleSheet.create({
   container: {
-    height: "80%"
+    height: "80%",
   },
   title: {
     alignSelf: "flex-start",
@@ -134,6 +174,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "80%",
   },
+  modalBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 100,
+    height: 40,
+
+    borderRadius: 20,
+  },
+  textModalBtn: {},
 });
 
 const {
@@ -148,15 +197,20 @@ const {
   subCotainerInfoAddress,
   addressText,
   btnCloseLogin,
+  modalBtn,
+  textModalBtn,
 } = styles;
 
 const {
   containerFontBox,
   primaryBackground,
   text4Xl,
+  textLg,
   text2Xl,
   secondaryColor,
   primaryBorderColor,
   quinaryColor,
   primaryColor,
+  senaryColor,
+  septenaryBackground,
 } = themes;
