@@ -2,7 +2,6 @@ import {
   ScrollView,
   StyleSheet,
   View,
-  Pressable,
   TouchableOpacity,
 } from "react-native";
 import React from "react";
@@ -21,29 +20,6 @@ export function MyCart({ navigation }) {
   return (
     <ScrollView>
       <View style={[containerFontBox, primaryBackground]}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            width: "80%",
-          }}
-        >
-          <Pressable onPress={() => navigation.navigate("Products")}>
-            <CustomText fontF={"medium"}>Home</CustomText>
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate("MyCart")}>
-            <CustomText fontF={"medium"}>Cart</CustomText>
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate("MyData")}>
-            <CustomText fontF={"medium"}>Data</CustomText>
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate("MyOrders")}>
-            <CustomText fontF={"medium"}>Orders</CustomText>
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate("FindUs")}>
-            <CustomText fontF={"medium"}>FindUs</CustomText>
-          </Pressable>
-        </View>
         <RenderList
           data={lessData}
           component={({item}) => <CartProduct data={item} />}
