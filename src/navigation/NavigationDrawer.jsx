@@ -1,3 +1,4 @@
+import { StyleSheet } from "react-native";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -8,7 +9,6 @@ import { DataStackNavigation } from "./DataStackNavigation";
 import { OrderStackNavigation } from "./OrderStackNavigation";
 import { FindUs } from "../screens/FindUs/FindUs";
 import { themes } from "../styles/themes";
-import { StyleSheet } from "react-native";
 
 export function NavigationDrawer() {
   const { Navigator, Screen } = createDrawerNavigator();
@@ -20,7 +20,7 @@ export function NavigationDrawer() {
           drawerLabelStyle: [primaryColor, textXl, fontBold],
           drawerStyle: [primaryBackground],
           headerStyle: [primaryBackground, headerContain],
-          headerTitleStyle: [text2Xl, primaryColor, fontBold],
+          headerTitleStyle: [text3Xl, primaryColor, fontBold],
           headerTitleAlign: "center",
         }}
       >
@@ -29,6 +29,7 @@ export function NavigationDrawer() {
           component={ProductsStackNavigation}
           options={{
             title: "Products",
+            headerShown: true,
             drawerIcon: ({ color, size }) => (
               <FontAwesome5 name="hamburger" size={size} color={color} />
             ),
@@ -39,6 +40,7 @@ export function NavigationDrawer() {
           component={CartStackNavigation}
           options={{
             title: "My Cart",
+            headerShown: false,
             drawerIcon: ({ color, size }) => (
               <FontAwesome5 name="shopping-cart" size={size} color={color} />
             ),
@@ -49,6 +51,7 @@ export function NavigationDrawer() {
           component={DataStackNavigation}
           options={{
             title: "My Data",
+            headerShown: false,
             drawerIcon: ({ color, size }) => (
               <Ionicons name="person-sharp" size={size} color={color} />
             ),
@@ -74,6 +77,7 @@ export function NavigationDrawer() {
           component={FindUs}
           options={{
             title: " Find Us",
+            headerShown: false,
             drawerIcon: ({ size, color }) => (
               <Ionicons name="map" size={size} color={color} />
             ),
@@ -96,7 +100,7 @@ const { headerContain } = styles;
 const {
   primaryColor,
   textXl,
-  text2Xl,
+  text3Xl,
   fontBold,
   primaryBackground,
   textCenter,
