@@ -10,7 +10,7 @@ export function SignUp() {
     <View style={[containerFontBox, primaryBackground]}>
       <StatusBar style="light" backgroundColor="black" />
       <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
-        SignUp
+        Register Your Data
       </CustomText>
       <FormDataSignUp />
     </View>
