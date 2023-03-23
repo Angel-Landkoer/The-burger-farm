@@ -7,7 +7,7 @@ import { ProductsStackNavigation } from "./ProductsStackNavigation";
 import { CartStackNavigation } from "./CartStackNavigation";
 import { DataStackNavigation } from "./DataStackNavigation";
 import { OrderStackNavigation } from "./OrderStackNavigation";
-import { FindUs } from "../screens/FindUs/FindUs";
+import { FindUsStackNavigation } from "./FindUsStackNavigation";
 import { themes } from "../styles/themes";
 
 export function NavigationDrawer() {
@@ -73,10 +73,10 @@ export function NavigationDrawer() {
           }}
         />
         <Screen
-          name="FindUs"
-          component={FindUs}
+          name="FindUpDrawer"
+          component={FindUsStackNavigation}
           options={{
-            title: " Find Us",
+            title: "Find Us",
             headerShown: false,
             drawerIcon: ({ size, color }) => (
               <Ionicons name="map" size={size} color={color} />
