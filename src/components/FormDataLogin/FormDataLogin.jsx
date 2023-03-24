@@ -1,23 +1,18 @@
-import {
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useReducer } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 
 export function FormDataLogin() {
-  const [numberPhoneValue, setNumberPhoneValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleChangePhoneValue = (e) => setNumberPhoneValue(e);
-  const handleChangePasswordValue = (e) => setPasswordValue(e);
+  const handleChangeValueFormPhome = (e) =>
+    dispatch({ type: "@CHANGE_FORMPHONE", payload: e });
+  const handleChangeValueFormPassword = (e) =>
+    dispatch({ type: "@CHANGE_FORMPASSWORD", payload: e });
 
   //  useEffect, fireBase, confirm data, yes=true or not=false
-
   return (
     <View style={[container]}>
       <View style={[contentForm]}>
@@ -31,7 +26,8 @@ export function FormDataLogin() {
           inputMode="number"
           keyboardType="phone-pad"
           maxLength={10}
-          onChangeText={handleChangePhoneValue}
+          onChangeText={handleChangeValueFormPhome}
+          value={state.formPhone}
         />
         <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
           Password
@@ -42,7 +38,8 @@ export function FormDataLogin() {
           placeholder="Your password"
           inputMode="text"
           keyboardType="default"
-          onChangeText={handleChangePasswordValue}
+          onChangeText={handleChangeValueFormPassword}
+          value={state.formPassword}
         />
       </View>
 
@@ -69,6 +66,21 @@ export function FormDataLogin() {
     </View>
   );
 }
+
+const initialState = {
+  formPhone: "",
+  formPassword: "",
+};
+
+const reducer = (state, action) => {
+  const { type, payload } = action;
+  if (type == "@CHANGE_FORMPHONE") return { ...state, formPhone: payload };
+  if (type == "@CHANGE_FORMPASSWORD")
+    return { ...state, formPassword: payload };
+  if (type == "@RESET_FORMULARIES")
+    return { ...state, formPassword: "", formPhone: "" };
+  return state;
+};
 
 const styles = StyleSheet.create({
   container: {
