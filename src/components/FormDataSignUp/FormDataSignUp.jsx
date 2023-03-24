@@ -1,10 +1,21 @@
 import { StyleSheet, TouchableOpacity, View, TextInput } from "react-native";
-import React from "react";
+import React, { useReducer } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 
 export function FormDataSignUp() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const handleChangeValueFormPhone = (e) =>
+    dispatch({ type: "@CHANGE_FORMPHONE", payload: e });
+
+  const handleChangeValueFormPassword = (e) =>
+    dispatch({ type: "@CHANGE_FORMPASSWORD", payload: e });
+
+  const handleChangeValueFormConfirmPassword = (e) =>
+    dispatch({ type: "@CHANGE_FORMCONFIRMPASSWORD", payload: e });
+
   return (
     <View style={[container]}>
       <View style={[contentForm]}>
@@ -15,6 +26,8 @@ export function FormDataSignUp() {
           style={[input, primaryBorderColor, fontBold, textBase]}
           placeholder="Your phone number"
           inputMode="number"
+          onChangeText={handleChangeValueFormPhone}
+          value={state.formPhone}
           keyboardType="phone-pad"
           maxLength={10}
         />
@@ -25,6 +38,8 @@ export function FormDataSignUp() {
           style={[input, primaryBorderColor, fontBold, textBase]}
           placeholder="Your password"
           inputMode="text"
+          onChangeText={handleChangeValueFormPassword}
+          value={state.formPassword}
           keyboardType="default"
         />
         <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
@@ -34,6 +49,8 @@ export function FormDataSignUp() {
           style={[input, primaryBorderColor, fontBold, textBase]}
           placeholder="Your password"
           inputMode="text"
+          onChangeText={handleChangeValueFormConfirmPassword}
+          value={state.formConfirmPassword}
           keyboardType="default"
         />
       </View>
@@ -52,7 +69,32 @@ export function FormDataSignUp() {
   );
 }
 
+const initialState = {
+  formPhone: "",
+  formPassword: "",
+  formConfirmPassword: "",
+};
+
+const reducer = (state, action) => {
+  const { type, payload } = action;
+
+  if (type == "@CHANGE_FORMPHONE") return { ...state, formPhone: payload };
+  if (type == "@CHANGE_FORMPASSWORD")
+    return { ...state, formPassword: payload };
+  if (type == "@CHANGE_FORMCONFIRMPASSWORD")
+    return { ...state, formConfirmPassword: payload };
+  if (type == "@RESET_FORMULARIES")
+    return {
+      ...state,
+      formPhone: "",
+      formPassword: "",
+      formConfirmPassword: "",
+    };
+  return state;
+};
+
 const styles = StyleSheet.create({
+  
   container: {
     justifyContent: "space-between",
 
