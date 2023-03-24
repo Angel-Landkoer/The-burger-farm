@@ -27,20 +27,42 @@ export function EditAddress() {
 
   const onSaveData = () => {
     const formulariesLength = [
-      state.inputCity,
-      state.inputRace,
-      state.inputDirectionFirst,
-      state.inputDirectionSecond,
-      state.inputDirectionThird,
-      state.inputDistrict,
-      state.inputAdditional,
+      state.formCity,
+      state.formRace,
+      state.formDirectionFirst,
+      state.formDirectionSecond,
+      state.formDirectionThird,
+      state.formDistrict,
+      state.formAdditional,
     ];
 
     const maxLength = formulariesLength.every((item) => item.length > 0);
 
-    !maxLength && dispatch({ type: "CHANGETOGGLE" });
-    maxLength && (dispatch({ type: "RESET" }), console.warn("Confirm Data"));
+    if (!maxLength) return dispatch({ type: "@TOGGLE_MODAL" });
+    if (maxLength) {
+      return (
+        console.warn("Confirm Data"), dispatch({ type: "@RESET_FORMULARIES" })
+      );
+    }
   };
+
+  const handleChangeValueFormCity = (e) =>
+    dispatch({ type: "@CHANGE_FORMCITY", payload: e });
+  const handleChangeValueFormRace = (e) =>
+    dispatch({ type: "@CHANGE_FORMRACE", payload: e });
+  const handleChangeValueFormDirection = (name, e) => {
+    if (name == "@first")
+      return dispatch({ type: "@CHANGE_FORMDIRECTION_FIRST", payload: e });
+    if (name == "@second")
+      return dispatch({ type: "@CHANGE_FORMDIRECTION_SECOND", payload: e });
+    if (name == "@third")
+      return dispatch({ type: "@CHANGE_FORMDIRECTION_THIRD", payload: e });
+    return dispatch({ type: "@CHANGE_FORMDIRECTION", payload: e });
+  };
+  const handleChangeValueFormDistrict = (e) =>
+    dispatch({ type: "@CHANGE_FORMDISTRICT", payload: e });
+  const handleChangeValueFormAdditional = (e) =>
+    dispatch({ type: "@CHANGE_FORMADDITIONAL", payload: e });
 
   return (
     <View style={[container]}>
@@ -51,7 +73,7 @@ export function EditAddress() {
             buttonTextStyle={selectDropdownText}
             data={countries}
             onSelect={(selectedItem, index) =>
-              dispatch({ type: "INPUTCITY", payload: selectedItem })
+              handleChangeValueFormCity(selectedItem)
             }
             buttonTextAfterSelection={(selectedItem, index) => selectedItem}
             rowTextForSelection={(item, index) => item}
@@ -61,7 +83,7 @@ export function EditAddress() {
             buttonTextStyle={selectDropdownText}
             data={seletions}
             onSelect={(selectedItem, i) =>
-              dispatch({ type: "INPUTRACE", payload: selectedItem })
+              handleChangeValueFormRace(selectedItem)
             }
             buttonTextAfterSelection={(selectedItem, i) => selectedItem}
             rowTextForSelection={(item, i) => item}
@@ -84,10 +106,8 @@ export function EditAddress() {
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
               inputMode="text"
-              value={state.inputDirectionFirst}
-              onChangeText={(e) =>
-                dispatch({ type: "DIRECTION-1", payload: e })
-              }
+              value={state.formDirectionFirst}
+              onChangeText={(e) => handleChangeValueFormDirection("@first", e)}
             />
           </View>
           <View style={[contentInput, primaryBorderColor]}>
@@ -100,10 +120,8 @@ export function EditAddress() {
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
               inputMode="numeric"
-              value={state.inputDirectionSecond}
-              onChangeText={(e) =>
-                dispatch({ type: "DIRECTION-2", payload: e })
-              }
+              value={state.formDirectionSecond}
+              onChangeText={(e) => handleChangeValueFormDirection("@second", e)}
             />
           </View>
           <View style={[contentInput, primaryBorderColor]}>
@@ -116,10 +134,8 @@ export function EditAddress() {
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
               inputMode="text"
-              value={state.inputDirectionThird}
-              onChangeText={(e) =>
-                dispatch({ type: "DIRECTION-3", payload: e })
-              }
+              value={state.formDirectionThird}
+              onChangeText={(e) => handleChangeValueFormDirection("@third", e)}
             />
           </View>
         </View>
@@ -134,10 +150,8 @@ export function EditAddress() {
             ]}
             placeholder="District"
             placeholderTextColor={secondaryColor.color}
-            value={state.inputDistrict}
-            onChangeText={(e) =>
-              dispatch({ type: "INPUTDISTRICT", payload: e })
-            }
+            value={state.formDistrict}
+            onChangeText={handleChangeValueFormDistrict}
           />
           <TextInput
             style={[
@@ -149,17 +163,15 @@ export function EditAddress() {
             ]}
             placeholder="Additional Infotmation"
             placeholderTextColor={secondaryColor.color}
-            value={state.inputAdditional}
-            onChangeText={(e) =>
-              dispatch({ type: "INPUTADDITIONAL", payload: e })
-            }
+            value={state.formAdditional}
+            onChangeText={handleChangeValueFormAdditional}
           />
         </View>
       </View>
       <Modall text={"Please fill in all fields"} state={state.toggleModal}>
         <Pressable
           style={[modalBtn, septenaryBackground]}
-          onPress={() => dispatch({ type: "CHANGETOGGLE" })}
+          onPress={() => dispatch({ type: "@TOGGLE_MODAL" })}
         >
           <CustomText
             fontF={"semiBold"}
@@ -177,48 +189,46 @@ export function EditAddress() {
 }
 
 const inicialState = {
-  inputCity: "",
-  inputRace: "",
-  inputDirectionFirst: "",
-  inputDirectionSecond: "",
-  inputDirectionThird: "",
-  inputDistrict: "",
-  inputAdditional: "",
+  formCity: "",
+  formRace: "",
+  formDirectionFirst: "",
+  formDirectionSecond: "",
+  formDirectionThird: "",
+  formDistrict: "",
+  formAdditional: "",
   toggleModal: false,
 };
 
 const reducer = (state, action) => {
-  switch (action.type) {
-    case "INPUTCITY":
-      return { ...state, inputCity: action.payload };
-    case "INPUTRACE":
-      return { ...state, inputRace: action.payload };
-    case "DIRECTION-1":
-      return { ...state, inputDirectionFirst: action.payload };
-    case "DIRECTION-2":
-      return { ...state, inputDirectionSecond: action.payload };
-    case "DIRECTION-3":
-      return { ...state, inputDirectionThird: action.payload };
-    case "INPUTDISTRICT":
-      return { ...state, inputDistrict: action.payload };
-    case "INPUTADDITIONAL":
-      return { ...state, inputAdditional: action.payload };
-    case "RESET":
-      return {
-        ...state,
-        inputCity: "",
-        inputRace: "",
-        inputDirectionFirst: "",
-        inputDirectionSecond: "",
-        inputDirectionThird: "",
-        inputDistrict: "",
-        inputAdditional: "",
-      };
-    case "CHANGETOGGLE":
-      return { ...state, toggleModal: !state.toggleModal };
-    default:
-      return state;
-  }
+  const { type, payload } = action;
+
+  if (type == "@CHANGE_FORMCITY") return { ...state, formCity: payload };
+  if (type == "@CHANGE_FORMRACE") return { ...state, formRace: payload };
+  if (type == "@CHANGE_FORMDIRECTION_FIRST")
+    return { ...state, formDirectionFirst: payload };
+  if (type == "@CHANGE_FORMDIRECTION_SECOND")
+    return { ...state, formDirectionSecond: payload };
+  if (type == "@CHANGE_FORMDIRECTION_THIRD")
+    return { ...state, formDirectionThird: payload };
+  if (type == "@") return {};
+  if (type == "@CHANGE_FORMDISTRICT")
+    return { ...state, formDistrict: payload };
+  if (type == "@CHANGE_FORMADDITIONAL")
+    return { ...state, formAdditional: payload };
+  if (type == "@RESET_FORMULARIES")
+    return {
+      ...state,
+      formCity: "",
+      formRace: "",
+      formDirectionFirst: "",
+      formDirectionSecond: "",
+      formDirectionThird: "",
+      formDistrict: "",
+      formAdditional: "",
+    };
+  if (type == "@TOGGLE_MODAL")
+    return { ...state, toggleModal: !state.toggleModal };
+  return state;
 };
 
 const styles = StyleSheet.create({
