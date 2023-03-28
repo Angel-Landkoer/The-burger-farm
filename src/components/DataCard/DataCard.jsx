@@ -1,30 +1,37 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View, TouchableNativeFeedback } from "react-native";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 
 export function DataCard({ data }) {
   const { name, price } = data;
 
+  const { navigate } = useNavigation();
+
+  const route = (item) => navigate("ProductDetailStack", { data: item });
+
   return (
-    <View style={container}>
-      <CustomText
-        style={[nameText, textSm, primaryColor, textCenter]}
-        fontF={"bold"}
-      >
-        {name}
-      </CustomText>
-      <Image
-        style={[img, secondaryBorderColor]}
-        source={{ uri: "http://www.smashbros.com/images/og/pikachu.jpg" }}
-      />
-      <CustomText
-        style={[priceText, textLg, secondaryColor]}
-        fontF={"semiBold"}
-      >
-        ${price / 1_000}k
-      </CustomText>
-    </View>
+    <TouchableNativeFeedback onPress={() => route(data)}>
+      <View style={container}>
+        <CustomText
+          style={[nameText, textSm, primaryColor, textCenter]}
+          fontF={"bold"}
+        >
+          {name}
+        </CustomText>
+        <Image
+          style={[img, secondaryBorderColor]}
+          source={{ uri: "http://www.smashbros.com/images/og/pikachu.jpg" }}
+        />
+        <CustomText
+          style={[priceText, textLg, secondaryColor]}
+          fontF={"semiBold"}
+        >
+          ${price / 1_000}k
+        </CustomText>
+      </View>
+    </TouchableNativeFeedback>
   );
 }
 

@@ -1,17 +1,28 @@
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 import { Counter } from "../Counter/Counter";
+import { addItemCart } from "../../store/cartSistem/actions/cartSistem.action";
 
-export function Detail({ data }) {
+export function Detail({ data, goToBack }) {
   const {
     name,
     description,
     price,
     img = "http://www.smashbros.com/images/og/pikachu.jpg",
   } = data;
+
+  const liveCart = useSelector((state) => state.cart.cart);
+
+  const dispatch = useDispatch();
+
+  const handleCaptureItem = (item) => {
+    dispatch(addItemCart(item));
+    console.log("useSelectorStateCart: ", liveCart);
+  };
 
   return (
     <View style={container}>
@@ -39,7 +50,7 @@ export function Detail({ data }) {
       <View style={containerDirection}>
         <TouchableOpacity
           style={[btnCancel, quaternaryBackground]}
-          onPress={() => console.warn("GoBack")}
+          onPress={() => goToBack()}
         >
           <MaterialCommunityIcons
             name="close-circle"
@@ -56,7 +67,7 @@ export function Detail({ data }) {
 
         <TouchableOpacity
           style={[btnAdd, tertiaryBackground]}
-          onPress={() => console.warn("Add Product")}
+          onPress={() => handleCaptureItem(data)}
         >
           <FontAwesome5 name="cart-plus" size={24} color={senaryColor.color} />
           <CustomText
