@@ -5,7 +5,7 @@ import { DataCard } from "../DataCard/DataCard";
 import { RenderList } from "../RenderList/RenderList";
 import { CustomText } from "../../components/CustomText/CustomText";
 
-export function ProductSlide({ type, data }) {
+export function ProductSlide({ type, data, onChangeView, category }) {
   return (
     <ScrollView>
       <View style={[container, secondaryBorderColor]}>
@@ -21,7 +21,7 @@ export function ProductSlide({ type, data }) {
         />
         <TouchableOpacity
           style={[btn, primaryBorderColor]}
-          onPress={() => console.warn("Redirecting")}
+          onPress={() => onChangeView(category)}
         >
           <CustomText
             style={[btnTitle, textLg, textCenter, primaryColor]}

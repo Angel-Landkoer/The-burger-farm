@@ -1,18 +1,17 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Detail } from "../../components/Detail/Detail";
-import { datas } from "../../utils/data";
 import { themes } from "../../styles/themes";
 
-export function ProductDetail() {
-  const { burgers } = datas;
-  const dataObject = burgers.data;
-  const data = dataObject[3];
+export function ProductDetail({ route, navigation }) {
+  const { data } = route.params;
+
+  const goToBack = () => navigation.goBack();
 
   return (
     <>
       <View style={[containerFontBox, primaryBackground]}>
-        <Detail data={data} />
+        <Detail goToBack={goToBack} data={data} />
       </View>
     </>
   );
