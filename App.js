@@ -1,13 +1,13 @@
-import { StyleSheet, View } from 'react-native';
 import React from 'react';
 import { NavigationDrawer } from './src/navigation/NavigationDrawer'
-// import { CustomText } from './src/components/CustomText/CustomText';
+import { Provider } from 'react-redux'
+import store from './src/store/index'
 
 export default function App() {
 
   return (
-    <>
+    <Provider store={store}>
       <NavigationDrawer />
-    </>
+    </Provider>
   );
 }
