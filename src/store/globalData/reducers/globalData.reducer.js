@@ -23,7 +23,8 @@ const initialState = {
 export const globalDataReducer = (state = initialState, action) => {
   if (action.type == PRODUCT_CATEGORY) {
     const mapCategory = state.productsCategoryName.map((item) => state.productsData[item]);
-    return { ...state, productsCategory: mapCategory.filter(item.category == action.numCategory) }
+    const filterCategory = mapCategory.filter((item) => item.category == action.numCategory)
+    return { ...state, productsCategory: filterCategory[0] }
   }
   return state
 }
