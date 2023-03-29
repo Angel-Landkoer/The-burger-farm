@@ -15,15 +15,9 @@ export function Detail({ data, goToBack }) {
     img = "http://www.smashbros.com/images/og/pikachu.jpg",
   } = data;
 
-  const liveCart = useSelector((state) => state.cart.cart);
-
   const dispatch = useDispatch();
 
-  const handleCaptureItem = (item) => {
-    dispatch(addItemCart(item));
-    console.log("useSelectorStateCart: ", liveCart);
-  };
-
+  const handleCaptureItem = (item) => dispatch(addItemCart(item));
   return (
     <View style={container}>
       <CustomText style={[title, text3Xl, primaryColor]} fontF={"bold"}>

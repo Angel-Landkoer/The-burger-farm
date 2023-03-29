@@ -1,4 +1,4 @@
-import { StyleSheet, View,  } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import { CustomText } from "../../components/CustomText/CustomText";
@@ -7,8 +7,7 @@ import { RenderList } from "../../components/RenderList/RenderList";
 import { DataCard } from "../../components/DataCard/DataCard";
 
 export function AllProducts() {
-
-  const findCategory = useSelector(state => state.data.productsCategory);
+  const findCategory = useSelector((state) => state.data.productsCategory);
 
   return (
     <View style={[containerFontBox, primaryBackground]}>

@@ -13,29 +13,19 @@ import {
 export function MyCart({ navigation }) {
   // datos filtrado de selecction -- falta hacer en el estado global
 
-  const productsData = useSelector((state) => state.data.productsData);
   const cartItems = useSelector((state) => state.cart.cartItems);
-
-  const { burgers } = productsData;
-  const lessData = burgers.data.splice(0, 5);
 
   const dispatch = useDispatch();
 
-  const onDeletedItem = (deleted) => {
-    console.log("deleted: ", deleted);
-    dispatch(deletedItemCart(deleted));
-  };
+  const onDeletedItem = (deleted) => dispatch(deletedItemCart(deleted));
 
-  const onDeletedAllItems = () => {
-    console.log("useSelectorartItems: ", cartItems);
-    dispatch(deletedAll);
-  };
+  const onDeletedAllItems = () => dispatch(deletedAll);
 
   return (
     <ScrollView>
       <View style={[containerFontBox, primaryBackground]}>
         <RenderList
-          data={lessData}
+          data={cartItems}
           component={({ item }) => (
             <CartProduct onDeletedItem={onDeletedItem} data={item} />
           )}

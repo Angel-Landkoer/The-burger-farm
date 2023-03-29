@@ -11,9 +11,8 @@ export function Products({ navigation }) {
   const dispatch = useDispatch();
 
   const onChangeView = (category) => {
-    console.log("category: ", category);
     dispatch(filterCategory(category));
-    navigation.navigate("AllProductsStack", { category });
+    navigation.navigate("AllProductsStack");
   };
 
   return (
