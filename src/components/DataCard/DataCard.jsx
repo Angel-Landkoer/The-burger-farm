@@ -1,6 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, StyleSheet, View, TouchableNativeFeedback } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 

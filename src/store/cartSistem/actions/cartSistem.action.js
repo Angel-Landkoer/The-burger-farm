@@ -1,8 +1,8 @@
 export const ADD_CART = "@ADD_CART"
 export const DELETED_ITEM = "@DELETED_ITEM"
 export const DELETED_ALL = "@DELETED_ALL"
-export const INCREASE_COUNTER = "@INCREASE_COUNTER"
-export const TOTAL_AMOUNT = "@TOTAL_AMOUNT"
+export const CART_LENGTH = "@CART_LENGTH"
+// export const TOTAL_AMOUNT = "@TOTAL_AMOUNT"
 
 export const addItemCart = (item) => { type: ADD_CART, item }
 
@@ -10,9 +10,9 @@ export const deletedItemCart = (deletedItem) => { type: DELETED_ITEM, deletedIte
 
 export const deletedAll = () => { type: DELETED_ALL }
 
-export const increaseCounter = (first) => { type: INCREASE_COUNTER }
+export const cartLength = () => { type: CART_LENGTH }
 
-export const totalAmount = () => { type: TOTAL_AMOUNT }
+// export const totalAmount = () => { type: TOTAL_AMOUNT }
 
 // agregar
 // eliminar item

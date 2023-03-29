@@ -15,9 +15,9 @@ const data = [
 ];
 
 const initialState = {
+  productsCategoryName: data,
   productsData: datas,
   productsCategory: [],
-  productsCategoryName: data
 }
 
 export const globalDataReducer = (state = initialState, action) => {
