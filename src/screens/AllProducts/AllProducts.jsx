@@ -12,11 +12,6 @@ export function AllProducts() {
 
   const findCategory = useSelector(state => state.data.productsCategory);
   console.log("findCategory: ", findCategory);
-  // const { category } = route.params;
-  // const products = useSelector((state) => state.data.productsData);
-  // const productsCategory = useSelector((state) => state.data.productsCategory);
-  // const datas = productsCategory.map((item) => products[item]);
-  // const findCategory = datas.find((item) => item.category == category);
 
   return (
     <View style={[containerFontBox, primaryBackground]}>
