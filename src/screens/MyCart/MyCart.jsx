@@ -1,33 +1,48 @@
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { ScrollView, StyleSheet, View, TouchableOpacity } from "react-native";
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { themes } from "../../styles/themes";
-import { datas } from "../../utils/data";
 import { CartProduct } from "../../components/CartProduct/CartProduct";
 import { RenderList } from "../../components/RenderList/RenderList";
 import { CustomText } from "../../components/CustomText/CustomText";
+import {
+  deletedAll,
+  deletedItemCart,
+} from "../../store/cartSistem/actions/cartSistem.action";
 
 export function MyCart({ navigation }) {
   // datos filtrado de selecction -- falta hacer en el estado global
-  const { burgers } = datas;
 
-  const lessData = burgers.data.splice(0, 5)
+  const productsData = useSelector((state) => state.data.productsData);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
+  const { burgers } = productsData;
+  const lessData = burgers.data.splice(0, 5);
+
+  const dispatch = useDispatch();
+
+  const onDeletedItem = (deleted) => {
+    console.log("deleted: ", deleted);
+    dispatch(deletedItemCart(deleted));
+  };
+
+  const onDeletedAllItems = () => {
+    console.log("useSelectorartItems: ", cartItems);
+    dispatch(deletedAll);
+  };
 
   return (
     <ScrollView>
       <View style={[containerFontBox, primaryBackground]}>
         <RenderList
           data={lessData}
-          component={({item}) => <CartProduct data={item} />}
+          component={({ item }) => (
+            <CartProduct onDeletedItem={onDeletedItem} data={item} />
+          )}
           stringKey={(item) => `CartItem-${item.name}`}
           horizontal={false}
         />
         <View style={[resultData]}>
-
           {/* Traer el calculo total del los productos, function */}
           <CustomText
             style={[text2Xl, textCenter, secondaryColor]}
