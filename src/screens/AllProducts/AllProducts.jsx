@@ -2,16 +2,13 @@ import { StyleSheet, View,  } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import { CustomText } from "../../components/CustomText/CustomText";
-// import { datas } from "../../utils/data";
 import { themes } from "../../styles/themes";
 import { RenderList } from "../../components/RenderList/RenderList";
 import { DataCard } from "../../components/DataCard/DataCard";
 
 export function AllProducts() {
-  // { route }
 
   const findCategory = useSelector(state => state.data.productsCategory);
-  console.log("findCategory: ", findCategory);
 
   return (
     <View style={[containerFontBox, primaryBackground]}>
