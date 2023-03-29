@@ -1,18 +1,29 @@
-import { Image, StyleSheet, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import React from "react";
+import { MaterialIcons } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { Counter } from "../Counter/Counter";
 import { CustomText } from "../CustomText/CustomText";
 
-export function CartProduct({ data }) {
+export function CartProduct({ data, onDeletedItem }) {
   const {
-    name,
-    price,
+    name = "Name",
+    price = 0,
     img = "https://w0.peakpx.com/wallpaper/883/296/HD-wallpaper-hatake-kakashi-artwork-naruto-characters-manga-sharingan-samurai-portrait-naruto-kakashi-hatake.jpg",
   } = data;
 
   return (
     <View style={container}>
+      <TouchableWithoutFeedback onPress={() => onDeletedItem(data)}>
+        <View style={contentIcon}>
+          <MaterialIcons name="delete" size={24} color={quinaryColor.color} />
+        </View>
+      </TouchableWithoutFeedback>
       <View style={contentImg}>
         <Image style={picture} source={{ uri: img }} />
       </View>
@@ -63,9 +74,28 @@ const styles = StyleSheet.create({
     marginBottom: 33,
   },
   productName: {},
+  contentIcon: {
+    position: "absolute",
+    left: 8,
+    top: "3%",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1,
+    width: 30,
+    height: 30,
+    borderRadius: 20,
+    backgroundColor: "white",
+  },
 });
 
-const { container, contentImg, picture, contentProductName, productName } =
-  styles;
+const {
+  container,
+  contentImg,
+  picture,
+  contentProductName,
+  productName,
+  contentIcon,
+} = styles;
 
-const { text3Xl, textCenter, primaryColor, tertiaryColor } = themes;
+const { text3Xl, textCenter, primaryColor, tertiaryColor, quinaryColor } =
+  themes;
