@@ -12,9 +12,8 @@ export function Counter({ price }) {
   const handleLess = () => (count <= 1 ? setCount(1) : setCount(count - 1));
 
   // function ubicado en el estado global al igual que el count-state
-  const sum = () => {
-    return (price / 1000) * count;
-  };
+
+  const math = (price / 1000) * count;
 
   return (
     <View style={container}>
@@ -50,7 +49,7 @@ export function Counter({ price }) {
           style={[textPrice, text2Xl, secondaryColor]}
           fontF={"semiBold"}
         >
-          {price ? `$${sum()}K` : "Loading Price..."}
+          {price ? `$${math}K` : "Loading Price..."}
         </CustomText>
       </View>
     </View>
