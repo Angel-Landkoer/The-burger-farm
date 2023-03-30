@@ -20,7 +20,7 @@ export function CartProduct({ data, onDeletedItem }) {
   return (
     <View style={container}>
       <TouchableWithoutFeedback onPress={() => onDeletedItem(data)}>
-        <View style={contentIcon}>
+        <View style={[contentIcon, contentIconDeleted]}>
           <MaterialIcons name="delete" size={24} color={quinaryColor.color} />
         </View>
       </TouchableWithoutFeedback>
@@ -76,8 +76,6 @@ const styles = StyleSheet.create({
   productName: {},
   contentIcon: {
     position: "absolute",
-    left: 8,
-    top: "3%",
     justifyContent: "center",
     alignItems: "center",
     zIndex: 1,
@@ -85,6 +83,10 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 20,
     backgroundColor: "white",
+  },
+  contentIconDeleted: {
+    left: 8,
+    top: "3%",
   },
 });
 
@@ -94,8 +96,8 @@ const {
   picture,
   contentProductName,
   productName,
+  contentIconDeleted,
   contentIcon,
 } = styles;
 
-const { text3Xl, textCenter, primaryColor, tertiaryColor, quinaryColor } =
-  themes;
+const { text3Xl, textCenter, primaryColor, quinaryColor } = themes;
