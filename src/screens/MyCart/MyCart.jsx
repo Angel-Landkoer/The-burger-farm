@@ -11,10 +11,7 @@ import { themes } from "../../styles/themes";
 import { CartProduct } from "../../components/CartProduct/CartProduct";
 import { RenderList } from "../../components/RenderList/RenderList";
 import { CustomText } from "../../components/CustomText/CustomText";
-import {
-  deletedAll,
-  deletedItemCart,
-} from "../../store/cartSistem/actions/cartSistem.action";
+import { deletedItemCart } from "../../store/cartSistem/actions/cartSistem.action";
 
 export function MyCart({ navigation }) {
   // datos filtrado de selecction -- falta hacer en el estado global
@@ -25,10 +22,7 @@ export function MyCart({ navigation }) {
 
   const onDeletedItem = (deleted) => dispatch(deletedItemCart(deleted));
 
-  const onDeletedAllItems = () => dispatch(deletedAll);
-
   return (
-    // <ScrollView>
     <View style={[container, containerFontBox, primaryBackground]}>
       <RenderList
         data={cartItems}
@@ -60,7 +54,6 @@ export function MyCart({ navigation }) {
         </TouchableOpacity>
       </View>
     </View>
-    // </ScrollView>
   );
 }
 
