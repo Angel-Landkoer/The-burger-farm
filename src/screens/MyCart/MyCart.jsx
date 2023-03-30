@@ -1,4 +1,10 @@
-import { ScrollView, StyleSheet, View, TouchableOpacity } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { themes } from "../../styles/themes";
@@ -22,49 +28,47 @@ export function MyCart({ navigation }) {
   const onDeletedAllItems = () => dispatch(deletedAll);
 
   return (
-    <ScrollView>
-      <View style={[containerFontBox, primaryBackground]}>
-        <RenderList
-          data={cartItems}
-          component={({ item }) => (
-            <CartProduct onDeletedItem={onDeletedItem} data={item} />
-          )}
-          stringKey={(item) => `CartItem-${item.name}`}
-          horizontal={false}
-        />
-        <View style={[resultData]}>
-          {/* Traer el calculo total del los productos, function */}
-          <CustomText
-            style={[text2Xl, textCenter, secondaryColor]}
-            fontF={"bold"}
-          >
-            Order Total: {"PriceTotal"}
-          </CustomText>
-          <CustomText
-            style={[textXl, textCenter, secondaryColor]}
-            fontF={"bold"}
-          >
-            Address: Between {"2K"} and {"6K"}
-          </CustomText>
+    // <ScrollView>
+    <View style={[container, containerFontBox, primaryBackground]}>
+      <RenderList
+        data={cartItems}
+        component={({ item }) => (
+          <CartProduct onDeletedItem={onDeletedItem} data={item} />
+        )}
+        stringKey={(item) => `CartItem-${item.name}`}
+        horizontal={false}
+      />
+      <View style={[resultData]}>
+        {/* Traer el calculo total del los productos, function */}
+        <CustomText
+          style={[text2Xl, textCenter, secondaryColor]}
+          fontF={"bold"}
+        >
+          Order Total: {0}
+        </CustomText>
+        <CustomText style={[textXl, textCenter, secondaryColor]} fontF={"bold"}>
+          Address: Between {"2K"} and {"6K"}
+        </CustomText>
 
-          <TouchableOpacity
-            style={[btnData, secondaryBackground]}
-            onPress={() => console.warn("Send Info")}
-          >
-            <CustomText
-              style={[text2Xl, textCenter, senaryColor]}
-              fontF={"bold"}
-            >
-              $ Make the Purchase
-            </CustomText>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={[btnData, secondaryBackground]}
+          onPress={() => console.warn("Send Info")}
+        >
+          <CustomText style={[text2Xl, textCenter, senaryColor]} fontF={"bold"}>
+            $ Make the Purchase
+          </CustomText>
+        </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
+    // </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    height: Dimensions.get("screen").height / 1.12,
+  },
+
   resultData: {
     justifyContent: "center",
     alignItems: "center",
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
 });
-const { resultData, btnData } = styles;
+const { resultData, btnData, container } = styles;
 
 const {
   containerFontBox,
