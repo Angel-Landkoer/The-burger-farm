@@ -17,7 +17,11 @@ export function Detail({ data, goToBack }) {
 
   const dispatch = useDispatch();
 
-  const handleCaptureItem = (item) => dispatch(addItemCart(item));
+  const handleCaptureItem = (item) => {
+    goToBack();
+    dispatch(addItemCart(item));
+  };
+
   return (
     <View style={container}>
       <CustomText style={[title, text3Xl, primaryColor]} fontF={"bold"}>
