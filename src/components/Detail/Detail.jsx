@@ -6,6 +6,7 @@ import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 import { Counter } from "../Counter/Counter";
 import { addItemCart } from "../../store/cartSistem/actions/cartSistem.action";
+import { useState } from "react";
 
 export function Detail({ data, goToBack }) {
   const {
@@ -15,11 +16,27 @@ export function Detail({ data, goToBack }) {
     img = "http://www.smashbros.com/images/og/pikachu.jpg",
   } = data;
 
+  const [counter, setCounter] = useState({
+    count: 1,
+    price,
+  });
+
+  const handlePlus = () => {
+    const numPlus = counter.count >= 99;
+    if (!numPlus) return setCounter({ ...counter, count: counter.count + 1 });
+  };
+
+  const handleLess = () => {
+    const numLess = counter.count <= 1;
+    if (!numLess) return setCounter({ ...counter, count: counter.count - 1 });
+  };
+
   const dispatch = useDispatch();
 
   const handleCaptureItem = (item) => {
+    const { name, price } = item;
     goToBack();
-    dispatch(addItemCart(item));
+    dispatch(addItemCart({ name, price, count: counter.count }));
   };
 
   return (
@@ -43,7 +60,37 @@ export function Detail({ data, goToBack }) {
         </CustomText>
       </TouchableOpacity>
 
-      <Counter price={price} />
+      <Counter price={counter.price} count={counter.count}>
+        <TouchableOpacity
+          style={[tertiaryColor]}
+          onPress={handleLess}
+          disabled={counter.count == 1}
+        >
+          <FontAwesome5
+            name="minus-circle"
+            size={32}
+            color={
+              counter.count == 1 ? tertiaryColor.color : quinaryColor.color
+            }
+          />
+        </TouchableOpacity>
+        <CustomText style={[textCount, textBase]} fontF={"bold"}>
+          {counter.count}
+        </CustomText>
+        <TouchableOpacity
+          style={[tertiaryColor]}
+          onPress={handlePlus}
+          disabled={counter.count == 99}
+        >
+          <FontAwesome5
+            name="plus-circle"
+            size={32}
+            color={
+              counter.count == 99 ? tertiaryColor.color : quaternaryColor.color
+            }
+          />
+        </TouchableOpacity>
+      </Counter>
 
       <View style={containerDirection}>
         <TouchableOpacity
@@ -131,6 +178,9 @@ const styles = StyleSheet.create({
     width: "100%",
     marginVertical: 20,
   },
+  textCount: {
+    marginHorizontal: 7,
+  },
 });
 
 const {
@@ -142,6 +192,7 @@ const {
   btnCancel,
   picture,
   containerDirection,
+  textCount,
 } = styles;
 
 const {
@@ -156,4 +207,7 @@ const {
   tertiaryBackground,
   quaternaryBackground,
   senaryColor,
+  tertiaryColor,
+  quinaryColor,
+  quaternaryColor,
 } = themes;
