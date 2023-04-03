@@ -13,9 +13,12 @@ import { CustomText } from "../CustomText/CustomText";
 export function CartProduct({ data, onDeletedItem }) {
   const {
     name = "Name",
+    count,
     price = 0,
     img = "https://w0.peakpx.com/wallpaper/883/296/HD-wallpaper-hatake-kakashi-artwork-naruto-characters-manga-sharingan-samurai-portrait-naruto-kakashi-hatake.jpg",
   } = data;
+
+  const math = (price / 1000) * count;
 
   return (
     <View style={container}>
@@ -43,7 +46,17 @@ export function CartProduct({ data, onDeletedItem }) {
             {name}
           </CustomText>
         </View>
-        <Counter price={price} />
+
+        <View style={[contentPriceAndCount]}>
+          <View style={[contentCount]}>
+            <CustomText style={[textLg, primaryColor]} fontF={"bold"}>
+              Count: {count}
+            </CustomText>
+          </View>
+          <CustomText style={[textXl, secondaryColor]} fontF={"semiBold"}>
+            Price: {math ? `${math}K` : "Loading..."}
+          </CustomText>
+        </View>
       </View>
     </View>
   );
@@ -88,6 +101,24 @@ const styles = StyleSheet.create({
     left: 8,
     top: "3%",
   },
+  contentPriceAndCount: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+
+    width: "80%",
+  },
+  contentCount: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+
+    width: "50%",
+    marginHorizontal: 10,
+  },
+  textCount: {
+    marginHorizontal: 7,
+  },
 });
 
 const {
@@ -98,6 +129,17 @@ const {
   productName,
   contentIconDeleted,
   contentIcon,
+  textCount,
+  contentCount,
+  contentPriceAndCount,
 } = styles;
 
-const { text3Xl, textCenter, primaryColor, quinaryColor } = themes;
+const {
+  text3Xl,
+  textLg,
+  textXl,
+  textCenter,
+  primaryColor,
+  quinaryColor,
+  secondaryColor,
+} = themes;
