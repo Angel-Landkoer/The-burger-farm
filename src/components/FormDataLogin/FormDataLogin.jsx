@@ -4,7 +4,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 
-export function FormDataLogin() {
+export function FormDataLogin({onRoute}) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleChangeValueFormPhome = (e) =>
@@ -55,7 +55,7 @@ export function FormDataLogin() {
         </TouchableOpacity>
         <TouchableOpacity
           style={[touchBtn, quinaryBackground]}
-          onPress={() => console.warn("Data confirm And redirection")}
+          onPress={onRoute}
         >
           <FontAwesome5 name="user-alt" size={29} color={senaryColor.color} />
           <CustomText style={[btnText, senaryColor, text2Xl]} fontF={"bold"}>
