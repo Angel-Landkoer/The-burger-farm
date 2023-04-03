@@ -5,7 +5,7 @@ import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
 import { FormDataSignUp } from "../../components/FormDataSignUp/FormDataSignUp";
 
-export function SignUp() {
+export function SignUp({ navigation }) {
   return (
     <View style={[containerFontBox, primaryBackground]}>
       <StatusBar style="light" backgroundColor="black" />
