@@ -16,6 +16,25 @@ export function FormDataSignUp() {
   const handleChangeValueFormConfirmPassword = (e) =>
     dispatch({ type: "@CHANGE_FORMCONFIRMPASSWORD", payload: e });
 
+  const handleFormData = () => {
+    const formulariesLength = [
+      state.formPhone,
+      state.formPassword,
+      state.formConfirmPassword,
+    ];
+    const maxLength = formulariesLength.every((item) => item.length > 0);
+
+    if (maxLength) {
+      console.log("FormData: ", {
+        phone: state.formPhone,
+        password: state.formPassword,
+      });
+      dispatch({ type: "@RESET_FORMULARIES" });
+    }
+
+    !maxLength && dispatch({ type: "@INCOMPLETE_FORMULARY" });
+  };
+
   return (
     <View style={[container]}>
       <View style={[contentForm]}>
@@ -37,6 +56,7 @@ export function FormDataSignUp() {
         <TextInput
           style={[input, primaryBorderColor, fontBold, textBase]}
           placeholder="Your password"
+          maxLength={20}
           inputMode="text"
           onChangeText={handleChangeValueFormPassword}
           value={state.formPassword}
@@ -48,16 +68,24 @@ export function FormDataSignUp() {
         <TextInput
           style={[input, primaryBorderColor, fontBold, textBase]}
           placeholder="Your password"
+          maxLength={20}
           inputMode="text"
           onChangeText={handleChangeValueFormConfirmPassword}
           value={state.formConfirmPassword}
           keyboardType="default"
         />
       </View>
+      {state.incomplete && (
+        <View style={[contentFormulayIncomplete]}>
+          <CustomText style={[textLg, quinaryColor]} fontF={"medium"}>
+            Complete the Formulary
+          </CustomText>
+        </View>
+      )}
       <View style={[contentBtn]}>
         <TouchableOpacity
           style={[touchBtn, tertiaryBackground]}
-          onPress={() => console.warn("Create new User, loading...")}
+          onPress={handleFormData}
         >
           <FontAwesome5 name="save" size={24} color={senaryColor.color} />
           <CustomText style={[btnText, senaryColor, text2Xl]} fontF={"bold"}>
@@ -73,6 +101,7 @@ const initialState = {
   formPhone: "",
   formPassword: "",
   formConfirmPassword: "",
+  incomplete: false,
 };
 
 const reducer = (state, action) => {
@@ -90,11 +119,12 @@ const reducer = (state, action) => {
       formPassword: "",
       formConfirmPassword: "",
     };
+  if (type == "@INCOMPLETE_FORMULARY")
+    return { ...state, incomplete: !state.incomplete };
   return state;
 };
 
 const styles = StyleSheet.create({
-  
   container: {
     justifyContent: "space-between",
 
@@ -130,15 +160,35 @@ const styles = StyleSheet.create({
   btnText: {
     marginHorizontal: 16,
   },
+  contentFormulayIncomplete: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: 30,
+    paddingBottom: 8,
+    marginBottom: 20,
+  },
+  contentTextFormulayIncomplete: {},
 });
 
-const { input, container, contentForm, touchBtn, btnText, contentBtn } = styles;
+const {
+  input,
+  container,
+  contentForm,
+  touchBtn,
+  btnText,
+  contentBtn,
+  contentFormulayIncomplete,
+  contentTextFormulayIncomplete,
+} = styles;
 
 const {
   text3Xl,
   primaryBorderColor,
   primaryColor,
   text2Xl,
+  textLg,
+  quinaryColor,
   senaryColor,
   tertiaryBackground,
   fontBold,
