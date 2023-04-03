@@ -1,55 +1,22 @@
-import React, { useState } from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 
-export function Counter({ price }) {
-  // al final, llegar al "count" al estodo global
-  const [count, setCount] = useState(1);
-
-  const handlePlus = () => (count >= 99 ? setCount(99) : setCount(count + 1));
-  const handleLess = () => (count <= 1 ? setCount(1) : setCount(count - 1));
-
+export function Counter({ price, count, children }) {
   // function ubicado en el estado global al igual que el count-state
 
   const math = (price / 1000) * count;
 
   return (
     <View style={container}>
-      <View style={contentCount}>
-        <TouchableOpacity
-          style={[tertiaryColor]}
-          onPress={handleLess}
-          disabled={count == 1}
-        >
-          <FontAwesome5
-            name="minus-circle"
-            size={32}
-            color={count == 1 ? tertiaryColor.color : quinaryColor.color}
-          />
-        </TouchableOpacity>
-        <CustomText style={[textCount, textBase]} fontF={"bold"}>
-          {count}
-        </CustomText>
-        <TouchableOpacity
-          style={[tertiaryColor]}
-          onPress={handlePlus}
-          disabled={count == 99}
-        >
-          <FontAwesome5
-            name="plus-circle"
-            size={32}
-            color={count == 99 ? tertiaryColor.color : quaternaryColor.color}
-          />
-        </TouchableOpacity>
-      </View>
+      <View style={contentCount}>{children}</View>
       <View style={contentPrice}>
         <CustomText
           style={[textPrice, text2Xl, secondaryColor]}
           fontF={"semiBold"}
         >
-          {price ? `$${math}K` : "Loading Price..."}
+          {math && `${math}K`}
         </CustomText>
       </View>
     </View>
@@ -74,12 +41,9 @@ const styles = StyleSheet.create({
   },
   contentPrice: {},
   textPrice: {},
-  textCount: {
-    marginHorizontal: 7,
-  },
 });
 
-const { container, contentPrice, contentCount, textPrice, textCount } = styles;
+const { container, contentPrice, contentCount, textPrice } = styles;
 
 const {
   text2Xl,
