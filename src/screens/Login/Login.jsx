@@ -5,12 +5,14 @@ import { FormDataLogin } from "../../components/FormDataLogin/FormDataLogin";
 import { CustomText } from "../../components/CustomText/CustomText";
 
 export function Login({ navigation }) {
+  const onRoute = () => navigation.navigate("SignUpStack");
+
   return (
     <View style={[containerFontBox, primaryBackground]}>
       <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
         Login
       </CustomText>
-      <FormDataLogin />
+      <FormDataLogin onRoute={onRoute} />
     </View>
   );
 }
