@@ -1,14 +1,18 @@
 import { StyleSheet, TouchableOpacity, View, TextInput } from "react-native";
 import React, { useReducer } from "react";
+import { useDispatch } from "react-redux";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
+import { signUp } from "../../store/authUser/actions/authUser.action";
 
 export function FormDataSignUp() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleChangeValueFormPhone = (e) =>
-    dispatch({ type: "@CHANGE_FORMPHONE", payload: e });
+  const dispatchRedux = useDispatch();
+
+  const handleChangenValueFormEmail = (e) =>
+    dispatch({ type: "@CHANGE_FORMEMAIL", payload: e });
 
   const handleChangeValueFormPassword = (e) =>
     dispatch({ type: "@CHANGE_FORMPASSWORD", payload: e });
@@ -18,7 +22,7 @@ export function FormDataSignUp() {
 
   const handleFormData = () => {
     const formulariesLength = [
-      state.formPhone,
+      state.formEmail,
       state.formPassword,
       state.formConfirmPassword,
     ];
@@ -26,9 +30,10 @@ export function FormDataSignUp() {
 
     if (maxLength) {
       console.log("FormData: ", {
-        phone: state.formPhone,
+        email: state.formEmail,
         password: state.formPassword,
       });
+      dispatchRedux(signUp(state.formEmail, state.formPassword));
       dispatch({ type: "@RESET_FORMULARIES" });
     }
 
@@ -39,16 +44,17 @@ export function FormDataSignUp() {
     <View style={[container]}>
       <View style={[contentForm]}>
         <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
-          Phone Number
+          Email
         </CustomText>
         <TextInput
           style={[input, primaryBorderColor, fontBold, textBase]}
-          placeholder="Your phone number"
-          inputMode="number"
-          onChangeText={handleChangeValueFormPhone}
-          value={state.formPhone}
-          keyboardType="phone-pad"
-          maxLength={10}
+          placeholder="Email"
+          // placeholderTextColor={tertiaryColor.color}
+          inputMode="email"
+          value={state.formEmail}
+          keyboardType="email-address"
+          onChangeText={handleChangenValueFormEmail}
+          autoCapitalize="none"
         />
         <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
           Password
@@ -61,6 +67,7 @@ export function FormDataSignUp() {
           onChangeText={handleChangeValueFormPassword}
           value={state.formPassword}
           keyboardType="default"
+          autoCapitalize="none"
         />
         <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
           Confirm Password
@@ -73,6 +80,7 @@ export function FormDataSignUp() {
           onChangeText={handleChangeValueFormConfirmPassword}
           value={state.formConfirmPassword}
           keyboardType="default"
+          autoCapitalize="none"
         />
       </View>
       {state.incomplete && (
@@ -98,7 +106,7 @@ export function FormDataSignUp() {
 }
 
 const initialState = {
-  formPhone: "",
+  formEmail: "",
   formPassword: "",
   formConfirmPassword: "",
   incomplete: false,
@@ -107,7 +115,7 @@ const initialState = {
 const reducer = (state, action) => {
   const { type, payload } = action;
 
-  if (type == "@CHANGE_FORMPHONE") return { ...state, formPhone: payload };
+  if (type == "@CHANGE_FORMEMAIL") return { ...state, formEmail: payload };
   if (type == "@CHANGE_FORMPASSWORD")
     return { ...state, formPassword: payload };
   if (type == "@CHANGE_FORMCONFIRMPASSWORD")
@@ -115,7 +123,7 @@ const reducer = (state, action) => {
   if (type == "@RESET_FORMULARIES")
     return {
       ...state,
-      formPhone: "",
+      formEmail: "",
       formPassword: "",
       formConfirmPassword: "",
     };
