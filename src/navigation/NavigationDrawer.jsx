@@ -15,6 +15,8 @@ import { CustomText } from "../components/CustomText/CustomText";
 export function NavigationDrawer() {
   const { Navigator, Screen } = createDrawerNavigator();
 
+  const authData = useSelector((state) => state.auth.userId);
+
   return (
     <Navigator
       screenOptions={{
@@ -59,21 +61,40 @@ export function NavigationDrawer() {
           ),
         }}
       />
-      <Screen
-        name="OrderDrawer"
-        component={OrderStackNavigation}
-        options={{
-          title: "My Order",
-          headerShown: false,
-          drawerIcon: ({ size, color }) => (
-            <FontAwesome5
-              name="file-invoice-dollar"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
+      {authData ? (
+        <Screen
+          name="OrderDrawer"
+          component={OrderStackNavigation}
+          options={{
+            title: "My Order",
+            headerShown: false,
+            drawerIcon: ({ size, color }) => (
+              <FontAwesome5
+                name="file-invoice-dollar"
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+        />
+      ) : (
+        <Screen
+          name="OrderDrawer"
+          component={DataStackNavigation}
+          options={{
+            title: "My Order",
+            headerShown: false,
+            drawerIcon: ({ size, color }) => (
+              <FontAwesome5
+                name="file-invoice-dollar"
+                size={size}
+                color={color}
+              />
+            ),
+          }}
+        />
+      )}
+
       <Screen
         name="FindUpDrawer"
         component={FindUsStackNavigation}
