@@ -1,12 +1,17 @@
-import { SIGN_UP_URL, API_URL } from "../../../utils/constants/Database"
+import { SIGN_UP_URL, API_URL, LOGIN_URL } from "../../../utils/constants/Database"
 
 export const SIGN_UP = "@SIGN_UP"
+export const SIGN_UP_START = "@SIGN_UP_START"
+export const SIGN_UP_FAIL = "@SIGN_UP_FAIL"
+export const LOGIN = "@LOGIN"
+export const LOGIN_START = "@LOGIN_START"
+export const LOGIN_FAIL = "@LOGIN_FAIL"
 
 export const signUp = (email, password) => {
   return async dispatch => {
     try {
       dispatch({
-        type: "@SIGN_UP_START"
+        type: SIGN_UP_START
       })
 
       const option = {
@@ -32,7 +37,6 @@ export const signUp = (email, password) => {
       }
 
       const data = await response.json()
-      console.log("DataResponse: ", data)
 
       const optionAdditional = {
         method: "POST",
@@ -58,7 +62,6 @@ export const signUp = (email, password) => {
 
       const responseAdditionDetail = await fetch(`${API_URL}users.json`, optionAdditional)
       const dataAdditionalDetail = await responseAdditionDetail.json()
-      console.log("dataAdditionalDetail: ", dataAdditionalDetail)
 
       dispatch({
         type: SIGN_UP,
@@ -69,11 +72,58 @@ export const signUp = (email, password) => {
 
     } catch (error) {
       dispatch({
-        type: "@SIGN_UP_FAIL"
+        type: SIGN_UP_FAIL
       })
       alert(error);
     }
   }
 }
 
-// 5-48
+
+export const login = (email, password) => {
+  return async dispatch => {
+
+    dispatch({
+      type: LOGIN_START
+    })
+
+    const option = {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        returnSecureToken: true
+      })
+    }
+
+    try {
+
+      const response = await fetch(LOGIN_URL, option)
+
+      if (!response.ok) {
+        const errorLogin = await response.json()
+        console.log("errorLogin: ", errorLogin)
+        throw new Error(errorLogin)
+      }
+
+      const data = await response.json()
+
+      dispatch({
+        type: LOGIN,
+        registered: data.registered,
+        userId: data.localId,
+      })
+
+    } catch (error) {
+
+      dispatch({
+        type: LOGIN_FAIL
+      })
+      console.log(error)
+      alert(error);
+    }
+  }
+}
