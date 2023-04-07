@@ -1,33 +1,43 @@
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import React, { useReducer } from "react";
+import { useDispatch } from "react-redux";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
+import { login } from "../../store/authUser/actions/authUser.action";
 
-export function FormDataLogin({onRoute}) {
+export function FormDataLogin({ onRoute }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleChangeValueFormPhome = (e) =>
-    dispatch({ type: "@CHANGE_FORMPHONE", payload: e });
+  const dispatchRedux = useDispatch();
+
+  const handleChangenValueFormEmail = (e) =>
+    dispatch({ type: "@CHANGE_FORMEMAIL", payload: e });
   const handleChangeValueFormPassword = (e) =>
     dispatch({ type: "@CHANGE_FORMPASSWORD", payload: e });
+
+  const handleSendData = () => {
+    const { formEmail, formPassword } = state;
+    dispatchRedux(login(formEmail, formPassword));
+    dispatch({ type: "@RESET_FORMULARIES" });
+  };
 
   //  useEffect, fireBase, confirm data, yes=true or not=false
   return (
     <View style={[container]}>
       <View style={[contentForm]}>
         <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
-          Phone Number
+          Email
         </CustomText>
         <TextInput
           style={[input, primaryBorderColor, fontSemiBold, textBase]}
+          placeholder="Email"
           placeholderTextColor={tertiaryColor.color}
-          placeholder="Your phone number"
-          inputMode="number"
-          keyboardType="phone-pad"
-          maxLength={10}
-          onChangeText={handleChangeValueFormPhome}
-          value={state.formPhone}
+          inputMode="email"
+          value={state.formEmail}
+          keyboardType="email-address"
+          onChangeText={handleChangenValueFormEmail}
+          autoCapitalize="none"
         />
         <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
           Password
@@ -46,7 +56,7 @@ export function FormDataLogin({onRoute}) {
       <View style={[contentBtns]}>
         <TouchableOpacity
           style={[touchBtn, secondaryBackground]}
-          onPress={() => console.warn("Data confirm And redirection")}
+          onPress={handleSendData}
         >
           <FontAwesome5 name="key" size={29} color={senaryColor.color} />
           <CustomText style={[btnText, senaryColor, text2Xl]} fontF={"bold"}>
@@ -68,17 +78,17 @@ export function FormDataLogin({onRoute}) {
 }
 
 const initialState = {
-  formPhone: "",
+  formEmail: "",
   formPassword: "",
 };
 
 const reducer = (state, action) => {
   const { type, payload } = action;
-  if (type == "@CHANGE_FORMPHONE") return { ...state, formPhone: payload };
+  if (type == "@CHANGE_FORMEMAIL") return { ...state, formEmail: payload };
   if (type == "@CHANGE_FORMPASSWORD")
     return { ...state, formPassword: payload };
   if (type == "@RESET_FORMULARIES")
-    return { ...state, formPassword: "", formPhone: "" };
+    return { ...state, formPassword: "", formEmail: "" };
   return state;
 };
 
