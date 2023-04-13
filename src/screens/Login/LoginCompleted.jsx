@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View, Pressable } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { RESET_ACCOUNT } from "../../store/authUser/actions/authUser.action";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
 import { Modall } from "../../components/Modal/Modall";
 
-export function LoginCompleted() {
+export function LoginCompleted({ navigation }) {
   const [toggleModal, setToggleModal] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const userData = useSelector((state) => state.auth.allDataUser);
+  const { name, phone, email } = userData;
+
+  const routeUserData = () =>
+    navigation.navigate("UpdateDataUserStack", { user: userData });
+
+  const routeAddressData = () =>
+    navigation.navigate("UpdateAddressStack", { user: userData });
 
   const handleConfirmDeleteAccount = () => {
     setToggleModal(!toggleModal);
-    console.warn("Close Account");
+    dispatch({ type: RESET_ACCOUNT });
   };
 
   return (
@@ -20,23 +33,20 @@ export function LoginCompleted() {
       </CustomText>
 
       <View style={infoUser}>
-        <TouchableOpacity
-          style={btnEditUser}
-          onPress={() => console.warn("Redirection")}
-        >
+        <TouchableOpacity style={btnEditUser} onPress={routeUserData}>
           <FontAwesome5 name="edit" size={32} color={secondaryColor.color} />
         </TouchableOpacity>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <CustomText fontF={"bold"}>Name:</CustomText>
-          <CustomText fontF={"bold"}>{"null"}</CustomText>
+          <CustomText fontF={"bold"}>{name ? name : "null"}</CustomText>
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <CustomText fontF={"bold"}>Phone:</CustomText>
-          <CustomText fontF={"bold"}>{"null"}</CustomText>
+          <CustomText fontF={"bold"}>{phone ? phone : "null"}</CustomText>
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <CustomText fontF={"bold"}>Email:</CustomText>
-          <CustomText fontF={"bold"}>{"null"}</CustomText>
+          <CustomText fontF={"bold"}>{email ? email : "null"}</CustomText>
         </View>
       </View>
 
@@ -90,10 +100,7 @@ export function LoginCompleted() {
         >
           Address
         </CustomText>
-        <TouchableOpacity
-          style={btnEditAddress}
-          onPress={() => console.warn("Redirection")}
-        >
+        <TouchableOpacity style={btnEditAddress} onPress={routeAddressData}>
           <FontAwesome5
             name="plus-square"
             size={32}
