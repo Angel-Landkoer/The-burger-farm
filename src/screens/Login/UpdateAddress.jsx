@@ -6,7 +6,13 @@ import { CustomText } from "../../components/CustomText/CustomText";
 
 // dato de los ciudades and departamentos
 
-export function UpdateAddress() {
+export function UpdateAddress({ navigation, route }) {
+  const { user } = route.params;
+
+  const dataDefault = user;
+
+  const goToBack = () => navigation.goBack();
+
   return (
     <View style={[containerFontBox, primaryBackground]}>
       <CustomText style={[primaryColor, textLg, textJustify]} fontF={"bold"}>
@@ -15,7 +21,7 @@ export function UpdateAddress() {
         shortest possible time. Additionally, if you can confirm your address on
         our map, it will be easier to deliver it.
       </CustomText>
-      <EditAddress />
+      <EditAddress goToBack={goToBack} dataDefault={dataDefault} />
     </View>
   );
 }

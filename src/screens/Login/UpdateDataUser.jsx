@@ -4,13 +4,18 @@ import { EditInfoGeneral } from "../../components/EditInfoGeneral/EditInfoGenera
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
 
-export function UpdateDataUser() {
+export function UpdateDataUser({ navigation, route }) {
+  const { user } = route.params;
+  const dataDefault = user;
+
+  const goToBack = () => navigation.goBack();
+
   return (
     <View style={[containerFontBox, primaryBackground]}>
-      <CustomText style={[text4Xl, primaryColor , textLeft]} fontF={"bold"}>
+      <CustomText style={[text4Xl, primaryColor, textLeft]} fontF={"bold"}>
         Information Gerenal
       </CustomText>
-      <EditInfoGeneral />
+      <EditInfoGeneral goToBack={goToBack} dataDefault={dataDefault} />
     </View>
   );
 }
@@ -19,4 +24,5 @@ const styles = StyleSheet.create({});
 
 const {} = styles;
 
-const { containerFontBox, primaryBackground, text4Xl, primaryColor, textLeft } = themes;
+const { containerFontBox, primaryBackground, text4Xl, primaryColor, textLeft } =
+  themes;
