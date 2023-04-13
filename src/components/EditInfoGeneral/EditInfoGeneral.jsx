@@ -5,8 +5,10 @@ import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
 import { Modall } from "../../components/Modal/Modall";
 import { CustomText } from "../CustomText/CustomText";
 
-export function EditInfoGeneral() {
+export function EditInfoGeneral({ goToBack, dataDefault }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const { email, phone, name, lastName } = dataDefault;
 
   const handleChangenValueFormName = (e) =>
     dispatch({ type: "@CHANGE_FORMNAME", payload: e });
@@ -39,9 +41,9 @@ export function EditInfoGeneral() {
           placeholder="Name"
           placeholderTextColor={tertiaryColor.color}
           inputMode="text"
-          value={state.formName}
           keyboardType="default"
           onChangeText={handleChangenValueFormName}
+          defaultValue={name ? name : "null"}
         />
         <TextInput
           style={[
@@ -54,9 +56,9 @@ export function EditInfoGeneral() {
           placeholder="Last Name"
           placeholderTextColor={tertiaryColor.color}
           inputMode="text"
-          value={state.formLastName}
           keyboardType="default"
           onChangeText={handleChangenValueFormLastName}
+          defaultValue={lastName ? lastName : "null"}
         />
         <TextInput
           style={[
@@ -69,11 +71,10 @@ export function EditInfoGeneral() {
           placeholder="Phone"
           placeholderTextColor={tertiaryColor.color}
           inputMode="numeric"
-          value={state.formPhone}
           keyboardType="phone-pad"
           onChangeText={handleChangenValueFormPhone}
           // el dato por defecto es el mismo con el que se inicio la cuenta
-          defaultValue={null}
+          defaultValue={phone ? phone.toString() : "null"}
         />
         <TextInput
           style={[
@@ -86,8 +87,8 @@ export function EditInfoGeneral() {
           placeholder="Email"
           placeholderTextColor={tertiaryColor.color}
           inputMode="email"
-          value={state.formEmail}
           keyboardType="email-address"
+          defaultValue={email ? email : "null"}
           onChangeText={handleChangenValueFormEmail}
         />
       </View>
@@ -105,7 +106,7 @@ export function EditInfoGeneral() {
         </Pressable>
       </Modall>
       <View style={[contentBtns]}>
-        <ButtonSaveClose onSaveData={onSaveData} />
+        <ButtonSaveClose onGoToBack={goToBack} onSaveData={onSaveData} />
       </View>
     </View>
   );

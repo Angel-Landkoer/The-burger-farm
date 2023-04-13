@@ -22,8 +22,10 @@ const countries = [
 
 const seletions = ["select", "Street", "Race"];
 
-export function EditAddress() {
+export function EditAddress({ dataDefault, goToBack }) {
   const [state, dispatch] = useReducer(reducer, inicialState);
+
+  const { additionalInformation, city, district, route } = dataDefault.address;
 
   const onSaveData = () => {
     const formulariesLength = [
@@ -150,7 +152,7 @@ export function EditAddress() {
             ]}
             placeholder="District"
             placeholderTextColor={secondaryColor.color}
-            value={state.formDistrict}
+            value={district ? district : state.formDistrict}
             onChangeText={handleChangeValueFormDistrict}
           />
           <TextInput
@@ -163,7 +165,11 @@ export function EditAddress() {
             ]}
             placeholder="Additional Infotmation"
             placeholderTextColor={secondaryColor.color}
-            value={state.formAdditional}
+            value={
+              additionalInformation
+                ? additionalInformation
+                : state.formAdditional
+            }
             onChangeText={handleChangeValueFormAdditional}
           />
         </View>
@@ -182,7 +188,7 @@ export function EditAddress() {
         </Pressable>
       </Modall>
       <View style={[contentBtns]}>
-        <ButtonSaveClose onSaveData={onSaveData} />
+        <ButtonSaveClose onGoToBack={goToBack} onSaveData={onSaveData} />
       </View>
     </View>
   );
