@@ -4,12 +4,12 @@ import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 
-export function ButtonSaveClose({ onSaveData }) {
+export function ButtonSaveClose({ onSaveData, onGoToBack }) {
   return (
     <View style={[container]}>
       <TouchableOpacity
         style={[touchBtn, touchBtnCancel, quaternaryBackground]}
-        onPress={() => console.warn("redirecton")}
+        onPress={onGoToBack}
       >
         <MaterialCommunityIcons
           name="close-circle"
