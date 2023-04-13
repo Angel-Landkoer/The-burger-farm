@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useSelector } from "react-redux";
 import { Login } from "../screens/Login/Login";
 import { LoginCompleted } from "../screens/Login/LoginCompleted";
 import { UpdateAddress } from "../screens/Login/UpdateAddress";
@@ -12,6 +13,8 @@ import { themes } from "../styles/themes";
 export function DataStackNavigation() {
   const { Screen, Navigator } = createNativeStackNavigator();
 
+  const registed = useSelector((state) => state.auth.existemAccount);
+
   return (
     <Navigator
       screenOptions={{
@@ -21,25 +24,33 @@ export function DataStackNavigation() {
         headerLeft: IconButton,
       }}
     >
-      <Screen
-        name="LoginStack"
-        component={Login}
-        options={{ title: "The Farm", headerShown: true }}
-      />
-      <Screen
-        name="LoginCompletedStack"
-        component={LoginCompleted}
-        options={{ title: "My Data", headerShown: true }}
-      />
+      {registed ? (
+        <Screen
+          name="LoginCompletedStack"
+          component={LoginCompleted}
+          options={{ title: "My Data", headerShown: true }}
+        />
+      ) : (
+        <Screen
+          name="LoginStack"
+          component={Login}
+          options={{ title: "The Farm", headerShown: true }}
+        />
+      )}
+
       <Screen
         name="UpdateAddressStack"
         component={UpdateAddress}
-        options={{ title: "Update Data", headerShown: true }}
+        options={{ title: "Address", headerShown: true, headerLeft: () => "" }}
       />
       <Screen
         name="UpdateDataUserStack"
         component={UpdateDataUser}
-        options={{ title: "Address", headerShown: true }}
+        options={{
+          title: "Update Data",
+          headerShown: true,
+          headerLeft: () => "",
+        }}
       />
       <Screen
         name="SignUpStack"
