@@ -6,6 +6,7 @@ export const SIGN_UP_FAIL = "@SIGN_UP_FAIL"
 export const LOGIN = "@LOGIN"
 export const LOGIN_START = "@LOGIN_START"
 export const LOGIN_FAIL = "@LOGIN_FAIL"
+export const RESET_ACCOUNT = "@RESET_ACCOUNT"
 
 export const signUp = (email, password) => {
   return async dispatch => {
@@ -28,7 +29,6 @@ export const signUp = (email, password) => {
 
       if (!response.ok) {
         const errorResData = await response.json();
-        console.log("errorResData: ", JSON.stringify(errorResData))
         const errorIdMessage = errorResData.error.message;
         let message = "User could not registered"
         if (errorIdMessage == "EMAIL_EXISTS") { message = "User is existing" }
@@ -105,16 +105,21 @@ export const login = (email, password) => {
 
       if (!response.ok) {
         const errorLogin = await response.json()
-        console.log("errorLogin: ", errorLogin)
-        throw new Error(errorLogin)
+        throw new Error(errorLogin.error.message)
       }
 
       const data = await response.json()
+
+      const responseAdditionDetail = await fetch(`${API_URL}/users.json`)
+      const dataAdditionalDetail = await responseAdditionDetail.json()
+
+      const user = Object.keys(dataAdditionalDetail).map(item => { return { id: item, ...dataAdditionalDetail[item] } }).find(element => element.userId == data.localId)
 
       dispatch({
         type: LOGIN,
         registered: data.registered,
         userId: data.localId,
+        allDataUser: user
       })
 
     } catch (error) {
