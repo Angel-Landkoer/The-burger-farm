@@ -29,11 +29,9 @@ export function FormDataSignUp() {
     const maxLength = formulariesLength.every((item) => item.length > 0);
 
     if (maxLength) {
-      console.log("FormData: ", {
-        email: state.formEmail,
-        password: state.formPassword,
-      });
-      dispatchRedux(signUp(state.formEmail, state.formPassword));
+      const { formEmail, formPassword } = state;
+
+      dispatchRedux(signUp(formEmail.trim(), formPassword.trim()));
       dispatch({ type: "@RESET_FORMULARIES" });
     }
 

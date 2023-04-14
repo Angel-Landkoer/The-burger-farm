@@ -18,11 +18,10 @@ export function FormDataLogin({ onRoute }) {
 
   const handleSendData = () => {
     const { formEmail, formPassword } = state;
-    dispatchRedux(login(formEmail, formPassword));
+    dispatchRedux(login(formEmail.trim(), formPassword.trim()));
     dispatch({ type: "@RESET_FORMULARIES" });
   };
 
-  //  useEffect, fireBase, confirm data, yes=true or not=false
   return (
     <View style={[container]}>
       <View style={[contentForm]}>
