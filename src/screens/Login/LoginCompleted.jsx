@@ -14,6 +14,7 @@ export function LoginCompleted({ navigation }) {
 
   const userData = useSelector((state) => state.auth.allDataUser);
   const { name, phone, email } = userData;
+  const { route, dataDirection, district } = userData.address;
 
   const routeUserData = () =>
     navigation.navigate("UpdateDataUserStack", { user: userData });
@@ -109,7 +110,9 @@ export function LoginCompleted({ navigation }) {
         </TouchableOpacity>
         <View style={[subCotainerInfoAddress, primaryBorderColor]}>
           <CustomText style={[addressText]} fontF={"bold"}>
-            {"AddressText"}
+            {dataDirection
+              ? `${route}-${dataDirection} ${district}`
+              : "AddressText"}
           </CustomText>
         </View>
       </View>
