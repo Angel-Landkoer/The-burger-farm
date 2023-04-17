@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { useSelector } from "react-redux";
 import { themes } from "../../styles/themes";
 import { EditAddress } from "../../components/EditAddress/EditAddress";
 import { CustomText } from "../../components/CustomText/CustomText";
@@ -11,6 +12,8 @@ export function UpdateAddress({ navigation, route }) {
 
   const dataDefault = user;
 
+  const userId = useSelector((state) => state.auth.userId);
+
   const goToBack = () => navigation.goBack();
 
   return (
@@ -21,7 +24,11 @@ export function UpdateAddress({ navigation, route }) {
         shortest possible time. Additionally, if you can confirm your address on
         our map, it will be easier to deliver it.
       </CustomText>
-      <EditAddress goToBack={goToBack} dataDefault={dataDefault} />
+      <EditAddress
+        userId={userId}
+        goToBack={goToBack}
+        dataDefault={dataDefault}
+      />
     </View>
   );
 }
