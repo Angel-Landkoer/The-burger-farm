@@ -6,6 +6,14 @@ export const SIGN_UP_FAIL = "@SIGN_UP_FAIL"
 export const LOGIN = "@LOGIN"
 export const LOGIN_START = "@LOGIN_START"
 export const LOGIN_FAIL = "@LOGIN_FAIL"
+export const UPDATE_DATA_USER_FAIL = "@UPDATE_DATA_USER_FAIL"
+export const UPDATE_DATA_USER = "@UPDATE_DATA_USER"
+export const UPDATE_DATA_USER_START = "@UPDATE_DATA_USER_START"
+
+export const UPDATE_DATA_ADDRESS_START = "@UPDATE_DATA_ADDRESS_START"
+export const UPDATE_DATA_ADDRESS = "@UPDATE_DATA_ADDRESS"
+export const UPDATE_DATA_ADDRESS_FAIL = "@UPDATE_DATA_ADDRESS_FAIL"
+
 export const RESET_ACCOUNT = "@RESET_ACCOUNT"
 
 export const signUp = (email, password) => {
@@ -46,13 +54,13 @@ export const signUp = (email, password) => {
         body: JSON.stringify({
           userId: data.localId,
           email: data.email,
-          phone: null,
+          phone: 0,
           name: '',
           lastName: '',
           address: {
             city: '',
             route: '',
-            number: null,
+            dataDirection: '',
             district: '',
             additionalInformation: ''
           }
@@ -123,12 +131,103 @@ export const login = (email, password) => {
       })
 
     } catch (error) {
-
       dispatch({
         type: LOGIN_FAIL
       })
-      console.log(error)
       alert(error);
+    }
+  }
+}
+
+export const updateDataUser = (userID, data) => {
+  return async dispatch => {
+    try {
+      dispatch({ type: UPDATE_DATA_USER_START })
+      const responseUsers = await fetch(`${API_URL}users.json`)
+
+      if (!responseUsers.ok) {
+        const errorIdMessage = await responseUsers.json()
+        throw new Error(errorIdMessage.error.message)
+      }
+
+      const dataUsers = await responseUsers.json()
+      const findUser = Object.keys(dataUsers).map(item => { return { id: item, ...dataUsers[item] } }).find(item => item.userId == userID)
+
+      const option = {
+        method: "PATCH",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: data.name,
+          lastName: data.lastName,
+          phone: data.phone
+        })
+      }
+
+      const responsePatch = await fetch(`${API_URL}/users/${findUser.id}.json`, option)
+
+      if (!responsePatch.ok) {
+        const errorIdMessage = await responsePatch.json()
+        throw new Error(errorIdMessage.error.message)
+      }
+
+      const dataPatch = await responsePatch.json()
+      // console.log("dataPatch: ", dataPatch)
+
+      dispatch({ type: UPDATE_DATA_USER })
+    } catch (error) {
+      alert(error)
+      dispatch({ type: UPDATE_DATA_USER_FAIL })
+    }
+  }
+}
+
+export const updateDataAddress = (userID, data) => {
+  return async dispatch => {
+    try {
+      dispatch({ type: UPDATE_DATA_ADDRESS_START })
+      const responseUsers = await fetch(`${API_URL}/users.json`)
+
+      if (!responseUsers.ok) {
+        const errorIdMessage = await responseUsers.json()
+        throw new Error(errorIdMessage.error.message)
+      }
+
+      const dataAddress = await responseUsers.json()
+      const findUser = Object.keys(dataAddress).map(item => { return { id: item, ...dataAddress[item] } }).find(item => item.userId == userID)
+
+      const option = {
+        method: "PATCH",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+          additionalInformation: data.additionalInformation,
+          city: data.city,
+          district: data.district,
+          route: data.route,
+          dataDirection: data.dataDirection
+        })
+      }
+
+      const responsePatch = await fetch(`${API_URL}/users/${findUser.id}/address.json`, option)
+
+      if (!responsePatch.ok) {
+        const errorIdMessage = await responsePatch.json()
+        throw new Error(errorIdMessage.error.message)
+      }
+
+      const dataPatch = await responsePatch.json()
+
+      // console.log("dataPatch: ", dataPatch)
+
+      dispatch({ type: UPDATE_DATA_ADDRESS })
+
+    } catch (error) {
+      alert(error)
+      dispatch({ type: UPDATE_DATA_ADDRESS_FAIL })
     }
   }
 }
