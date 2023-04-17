@@ -1,9 +1,9 @@
-import { Modal, StyleSheet, View, } from "react-native";
+import { Modal, Pressable, StyleSheet, View } from "react-native";
 import React from "react";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 
-export function Modall({ text, state, children }) {
+export function Modall({ title, state, btns }) {
   return (
     <>
       <Modal animationType="slide" transparent={true} visible={state}>
@@ -11,13 +11,28 @@ export function Modall({ text, state, children }) {
           <View style={[semiContainer, senaryBackground]}>
             <View>
               <CustomText
-                style={[title, senaryColor, textLg, textCenter]}
+                style={[styleTitle, senaryColor, textLg, textCenter]}
                 fontF={"semiBold"}
               >
-                {text}
+                {title}
               </CustomText>
             </View>
-            <View style={[contentBtns]}>{children}</View>
+            <View style={[contentBtns]}>
+              {btns.map((item, i) => (
+                <Pressable
+                  onPress={item.actionState}
+                  style={[modalBtn, septenaryBackground]}
+                  key={`btnModal-${i}`}
+                >
+                  <CustomText
+                    style={[textModalBtn, senaryColor, textLg]}
+                    fontF={"semiBold"}
+                  >
+                    {item.textBtn}
+                  </CustomText>
+                </Pressable>
+              ))}
+            </View>
           </View>
         </View>
       </Modal>
@@ -48,9 +63,31 @@ const styles = StyleSheet.create({
 
     width: "90%",
   },
-  title: {},
+  styleTitle: {},
+  modalBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 100,
+    height: 40,
+
+    borderRadius: 20,
+  },
+  textModalBtn: {},
 });
 
-const { container, semiContainer, contentBtns, title } = styles;
+const {
+  container,
+  semiContainer,
+  contentBtns,
+  styleTitle,
+  modalBtn,
+  textModalBtn,
+} = styles;
 
-const { senaryBackground, senaryColor, textLg, textCenter } = themes;
+const {
+  senaryBackground,
+  senaryColor,
+  textLg,
+  textCenter,
+  septenaryBackground,
+} = themes;
