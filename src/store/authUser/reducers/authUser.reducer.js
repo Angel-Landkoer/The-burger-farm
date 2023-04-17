@@ -1,4 +1,4 @@
-import { SIGN_UP, SIGN_UP_START, SIGN_UP_FAIL, LOGIN, LOGIN_START, LOGIN_FAIL, RESET_ACCOUNT } from "../actions/authUser.action";
+import { SIGN_UP, SIGN_UP_START, SIGN_UP_FAIL, LOGIN, LOGIN_START, LOGIN_FAIL, RESET_ACCOUNT, UPDATE_DATA_USER, UPDATE_DATA_USER_FAIL, UPDATE_DATA_USER_START, UPDATE_DATA_ADDRESS, UPDATE_DATA_ADDRESS_FAIL, UPDATE_DATA_ADDRESS_START } from "../actions/authUser.action";
 
 const initialState = {
   token: null,
@@ -17,6 +17,12 @@ export const authReducer = (state = initialState, action) => {
   if (action.type == LOGIN_START) return { ...state, isLoading: true };
   if (action.type == LOGIN) return { ...state, isLoading: false, existemAccount: action.registered, userId: action.userId, allDataUser: action.allDataUser };
   if (action.type == LOGIN_FAIL) return { ...state, isLoading: false };
+  if (action.type == UPDATE_DATA_USER_START) return { ...state, isLoading: true }
+  if (action.type == UPDATE_DATA_USER) return { ...state, isLoading: false }
+  if (action.type == UPDATE_DATA_USER_FAIL) return { ...state, isLoading: false }
+  if (action.type == UPDATE_DATA_ADDRESS_START) return { ...state, isLoading: true }
+  if (action.type == UPDATE_DATA_ADDRESS) return { ...state, isLoading: false }
+  if (action.type == UPDATE_DATA_ADDRESS_FAIL) return { ...state, isLoading: false }
   if (action.type == RESET_ACCOUNT) return { ...state, isLoading: false, token: null, userId: '', nameTokenUser: "", existemAccount: false };
 
   return state
