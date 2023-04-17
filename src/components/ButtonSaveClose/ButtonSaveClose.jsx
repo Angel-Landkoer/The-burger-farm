@@ -25,7 +25,7 @@ export function ButtonSaveClose({ onSaveData, onGoToBack }) {
       </TouchableOpacity>
       <TouchableOpacity
         style={[touchBtn, touchSave, tertiaryBackground]}
-        onPress={() => onSaveData()}
+        onPress={onSaveData}
       >
         <FontAwesome5 name="save" size={24} color={senaryColor.color} />
         <CustomText
