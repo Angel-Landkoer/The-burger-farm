@@ -1,12 +1,15 @@
-import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import React, { useReducer } from "react";
+import { useDispatch } from "react-redux";
 import { themes } from "../../styles/themes";
 import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
 import { Modall } from "../../components/Modal/Modall";
-import { CustomText } from "../CustomText/CustomText";
+import { updateDataUser } from "../../store/authUser/actions/authUser.action";
 
-export function EditInfoGeneral({ goToBack, dataDefault }) {
+export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const dispatchRedux = useDispatch();
 
   const { email, phone, name, lastName } = dataDefault;
 
@@ -20,18 +23,41 @@ export function EditInfoGeneral({ goToBack, dataDefault }) {
     dispatch({ type: "@CHANGE_FORMEMAIL", payload: e });
 
   const onSaveData = () => {
-    const formulariesLength = [
-      state.formName,
-      state.formLastName,
-      state.formPhone,
-      state.formEmail,
-    ];
+    const { formName, formLastName, formPhone, formEmail } = state;
 
-    const maxLength = formulariesLength.some((item) => item.length > 0);
+    const formulariesLength = [formName, formLastName, formPhone, formEmail];
 
-    // cuando los dato se guarden se despliega el modal
-    if (maxLength) return dispatch({ type: "@TOGGLE_MODAL" });
+    const maxLength = formulariesLength.every((item) => item.length > 0);
+    const dataUser = [email, phone, name, lastName].some((item) => item > 0);
+
+    if (!maxLength) return dispatch({ type: "@TOGGLE_MODAL_ERRONEOUSLY" });
+
+    if (dataUser && maxLength) {
+      dispatchRedux(
+        updateDataUser(userId, {
+          name: formName.trim(),
+          lastName: formLastName.trim(),
+          phone: formPhone.trim(),
+        })
+      );
+      dispatch({ type: "@TOGGLE_MODAL_CORRECTLY" });
+      goToBack();
+    }
   };
+
+  const modallCorrect = [
+    {
+      textBtn: "OK",
+      actionState: () => dispatch({ type: "@TOGGLE_MODAL_CORRECTLY" }),
+    },
+  ];
+
+  const modallError = [
+    {
+      textBtn: "ACCEPT",
+      actionState: () => dispatch({ type: "@TOGGLE_MODAL_ERRONEOUSLY" }),
+    },
+  ];
 
   return (
     <View style={[container]}>
@@ -73,7 +99,6 @@ export function EditInfoGeneral({ goToBack, dataDefault }) {
           inputMode="numeric"
           keyboardType="phone-pad"
           onChangeText={handleChangenValueFormPhone}
-          // el dato por defecto es el mismo con el que se inicio la cuenta
           defaultValue={phone ? phone.toString() : "null"}
         />
         <TextInput
@@ -92,19 +117,16 @@ export function EditInfoGeneral({ goToBack, dataDefault }) {
           onChangeText={handleChangenValueFormEmail}
         />
       </View>
-      <Modall state={state.toggleModal} text={"Data successfully updated"}>
-        <Pressable
-          style={[modalBtn, septenaryBackground]}
-          onPress={() => dispatch({ type: "@TOGGLE_MODAL" })}
-        >
-          <CustomText
-            style={[textModalBtn, senaryColor, textLg]}
-            fontF={"semiBold"}
-          >
-            OK
-          </CustomText>
-        </Pressable>
-      </Modall>
+      <Modall
+        btns={modallCorrect}
+        state={state.toggleModalCorrectly}
+        title={"Data successfully updated"}
+      />
+      <Modall
+        btns={modallError}
+        state={state.toggleModalErroneously}
+        title={"Please fill in all fields"}
+      />
       <View style={[contentBtns]}>
         <ButtonSaveClose onGoToBack={goToBack} onSaveData={onSaveData} />
       </View>
@@ -117,7 +139,8 @@ const initialState = {
   formLastName: "",
   formPhone: "",
   formEmail: "",
-  toggleModal: false,
+  toggleModalCorrectly: false,
+  toggleModalErroneously: false,
 };
 
 const reducer = (state, action) => {
@@ -128,8 +151,10 @@ const reducer = (state, action) => {
     return { ...state, formLastName: payload };
   if (type == "@CHANGE_FORMPHONE") return { ...state, formPhone: payload };
   if (type == "@CHANGE_FORMEMAIL") return { ...state, formEmail: payload };
-  if (type == "@TOGGLE_MODAL")
-    return { ...state, toggleModal: !state.toggleModal };
+  if (type == "@TOGGLE_MODAL_CORRECTLY")
+    return { ...state, toggleModalCorrectly: !state.toggleModalCorrectly };
+  if (type == "@TOGGLE_MODAL_ERRONEOUSLY")
+    return { ...state, toggleModalErroneously: !state.toggleModalErroneously };
   return state;
 };
 
@@ -169,11 +194,9 @@ const styles = StyleSheet.create({
 
     borderRadius: 20,
   },
-  textModalBtn: {},
 });
 
-const { input, container, contentBtns, contentInput, modalBtn, textModalBtn } =
-  styles;
+const { input, container, contentBtns, contentInput } = styles;
 
 const {
   primaryColor,
@@ -182,7 +205,4 @@ const {
   fontBold,
   tertiaryColor,
   tertiaryBorderColor,
-  senaryColor,
-  textLg,
-  septenaryBackground,
 } = themes;

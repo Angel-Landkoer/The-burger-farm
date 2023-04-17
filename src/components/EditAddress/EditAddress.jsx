@@ -1,10 +1,12 @@
 import React, { useReducer } from "react";
-import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import { useDispatch } from "react-redux";
+import { StyleSheet, TextInput, View } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import { themes } from "../../styles/themes";
 import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
 import { CustomText } from "../CustomText/CustomText";
 import { Modall } from "../Modal/Modall";
+import { updateDataAddress } from "../../store/authUser/actions/authUser.action";
 
 // dato de los ciudades and departamentos
 
@@ -22,29 +24,51 @@ const countries = [
 
 const seletions = ["select", "Street", "Race"];
 
-export function EditAddress({ dataDefault, goToBack }) {
+export function EditAddress({ dataDefault, goToBack, userId }) {
   const [state, dispatch] = useReducer(reducer, inicialState);
 
-  const { additionalInformation, city, district, route } = dataDefault.address;
+  const dispatchRedux = useDispatch();
+
+  const { additionalInformation, city, district, route, dataDirection } =
+    dataDefault.address;
 
   const onSaveData = () => {
+    const {
+      formCity,
+      formRace,
+      formDirectionFirst,
+      formDirectionSecond,
+      formDirectionThird,
+      formDistrict,
+      formAdditional,
+    } = state;
+
     const formulariesLength = [
-      state.formCity,
-      state.formRace,
-      state.formDirectionFirst,
-      state.formDirectionSecond,
-      state.formDirectionThird,
-      state.formDistrict,
-      state.formAdditional,
+      formCity,
+      formRace,
+      formDirectionFirst,
+      formDirectionSecond,
+      formDirectionThird,
+      formDistrict,
+      formAdditional,
     ];
 
     const maxLength = formulariesLength.every((item) => item.length > 0);
 
-    if (!maxLength) return dispatch({ type: "@TOGGLE_MODAL" });
+    const data = {
+      city: formCity.trim(),
+      additionalInformation: formAdditional.trim(),
+      district: formDistrict.trim(),
+      route: formRace.trim(),
+      dataDirection:
+        `${formDirectionFirst} #${formDirectionSecond} -${formDirectionThird}`.trim(),
+    };
+
     if (maxLength) {
-      return (
-        console.warn("Confirm Data"), dispatch({ type: "@RESET_FORMULARIES" })
-      );
+      dispatchRedux(updateDataAddress(userId, data));
+      dispatch({ type: "@TOGGLE_MODAL_CORRECTLY" });
+    } else {
+      dispatch({ type: "@TOGGLE_MODAL_ERRONEOUSLY" });
     }
   };
 
@@ -65,6 +89,20 @@ export function EditAddress({ dataDefault, goToBack }) {
     dispatch({ type: "@CHANGE_FORMDISTRICT", payload: e });
   const handleChangeValueFormAdditional = (e) =>
     dispatch({ type: "@CHANGE_FORMADDITIONAL", payload: e });
+
+  const modalBtnError = [
+    {
+      textBtn: "ACCEPT",
+      actionState: () => dispatch({ type: "@TOGGLE_MODAL_ERRONEOUSLY" }),
+    },
+  ];
+
+  const modalBtnCorrect = [
+    {
+      textBtn: "OK",
+      actionState: () => dispatch({ type: "@TOGGLE_MODAL_CORRECTLY" }),
+    },
+  ];
 
   return (
     <View style={[container]}>
@@ -174,19 +212,16 @@ export function EditAddress({ dataDefault, goToBack }) {
           />
         </View>
       </View>
-      <Modall text={"Please fill in all fields"} state={state.toggleModal}>
-        <Pressable
-          style={[modalBtn, septenaryBackground]}
-          onPress={() => dispatch({ type: "@TOGGLE_MODAL" })}
-        >
-          <CustomText
-            fontF={"semiBold"}
-            style={[textModalBtn, senaryColor, textLg]}
-          >
-            Accept
-          </CustomText>
-        </Pressable>
-      </Modall>
+      <Modall
+        btns={modalBtnCorrect}
+        state={state.toggleModalCorrectly}
+        title={"Data successfully updated"}
+      />
+      <Modall
+        btns={modalBtnError}
+        state={state.toggleModalErroneously}
+        title={"Please fill in all fields"}
+      />
       <View style={[contentBtns]}>
         <ButtonSaveClose onGoToBack={goToBack} onSaveData={onSaveData} />
       </View>
@@ -202,7 +237,8 @@ const inicialState = {
   formDirectionThird: "",
   formDistrict: "",
   formAdditional: "",
-  toggleModal: false,
+  toggleModalCorrectly: false,
+  toggleModalErroneously: false,
 };
 
 const reducer = (state, action) => {
@@ -216,7 +252,6 @@ const reducer = (state, action) => {
     return { ...state, formDirectionSecond: payload };
   if (type == "@CHANGE_FORMDIRECTION_THIRD")
     return { ...state, formDirectionThird: payload };
-  if (type == "@") return {};
   if (type == "@CHANGE_FORMDISTRICT")
     return { ...state, formDistrict: payload };
   if (type == "@CHANGE_FORMADDITIONAL")
@@ -232,8 +267,11 @@ const reducer = (state, action) => {
       formDistrict: "",
       formAdditional: "",
     };
-  if (type == "@TOGGLE_MODAL")
-    return { ...state, toggleModal: !state.toggleModal };
+  if (type == "@TOGGLE_MODAL_CORRECTLY")
+    return { ...state, toggleModalCorrectly: !state.toggleModalCorrectly };
+
+  if (type == "@TOGGLE_MODAL_ERRONEOUSLY")
+    return { ...state, toggleModalErroneously: !state.toggleModalErroneously };
   return state;
 };
 
@@ -302,7 +340,6 @@ const styles = StyleSheet.create({
 
     borderRadius: 20,
   },
-  textModalBtn: {},
 });
 
 const {
@@ -317,15 +354,6 @@ const {
   contentFormDropdown,
   selectDropdowns,
   selectDropdownText,
-  modalBtn,
-  textModalBtn,
 } = styles;
 
-const {
-  textLg,
-  secondaryColor,
-  fontBold,
-  primaryBorderColor,
-  senaryColor,
-  septenaryBackground,
-} = themes;
+const { textLg, secondaryColor, fontBold, primaryBorderColor } = themes;
