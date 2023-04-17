@@ -27,6 +27,17 @@ export function LoginCompleted({ navigation }) {
     dispatch({ type: RESET_ACCOUNT });
   };
 
+  const modalBtns = [
+    {
+      textBtn: "Yes",
+      actionState: handleConfirmDeleteAccount,
+    },
+    {
+      textBtn: "No",
+      actionState: () => setToggleModal(!toggleModal),
+    },
+  ];
+
   return (
     <View style={[containerFontBox, container, primaryBackground]}>
       <CustomText style={[title, text4Xl, primaryColor]} fontF={"bold"}>
@@ -52,33 +63,10 @@ export function LoginCompleted({ navigation }) {
       </View>
 
       <Modall
+        btns={modalBtns}
         state={toggleModal}
-        changeState={setToggleModal}
-        text={"Do you really want to delete your account?"}
-      >
-        <Pressable
-          style={[modalBtn, septenaryBackground]}
-          onPress={handleConfirmDeleteAccount}
-        >
-          <CustomText
-            fontF={"semiBold"}
-            style={[textModalBtn, senaryColor, textLg]}
-          >
-            Yes
-          </CustomText>
-        </Pressable>
-        <Pressable
-          style={[modalBtn, septenaryBackground]}
-          onPress={() => setToggleModal(!toggleModal)}
-        >
-          <CustomText
-            fontF={"semiBold"}
-            style={[textModalBtn, senaryColor, textLg]}
-          >
-            No
-          </CustomText>
-        </Pressable>
-      </Modall>
+        title={"Do you really want to delete your account?"}
+      />
 
       <TouchableOpacity
         style={btnCloseLogin}
@@ -192,7 +180,6 @@ const styles = StyleSheet.create({
 
     borderRadius: 20,
   },
-  textModalBtn: {},
 });
 
 const {
@@ -207,20 +194,15 @@ const {
   subCotainerInfoAddress,
   addressText,
   btnCloseLogin,
-  modalBtn,
-  textModalBtn,
 } = styles;
 
 const {
   containerFontBox,
   primaryBackground,
   text4Xl,
-  textLg,
   text2Xl,
   secondaryColor,
   primaryBorderColor,
   quinaryColor,
   primaryColor,
-  senaryColor,
-  septenaryBackground,
 } = themes;
