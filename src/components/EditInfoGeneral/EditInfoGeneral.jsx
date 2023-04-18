@@ -28,11 +28,10 @@ export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
     const formulariesLength = [formName, formLastName, formPhone, formEmail];
 
     const maxLength = formulariesLength.every((item) => item.length > 0);
-    const dataUser = [email, phone, name, lastName].some((item) => item > 0);
 
     if (!maxLength) return dispatch({ type: "@TOGGLE_MODAL_ERRONEOUSLY" });
 
-    if (dataUser && maxLength) {
+    if (maxLength) {
       dispatchRedux(
         updateDataUser(userId, {
           name: formName.trim(),
