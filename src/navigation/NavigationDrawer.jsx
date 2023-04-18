@@ -15,7 +15,7 @@ import { CustomText } from "../components/CustomText/CustomText";
 export function NavigationDrawer() {
   const { Navigator, Screen } = createDrawerNavigator();
 
-  const authData = useSelector((state) => state.auth.userId);
+  const registered = useSelector((state) => state.auth.existemAccount);
 
   return (
     <Navigator
@@ -61,7 +61,7 @@ export function NavigationDrawer() {
           ),
         }}
       />
-      {authData ? (
+      {registered ? (
         <Screen
           name="OrderDrawer"
           component={OrderStackNavigation}
