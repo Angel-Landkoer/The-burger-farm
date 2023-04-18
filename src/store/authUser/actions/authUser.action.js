@@ -9,11 +9,9 @@ export const LOGIN_FAIL = "@LOGIN_FAIL"
 export const UPDATE_DATA_USER_FAIL = "@UPDATE_DATA_USER_FAIL"
 export const UPDATE_DATA_USER = "@UPDATE_DATA_USER"
 export const UPDATE_DATA_USER_START = "@UPDATE_DATA_USER_START"
-
 export const UPDATE_DATA_ADDRESS_START = "@UPDATE_DATA_ADDRESS_START"
 export const UPDATE_DATA_ADDRESS = "@UPDATE_DATA_ADDRESS"
 export const UPDATE_DATA_ADDRESS_FAIL = "@UPDATE_DATA_ADDRESS_FAIL"
-
 export const RESET_ACCOUNT = "@RESET_ACCOUNT"
 
 export const signUp = (email, password) => {
@@ -175,7 +173,7 @@ export const updateDataUser = (userID, data) => {
       const dataPatch = await responsePatch.json()
       // console.log("dataPatch: ", dataPatch)
 
-      dispatch({ type: UPDATE_DATA_USER })
+      dispatch({ type: UPDATE_DATA_USER, allDataUser: findUser })
     } catch (error) {
       alert(error)
       dispatch({ type: UPDATE_DATA_USER_FAIL })
@@ -223,7 +221,7 @@ export const updateDataAddress = (userID, data) => {
 
       // console.log("dataPatch: ", dataPatch)
 
-      dispatch({ type: UPDATE_DATA_ADDRESS })
+      dispatch({ type: UPDATE_DATA_ADDRESS, allDataUser: findUser })
 
     } catch (error) {
       alert(error)
