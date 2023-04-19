@@ -5,14 +5,57 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
-import React from "react";
+import React, { useReducer } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import SelectDropdown from "react-native-select-dropdown";
 import { MaterialIcons } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
+import { Modall } from "../../components/Modal/Modall";
 
 export function FinalizeOrder({ navigation }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const dispatchRedux = useDispatch();
+
+  const dataUser = useSelector((state) => state.auth.allDataUser);
+  const productsCart = useSelector((state) => state.cart.cartItems);
+  const totalProducts = useSelector((state) => state.cart.total);
+  const { name, lastName, phone } = dataUser;
+  const { route, dataDirection, district } = dataUser.address;
+
   const dataPayment = ["Money", "Card"];
+
+  const dataReducer = () => {
+    dispatch({ type: "@TOGGLE_MODAL_CONFIRM" });
+    dispatch({ type: "@DATA_NAME", payload: `${name} ${lastName}` });
+    dispatch({ type: "@DATA_PHONE", payload: `${phone}` });
+    dispatch({
+      type: "@DATA_ADDRESS",
+      payload: `${route} ${dataDirection} ${district}`,
+    });
+    dispatch({ type: "@DATA_TOTAL", payload: `${totalProducts / 1000}K` });
+  };
+
+  const math = totalProducts / 1000;
+
+  const modalBtnConfirm = [
+    {
+      textBtn: "CANCEL",
+      actionState: () => dispatch({ type: "@TOGGLE_MODAL_CONFIRM" }),
+    },
+    {
+      textBtn: "OK",
+      actionState: () => dispatchRedux(),
+    },
+  ];
+
+  const modalBtnResponse = [
+    {
+      textBtn: "OK",
+      actionState: () => dispatch({ type: "@TOGGLE_MODAL_RESPONSE" }),
+    },
+  ];
 
   return (
     <ScrollView>
@@ -29,7 +72,7 @@ export function FinalizeOrder({ navigation }) {
               Name:
             </CustomText>
             <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
-              {"Como estas"}
+              {`${name} ${lastName}`}
             </CustomText>
           </View>
           <View style={[subContainer]}>
@@ -40,7 +83,7 @@ export function FinalizeOrder({ navigation }) {
               Phone:
             </CustomText>
             <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
-              {"Como estas"}
+              {`${phone}`}
             </CustomText>
           </View>
 
@@ -52,14 +95,23 @@ export function FinalizeOrder({ navigation }) {
               Address:
             </CustomText>
             <View
-              style={[{ width: "100%", borderWidth: 2 }, primaryBorderColor]}
+              style={[{ width: "100%", borderWidth: 2, paddingHorizontal: 5 }, primaryBorderColor]}
             >
               <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
-                {"Como estasComo estasComo estasComo estasComo estas"}
+                {`${route} ${dataDirection} ${district}`}
               </CustomText>
             </View>
           </View>
         </View>
+
+        <Modall
+          btns={modalBtnConfirm}
+          state={state.toggleModalConfirm}
+          title={`Name: ${name} ${lastName} Phone: ${phone} Address: ${route} ${dataDirection} ${district} Total: ${math}K + Delivery Payment: ${state.dataAdditionalInfo}`}
+        />
+        {false && (
+          <Modall btns={modalBtnResponse} state={state.toggleModalResponse} />
+        )}
 
         <View style={[contentTitle]}>
           <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
@@ -73,7 +125,7 @@ export function FinalizeOrder({ navigation }) {
               TOTAL:
             </CustomText>
             <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
-              {"Como estas"}
+              {`${math}K + Delivery`}
             </CustomText>
           </View>
           <View style={[subContainer]}>
@@ -87,7 +139,9 @@ export function FinalizeOrder({ navigation }) {
               buttonStyle={selectDropdowns}
               buttonTextStyle={selectDropdownText}
               data={dataPayment}
-              onSelect={(selectedItem, index) => console.log(selectedItem)}
+              onSelect={(selectedItem, index) =>
+                dispatch({ type: "@DATA_PAYMENT", payload: selectedItem })
+              }
               buttonTextAfterSelection={(selectedItem, index) => (
                 <CustomText
                   key={`Dropdown-${index}`}
@@ -124,12 +178,15 @@ export function FinalizeOrder({ navigation }) {
               placeholder="Enter additional information that you consider important in your order"
               multiline
               numberOfLines={3}
+              onChangeText={(e) =>
+                dispatch({ type: "@DATA_ADDITIONAL", payload: e })
+              }
             />
           </View>
         </View>
         <TouchableOpacity
           style={[secondaryBackground, btn]}
-          onPress={() => console.log("Sent Finalize Order")}
+          onPress={dataReducer}
         >
           <MaterialIcons
             name="attach-money"
@@ -144,6 +201,34 @@ export function FinalizeOrder({ navigation }) {
     </ScrollView>
   );
 }
+
+const initialState = {
+  dataName: "",
+  dataPhone: "",
+  dataAddress: "",
+  dataTotal: 0,
+  dataPayment: "",
+  dataAdditionalInfo: "",
+  toggleModalConfirm: false,
+  toggleModalResponse: false,
+};
+
+const reducer = (state, action) => {
+  const { type, payload } = action;
+  if (type == "@DATA_NAME") return { ...state, dataName: payload };
+  if (type == "@DATA_PHONE") return { ...state, dataPhone: payload };
+  if (type == "@DATA_ADDRESS") return { ...state, dataAddress: payload };
+  if (type == "@DATA_TOTAL") return { ...state, dataTotal: payload };
+  if (type == "@DATA_PAYMENT") return { ...state, dataPayment: payload };
+  if (type == "@DATA_ADDITIONAL")
+    return { ...state, dataAdditionalInfo: payload };
+  if (type == "@TOGGLE_MODAL_CONFIRM")
+    return { ...state, toggleModalConfirm: !state.toggleModalConfirm };
+  if (type == "@TOGGLE_MODAL_RESPONSE")
+    return { ...state, toggleModalResponse: !state.toggleModalResponse };
+
+  return state;
+};
 
 const styles = StyleSheet.create({
   container: {
