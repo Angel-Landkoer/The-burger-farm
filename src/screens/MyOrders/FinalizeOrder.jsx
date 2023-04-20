@@ -95,7 +95,10 @@ export function FinalizeOrder({ navigation }) {
               Address:
             </CustomText>
             <View
-              style={[{ width: "100%", borderWidth: 2, paddingHorizontal: 5 }, primaryBorderColor]}
+              style={[
+                { width: "100%", borderWidth: 2, paddingHorizontal: 5 },
+                primaryBorderColor,
+              ]}
             >
               <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
                 {`${route} ${dataDirection} ${district}`}
@@ -110,7 +113,14 @@ export function FinalizeOrder({ navigation }) {
           title={`Name: ${name} ${lastName} Phone: ${phone} Address: ${route} ${dataDirection} ${district} Total: ${math}K + Delivery Payment: ${state.dataAdditionalInfo}`}
         />
         {false && (
-          <Modall btns={modalBtnResponse} state={state.toggleModalResponse} />
+          <Modall
+            btns={modalBtnResponse}
+            state={state.toggleModalResponse}
+            title={`Thank you for choosing us!
+            Your order has been placed.
+            The burger farm informs you that by using this code you will be able to track your order.
+            Your order code is: ${null} `}
+          />
         )}
 
         <View style={[contentTitle]}>
