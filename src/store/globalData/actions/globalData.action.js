@@ -4,6 +4,9 @@ export const PRODUCT_CATEGORY = "@PRODUCT_CATEGORY"
 export const CREATE_ORDER_START = "@CREATE_ORDER_START"
 export const CREATE_ORDER = "@CREATE_ORDER"
 export const CREATE_ORDER_FAIL = "@CREATE_ORDER_FAIL"
+export const GET_ORDER_START = "@GET_ORDER_START"
+export const GET_ORDER = "@GET_ORDER"
+export const GET_ORDER_FAIL = "@GET_ORDER_FAIL"
 
 export const filterCategory = (numCategory) => ({ type: PRODUCT_CATEGORY, numCategory })
 
@@ -50,4 +53,21 @@ export const createOrder = (userId, dataFinalize) => {
       dispatch({ type: CREATE_ORDER_FAIL, success: false })
     }
   }
+}
+
+export const getOrder = (userId) => {
+  return async dispatch => {
+    try {
+      dispatch({ type: GET_ORDER_START })
+      const response = await fetch(`${API_URL}orders.json`)
+      const data = await response.json()
+
+      const findOrder = Object.keys(data).map(item => ({ id: item, ...data[item] })).filter(item => item.buyer.userId == userId)
+      dispatch({ type: GET_ORDER, orders: findOrder })
+    } catch (error) {
+      alert(error)
+      dispatch({ type: GET_ORDER_FAIL })
+    }
+  }
+
 }
