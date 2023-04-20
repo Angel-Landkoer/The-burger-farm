@@ -32,7 +32,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
   const { additionalInformation, city, district, route, dataDirection } =
     dataDefault.address;
 
-  const dataDirectionSplit = dataDirection.split(" ");
+  const dataDirectionSplit = dataDirection ? dataDirection.split(" ") : false;
 
   const onSaveData = () => {
     const {
@@ -151,7 +151,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
               inputMode="text"
-              value={dataDirectionSplit[0] ? dataDirectionSplit[0] : state.formDirectionFirst}
+              value={dataDirectionSplit[0] || state.formDirectionFirst}
               onChangeText={(e) => handleChangeValueFormDirection("@first", e)}
             />
           </View>
@@ -165,7 +165,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
               inputMode="numeric"
-              value={dataDirectionSplit[1] ? dataDirectionSplit[1] : state.formDirectionSecond}
+              value={dataDirectionSplit[1] || state.formDirectionSecond}
               onChangeText={(e) => handleChangeValueFormDirection("@second", e)}
             />
           </View>
@@ -179,7 +179,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
               inputMode="text"
-              value={dataDirectionSplit[2] ? dataDirectionSplit[2] : state.formDirectionThird}
+              value={dataDirectionSplit[2] || state.formDirectionThird}
               onChangeText={(e) => handleChangeValueFormDirection("@third", e)}
             />
           </View>
