@@ -1,4 +1,4 @@
-import { ADD_CART, DELETED_ITEM } from '../actions/cartSistem.action'
+import { ADD_CART, DELETED_ITEM, DELETED_ALL_ITEM_CART } from '../actions/cartSistem.action'
 
 const initionalState = {
   cartItems: [],
@@ -28,5 +28,6 @@ export const cartReducer = (state = initionalState, action) => {
     const findIndex = state.cartItems.filter(item => item.name !== action.deletedItem.name)
     return { ...state, cartItems: findIndex, total: sumTotal(findIndex), sizeCart: findIndex.length }
   }
+  if (action.type == DELETED_ALL_ITEM_CART) return { ...state, cartItems: [] }
   return state
 }
