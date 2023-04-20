@@ -26,7 +26,12 @@ export function FinalizeOrder({ navigation }) {
 
   const dataPayment = ["Money", "Card"];
 
+  const math = totalProducts / 1000;
+
   const dataReducer = () => {
+    const delivery = [2000, 3000, 4000, 5000, 6000].map((item) => item / 1000);
+    delivery[Math.floor(Math.random() * (1 - 5) + 5)];
+
     dispatch({ type: "@TOGGLE_MODAL_CONFIRM" });
     dispatch({ type: "@DATA_NAME", payload: `${name} ${lastName}` });
     dispatch({ type: "@DATA_PHONE", payload: `${phone}` });
@@ -34,10 +39,11 @@ export function FinalizeOrder({ navigation }) {
       type: "@DATA_ADDRESS",
       payload: `${route} ${dataDirection} ${district}`,
     });
-    dispatch({ type: "@DATA_TOTAL", payload: `${totalProducts / 1000}K` });
+    dispatch({
+      type: "@DATA_TOTAL",
+      payload: `${math + delivery[Math.floor(Math.random() * (1 - 5) + 5)]}K`,
+    });
   };
-
-  const math = totalProducts / 1000;
 
   const modalBtnConfirm = [
     {
@@ -110,7 +116,7 @@ export function FinalizeOrder({ navigation }) {
         <Modall
           btns={modalBtnConfirm}
           state={state.toggleModalConfirm}
-          title={`Name: ${name} ${lastName} Phone: ${phone} Address: ${route} ${dataDirection} ${district} Total: ${math}K + Delivery Payment: ${state.dataAdditionalInfo}`}
+          title={`Name: ${name} ${lastName} Phone: ${phone} Address: ${route} ${dataDirection} ${district} Total: ${math}K + Delivery Payment: ${state.dataPayment}`}
         />
         {false && (
           <Modall
