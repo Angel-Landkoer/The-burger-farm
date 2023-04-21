@@ -10,7 +10,6 @@ import { updateDataAddress } from "../../store/authUser/actions/authUser.action"
 
 // dato de los ciudades and departamentos
 
-// EJ: Datos estaticos
 const countries = [
   "Colombia",
   "Peru",
@@ -30,7 +29,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
   const dispatchRedux = useDispatch();
 
   const { additionalInformation, city, district, route, dataDirection } =
-    dataDefault.address;
+    dataDefault;
 
   const dataDirectionSplit = dataDirection ? dataDirection.split(" ") : false;
 

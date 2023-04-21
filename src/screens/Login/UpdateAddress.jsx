@@ -5,8 +5,6 @@ import { themes } from "../../styles/themes";
 import { EditAddress } from "../../components/EditAddress/EditAddress";
 import { CustomText } from "../../components/CustomText/CustomText";
 
-// dato de los ciudades and departamentos
-
 export function UpdateAddress({ navigation, route }) {
   const { user } = route.params;
 
