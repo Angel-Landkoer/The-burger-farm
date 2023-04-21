@@ -1,15 +1,18 @@
 import { StyleSheet, TouchableOpacity, View, TextInput } from "react-native";
 import React, { useReducer } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
+import { Modall } from "../Modal/Modall";
 import { signUp } from "../../store/authUser/actions/authUser.action";
 
-export function FormDataSignUp() {
+export function FormDataSignUp({ goToBack }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const dispatchRedux = useDispatch();
+
+  const isLoading = useSelector((state) => state.auth.isLoading);
 
   const handleChangenValueFormEmail = (e) =>
     dispatch({ type: "@CHANGE_FORMEMAIL", payload: e });
@@ -32,11 +35,19 @@ export function FormDataSignUp() {
       const { formEmail, formPassword } = state;
 
       dispatchRedux(signUp(formEmail.trim(), formPassword.trim()));
+      dispatch({ type: "@TOGGLE_MODAL" });
       dispatch({ type: "@RESET_FORMULARIES" });
     }
 
     !maxLength && dispatch({ type: "@INCOMPLETE_FORMULARY" });
   };
+
+  const handleModalToggle = () => {
+    dispatch({ type: "@TOGGLE_MODAL" });
+    goToBack();
+  };
+
+  const modalBtn = [{ textBtn: "OK", actionState: handleModalToggle }];
 
   return (
     <View style={[container]}>
@@ -81,6 +92,11 @@ export function FormDataSignUp() {
           autoCapitalize="none"
         />
       </View>
+      <Modall
+        state={state.toggleModal}
+        title={isLoading ? "Loading" : "REGISTED"}
+        btns={modalBtn}
+      />
       {state.incomplete && (
         <View style={[contentFormulayIncomplete]}>
           <CustomText style={[textLg, quinaryColor]} fontF={"medium"}>
@@ -108,6 +124,7 @@ const initialState = {
   formPassword: "",
   formConfirmPassword: "",
   incomplete: false,
+  toggleModal: false,
 };
 
 const reducer = (state, action) => {
@@ -127,6 +144,8 @@ const reducer = (state, action) => {
     };
   if (type == "@INCOMPLETE_FORMULARY")
     return { ...state, incomplete: !state.incomplete };
+  if (type == "@TOGGLE_MODAL")
+    return { ...state, toggleModal: !state.toggleModal };
   return state;
 };
 

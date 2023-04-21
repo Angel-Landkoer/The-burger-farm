@@ -6,13 +6,15 @@ import { CustomText } from "../../components/CustomText/CustomText";
 import { FormDataSignUp } from "../../components/FormDataSignUp/FormDataSignUp";
 
 export function SignUp({ navigation }) {
+  const goToBack = () => navigation.goBack();
+
   return (
     <View style={[containerFontBox, primaryBackground]}>
       <StatusBar style="light" backgroundColor="black" />
       <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
         Register Your Data
       </CustomText>
-      <FormDataSignUp />
+      <FormDataSignUp goToBack={goToBack} />
     </View>
   );
 }
