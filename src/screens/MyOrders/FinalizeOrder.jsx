@@ -12,6 +12,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
 import { Modall } from "../../components/Modal/Modall";
+import {
+  createOrder,
+  getOrder,
+} from "../../store/globalData/actions/globalData.action";
+import { deletedAllItemCart } from "../../store/cartSistem/actions/cartSistem.action";
 
 export function FinalizeOrder({ navigation }) {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -19,8 +24,10 @@ export function FinalizeOrder({ navigation }) {
   const dispatchRedux = useDispatch();
 
   const dataUser = useSelector((state) => state.auth.allDataUser);
+  const userId = useSelector((state) => state.auth.userId);
   const productsCart = useSelector((state) => state.cart.cartItems);
   const totalProducts = useSelector((state) => state.cart.total);
+  const orderId = useSelector((state) => state.data.orderId);
   const { name, lastName, phone } = dataUser;
   const { route, dataDirection, district } = dataUser.address;
 
@@ -39,10 +46,34 @@ export function FinalizeOrder({ navigation }) {
       type: "@DATA_ADDRESS",
       payload: `${route} ${dataDirection} ${district}`,
     });
+
+    dispatch({ type: "@DATA_PRODUCTS", payload: productsCart });
     dispatch({
       type: "@DATA_TOTAL",
       payload: `${math + delivery[Math.floor(Math.random() * (1 - 5) + 5)]}K`,
     });
+  };
+
+  const handleSendFinalizeInfo = () => {
+    const data = {
+      name: state.dataName,
+      phone: state.dataPhone,
+      address: state.dataAddress,
+      total: state.dataTotal,
+      payment: state.dataPayment,
+      additionalInfo: state.dataAdditionalInfo,
+      products: state.dataProducts,
+    };
+    dispatchRedux(createOrder(userId, data));
+    dispatch({ type: "@TOGGLE_MODAL_CONFIRM" });
+
+    dispatch({ type: "@TOGGLE_MODAL_RESPONSE" });
+  };
+
+  const handleSendResponse = () => {
+    dispatch({ type: "@TOGGLE_MODAL_RESPONSE" });
+    dispatchRedux(getOrder(userId));
+    dispatchRedux(deletedAllItemCart());
   };
 
   const modalBtnConfirm = [
@@ -52,14 +83,14 @@ export function FinalizeOrder({ navigation }) {
     },
     {
       textBtn: "OK",
-      actionState: () => dispatchRedux(),
+      actionState: handleSendFinalizeInfo,
     },
   ];
 
   const modalBtnResponse = [
     {
       textBtn: "OK",
-      actionState: () => dispatch({ type: "@TOGGLE_MODAL_RESPONSE" }),
+      actionState: handleSendResponse,
     },
   ];
 
@@ -118,16 +149,15 @@ export function FinalizeOrder({ navigation }) {
           state={state.toggleModalConfirm}
           title={`Name: ${name} ${lastName} Phone: ${phone} Address: ${route} ${dataDirection} ${district} Total: ${math}K + Delivery Payment: ${state.dataPayment}`}
         />
-        {false && (
-          <Modall
-            btns={modalBtnResponse}
-            state={state.toggleModalResponse}
-            title={`Thank you for choosing us!
+
+        <Modall
+          btns={modalBtnResponse}
+          state={state.toggleModalResponse}
+          title={`Thank you for choosing us!
             Your order has been placed.
             The burger farm informs you that by using this code you will be able to track your order.
-            Your order code is: ${null} `}
-          />
-        )}
+            Your order code is: ${orderId ? orderId : "Loading..."} `}
+        />
 
         <View style={[contentTitle]}>
           <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
@@ -224,6 +254,7 @@ const initialState = {
   dataAddress: "",
   dataTotal: 0,
   dataPayment: "",
+  dataProducts: false,
   dataAdditionalInfo: "",
   toggleModalConfirm: false,
   toggleModalResponse: false,
@@ -238,6 +269,7 @@ const reducer = (state, action) => {
   if (type == "@DATA_PAYMENT") return { ...state, dataPayment: payload };
   if (type == "@DATA_ADDITIONAL")
     return { ...state, dataAdditionalInfo: payload };
+  if (type == "@DATA_PRODUCTS") return { ...state, dataProducts: payload };
   if (type == "@TOGGLE_MODAL_CONFIRM")
     return { ...state, toggleModalConfirm: !state.toggleModalConfirm };
   if (type == "@TOGGLE_MODAL_RESPONSE")
