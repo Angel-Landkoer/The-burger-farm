@@ -1,16 +1,25 @@
-import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, View, Pressable } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { RESET_ACCOUNT } from "../../store/authUser/actions/authUser.action";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
 import { Modall } from "../../components/Modal/Modall";
+import { getOrder } from "../../store/globalData/actions/globalData.action";
 
 export function LoginCompleted({ navigation }) {
   const [toggleModal, setToggleModal] = useState(false);
 
   const dispatch = useDispatch();
+
+  const userId = useSelector((state) => state.auth.userId);
+
+  useEffect(() => {
+    if (userId) {
+      (() => dispatch(getOrder(userId)))();
+    }
+  }, [userId]);
 
   const userData = useSelector((state) => state.auth.allDataUser);
   const { name, phone, email } = userData;
