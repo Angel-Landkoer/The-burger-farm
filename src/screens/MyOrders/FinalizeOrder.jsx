@@ -74,6 +74,7 @@ export function FinalizeOrder({ navigation }) {
     dispatch({ type: "@TOGGLE_MODAL_RESPONSE" });
     dispatchRedux(getOrder(userId));
     dispatchRedux(deletedAllItemCart());
+    navigation.navigate("MyOrderStack");
   };
 
   const modalBtnConfirm = [
