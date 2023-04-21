@@ -7,11 +7,11 @@ import { RenderList } from "../RenderList/RenderList";
 import { CustomText } from "../CustomText/CustomText";
 import { deletedItemCart } from "../../store/cartSistem/actions/cartSistem.action";
 
-export function Cart() {
-  // datos filtrado de selecction -- falta hacer en el estado global
-
+export function Cart({ userCanAccess }) {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalItems = useSelector((state) => state.cart.total);
+
+  const cartItemsLength = cartItems.length > 0;
 
   const dispatch = useDispatch();
 
@@ -41,8 +41,13 @@ export function Cart() {
         </CustomText>
 
         <TouchableOpacity
-          style={[btnData, secondaryBackground]}
-          onPress={() => console.warn("Send Info")}
+          style={
+            cartItemsLength
+              ? [btnData, secondaryBackground]
+              : [btnData, { backgroundColor: "#aaa" }]
+          }
+          onPress={userCanAccess}
+          disabled={!cartItemsLength}
         >
           <CustomText style={[text2Xl, textCenter, senaryColor]} fontF={"bold"}>
             $ Make the Purchase
