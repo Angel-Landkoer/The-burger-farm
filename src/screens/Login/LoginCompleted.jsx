@@ -22,25 +22,28 @@ export function LoginCompleted({ navigation }) {
   }, [userId]);
 
   const userData = useSelector((state) => state.auth.allDataUser);
-  const userDataFirst = {
-    name: userData.name,
-    lastName: userData.lastName,
-    phone: userData.phone,
-    email: userData.email,
-  };
+  const shortTimeUserData = useSelector(
+    (state) => state.auth.shortTimeUserData
+  );
 
-  const userDataSecond = {
-    route: userData.address.route,
-    dataDirection: userData.address.dataDirection,
-    district: userData.address.district,
-    additionalInformation: userData.address.additionalInformation,
-  };
+  const shortTimeAddressData = useSelector(
+    (state) => state.auth.shortTimeAddressData
+  );
+
+  const dataUser = userData || shortTimeUserData;
+  const dataAddress = userData.address || shortTimeAddressData;
 
   const routeUserData = () =>
-    navigation.navigate("UpdateDataUserStack", { user: userDataFirst });
+    navigation.navigate("UpdateDataUserStack", {
+      user: dataUser,
+      userId,
+    });
 
   const routeAddressData = () =>
-    navigation.navigate("UpdateAddressStack", { user: userDataSecond });
+    navigation.navigate("UpdateAddressStack", {
+      user: dataAddress,
+      userId,
+    });
 
   const handleConfirmDeleteAccount = () => {
     setToggleModal(!toggleModal);
@@ -70,21 +73,15 @@ export function LoginCompleted({ navigation }) {
         </TouchableOpacity>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <CustomText fontF={"bold"}>Name:</CustomText>
-          <CustomText fontF={"bold"}>
-            {userDataFirst.name ? userDataFirst.name : "null"}
-          </CustomText>
+          <CustomText fontF={"bold"}>{dataUser.name || "null"}</CustomText>
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <CustomText fontF={"bold"}>Phone:</CustomText>
-          <CustomText fontF={"bold"}>
-            {userDataFirst.phone ? userDataFirst.phone : "null"}
-          </CustomText>
+          <CustomText fontF={"bold"}>{dataUser.phone || "null"}</CustomText>
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <CustomText fontF={"bold"}>Email:</CustomText>
-          <CustomText fontF={"bold"}>
-            {userDataFirst.email ? userDataFirst.email : "null"}
-          </CustomText>
+          <CustomText fontF={"bold"}>{userData.email || "null"}</CustomText>
         </View>
       </View>
 
@@ -124,9 +121,9 @@ export function LoginCompleted({ navigation }) {
         </TouchableOpacity>
         <View style={[subCotainerInfoAddress, primaryBorderColor]}>
           <CustomText style={[addressText]} fontF={"bold"}>
-            {userDataSecond.dataDirection
-              ? `${userDataSecond.route}-${userDataSecond.dataDirection} ${userDataSecond.district}`
-              : "AddressText"}
+            {(dataAddress.dataDirection &&
+              `${dataAddress.route} ${dataAddress.dataDirection} ${dataAddress.district}`) ||
+              "AddressText"}
           </CustomText>
         </View>
       </View>
