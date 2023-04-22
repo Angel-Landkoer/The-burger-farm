@@ -6,7 +6,9 @@ const initialState = {
   isLoading: false,
   nameTokenUser: '',
   existemAccount: false,
-  allDataUser: false
+  allDataUser: false,
+  shortTimeUserData: false,
+  shortTimeAddressData: false
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -23,13 +25,13 @@ export const authReducer = (state = initialState, action) => {
   if (action.type == UPDATE_DATA_USER_START) return { ...state, isLoading: true }
   if (action.type == UPDATE_DATA_USER) {
     const newAllDataUser = action.allDataUser
-    return { ...state, isLoading: false, allDataUser: newAllDataUser }
+    return { ...state, isLoading: false, allDataUser: newAllDataUser, shortTimeUserData: action.shortTimeUserData }
   }
   if (action.type == UPDATE_DATA_USER_FAIL) return { ...state, isLoading: false }
   if (action.type == UPDATE_DATA_ADDRESS_START) return { ...state, isLoading: true }
   if (action.type == UPDATE_DATA_ADDRESS) {
     const newAllDataUser = action.allDataUser
-    return { ...state, isLoading: false, allDataUser: newAllDataUser }
+    return { ...state, isLoading: false, allDataUser: newAllDataUser, shortTimeAddressData: action.shortTimeAddressData }
   }
   if (action.type == UPDATE_DATA_ADDRESS_FAIL) return { ...state, isLoading: false }
   if (action.type == RESET_ACCOUNT) return { ...state, isLoading: false, token: null, userId: '', nameTokenUser: "", existemAccount: false };
