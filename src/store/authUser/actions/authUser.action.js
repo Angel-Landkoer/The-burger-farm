@@ -171,9 +171,8 @@ export const updateDataUser = (userID, data) => {
       }
 
       const dataPatch = await responsePatch.json()
-      // console.log("dataPatch: ", dataPatch)
 
-      dispatch({ type: UPDATE_DATA_USER, allDataUser: findUser })
+      dispatch({ type: UPDATE_DATA_USER, allDataUser: findUser, shortTimeUserData: dataPatch })
     } catch (error) {
       alert(error)
       dispatch({ type: UPDATE_DATA_USER_FAIL })
@@ -219,9 +218,7 @@ export const updateDataAddress = (userID, data) => {
 
       const dataPatch = await responsePatch.json()
 
-      // console.log("dataPatch: ", dataPatch)
-
-      dispatch({ type: UPDATE_DATA_ADDRESS, allDataUser: findUser })
+      dispatch({ type: UPDATE_DATA_ADDRESS, allDataUser: findUser, shortTimeAddressData: dataPatch })
 
     } catch (error) {
       alert(error)
