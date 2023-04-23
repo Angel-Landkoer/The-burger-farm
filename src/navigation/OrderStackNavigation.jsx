@@ -1,8 +1,9 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MyOrders } from "../screens/MyOrders/MyOrders";
-import { IconButton } from '../components/IconButton/IconButton'
+import { IconButton } from "../components/IconButton/IconButton";
 import { themes } from "../styles/themes";
+import { FinalizeOrder } from "../screens/MyOrders/FinalizeOrder";
 
 export function OrderStackNavigation() {
   const { Screen, Navigator } = createNativeStackNavigator();
@@ -23,6 +24,11 @@ export function OrderStackNavigation() {
           title: "HISTORIC",
           headerShown: true,
         }}
+      />
+      <Screen
+        name="FinalizeOrderStack"
+        component={FinalizeOrder}
+        options={{ title: "My Order", headerShown: true }}
       />
     </Navigator>
   );
