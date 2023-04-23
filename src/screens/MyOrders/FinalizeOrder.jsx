@@ -18,19 +18,27 @@ import {
 } from "../../store/globalData/actions/globalData.action";
 import { deletedAllItemCart } from "../../store/cartSistem/actions/cartSistem.action";
 
-export function FinalizeOrder({ navigation }) {
+export function FinalizeOrder({ navigation, route }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const dispatchRedux = useDispatch();
 
   const dataUser = useSelector((state) => state.auth.allDataUser);
+
+  const shortTimeUserData = useSelector(
+    (state) => state.auth.shortTimeUserData
+  );
+
+  const shortTimeAddressData = useSelector(
+    (state) => state.auth.shortTimeAddressData
+  );
+
   const userId = useSelector((state) => state.auth.userId);
   const productsCart = useSelector((state) => state.cart.cartItems);
   const totalProducts = useSelector((state) => state.cart.total);
   const orderId = useSelector((state) => state.data.orderId);
-  const { name, lastName, phone } = dataUser;
-  const { route, dataDirection, district } = dataUser.address;
-
+  const largeTimeUserData = dataUser || shortTimeUserData;
+  const largeTimeAddressData = dataUser.address || shortTimeAddressData;
   const dataPayment = ["Money", "Card"];
 
   const math = totalProducts / 1000;
@@ -40,11 +48,14 @@ export function FinalizeOrder({ navigation }) {
     delivery[Math.floor(Math.random() * (1 - 5) + 5)];
 
     dispatch({ type: "@TOGGLE_MODAL_CONFIRM" });
-    dispatch({ type: "@DATA_NAME", payload: `${name} ${lastName}` });
-    dispatch({ type: "@DATA_PHONE", payload: `${phone}` });
+    dispatch({
+      type: "@DATA_NAME",
+      payload: `${largeTimeUserData.name} ${largeTimeUserData.lastName}`,
+    });
+    dispatch({ type: "@DATA_PHONE", payload: `${largeTimeUserData.phone}` });
     dispatch({
       type: "@DATA_ADDRESS",
-      payload: `${route} ${dataDirection} ${district}`,
+      payload: `${largeTimeAddressData.route} ${largeTimeAddressData.dataDirection} ${largeTimeAddressData.district}`,
     });
 
     dispatch({ type: "@DATA_PRODUCTS", payload: productsCart });
@@ -110,7 +121,7 @@ export function FinalizeOrder({ navigation }) {
               Name:
             </CustomText>
             <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
-              {`${name} ${lastName}`}
+              {`${largeTimeUserData.name} ${largeTimeUserData.lastName}`}
             </CustomText>
           </View>
           <View style={[subContainer]}>
@@ -121,7 +132,7 @@ export function FinalizeOrder({ navigation }) {
               Phone:
             </CustomText>
             <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
-              {`${phone}`}
+              {`${largeTimeUserData.phone}`}
             </CustomText>
           </View>
 
@@ -139,7 +150,7 @@ export function FinalizeOrder({ navigation }) {
               ]}
             >
               <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
-                {`${route} ${dataDirection} ${district}`}
+                {`${largeTimeAddressData.route} ${largeTimeAddressData.dataDirection} ${largeTimeAddressData.district}`}
               </CustomText>
             </View>
           </View>
@@ -148,7 +159,7 @@ export function FinalizeOrder({ navigation }) {
         <Modall
           btns={modalBtnConfirm}
           state={state.toggleModalConfirm}
-          title={`Name: ${name} ${lastName} Phone: ${phone} Address: ${route} ${dataDirection} ${district} Total: ${math}K + Delivery Payment: ${state.dataPayment}`}
+          title={`Name: ${largeTimeUserData.name} ${largeTimeUserData.lastName} Phone: ${largeTimeUserData.phone} Address: ${largeTimeAddressData.route} ${largeTimeAddressData.dataDirection} ${largeTimeAddressData.district} Total: ${math}K + Delivery Payment: ${state.dataPayment}`}
         />
 
         <Modall
