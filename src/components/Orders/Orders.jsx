@@ -3,9 +3,9 @@ import React from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { CustomText } from "../CustomText/CustomText";
 import { themes } from "../../styles/themes";
+import { RenderList } from "../RenderList/RenderList";
 
-// recibe los el dato de firebase de la orden
-export function Orders({ data }) {
+export function Orders({ orders }) {
   return (
     <View style={container}>
       <View
@@ -13,7 +13,7 @@ export function Orders({ data }) {
           flexDirection: "row",
           justifyContent: "space-around",
           alignItems: "center",
-          width: "100%"
+          width: "100%",
         }}
       >
         <CustomText style={[textLg]} fontF={"bold"}>
@@ -29,26 +29,32 @@ export function Orders({ data }) {
           See
         </CustomText>
       </View>
-      <View style={[tableContent, primaryBorderColor]}>
-        <View style={[codeStyle]}>
-          <CustomText style={[textSm]} fontF={"bold"}>
-            {"fja;ljf;ki43"}
-          </CustomText>
-        </View>
-        <View style={[stateStyle]}>
-          <CustomText style={[textSm]} fontF={"bold"}>
-            {"sumbmitted"}
-          </CustomText>
-        </View>
-        <View style={[dateStyle]}>
-          <CustomText style={[textSm]} fontF={"bold"}>
-            {"28/11/1999"}
-          </CustomText>
-        </View>
-        <View style={[seeStyle]}>
-          <FontAwesome5 name="eye" size={60} color={secondaryColor.color} />
-        </View>
-      </View>
+
+      <RenderList
+        data={orders || []}
+        component={({ item }) => (
+          <View style={[tableContent, primaryBorderColor]}>
+            <View style={[codeStyle]}>
+              <CustomText style={[textSm]} fontF={"bold"}>
+                {item.id}
+              </CustomText>
+            </View>
+            <View style={[stateStyle]}>
+              <CustomText style={[textSm]} fontF={"bold"}>
+                {item.id ? "En camino" : "No camina"}
+              </CustomText>
+            </View>
+            <View style={[dateStyle]}>
+              <CustomText style={[textSm]} fontF={"bold"}>
+                {item.date}
+              </CustomText>
+            </View>
+            <View style={[seeStyle]}>
+              <FontAwesome5 name="eye" size={60} color={secondaryColor.color} />
+            </View>
+          </View>
+        )}
+      />
     </View>
   );
 }
@@ -66,7 +72,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    // flexWrap: "wrap",
 
     width: "100%",
     borderWidth: 1,
