@@ -23,11 +23,6 @@ export function CartStackNavigation() {
         component={MyCart}
         options={{ title: "Cart", headerShown: true }}
       />
-      <Screen
-        name="ProductDetailStack"
-        component={ProductDetail}
-        options={{ title: "", headerShown: false }}
-      />
     </Navigator>
   );
 }
