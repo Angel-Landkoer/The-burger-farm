@@ -17,6 +17,10 @@ export function NavigationDrawer() {
 
   const registered = useSelector((state) => state.auth.existemAccount);
 
+  const { navigate } = useNavigation();
+
+  const changeRoute = () => navigate("DataDrawer");
+
   return (
     <Navigator
       screenOptions={{
@@ -78,23 +82,8 @@ export function NavigationDrawer() {
           }}
         />
       ) : (
-        <Screen
-          name="OrderDrawer"
-          component={DataStackNavigation}
-          options={{
-            title: "My Order",
-            headerShown: false,
-            drawerIcon: ({ size, color }) => (
-              <FontAwesome5
-                name="file-invoice-dollar"
-                size={size}
-                color={color}
-              />
-            ),
-          }}
-        />
+        changeRoute
       )}
-
       <Screen
         name="FindUpDrawer"
         component={FindUsStackNavigation}
