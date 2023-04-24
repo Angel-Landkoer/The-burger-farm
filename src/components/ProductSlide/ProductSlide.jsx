@@ -4,12 +4,19 @@ import { themes } from "../../styles/themes";
 import { DataCard } from "../DataCard/DataCard";
 import { RenderList } from "../RenderList/RenderList";
 import { CustomText } from "../../components/CustomText/CustomText";
+import {
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+  widthPixel,
+  heightPixel,
+} from "../../styles/normalize";
 
 export function ProductSlide({ type, data, onChangeView, category }) {
   return (
     <ScrollView>
       <View style={[container, secondaryBorderColor]}>
-        <CustomText style={[title, text3Xl, primaryColor]} fontF={"bold"}>
+        <CustomText style={[title, primaryColor]} fontF={"bold"}>
           {type}
         </CustomText>
         <RenderList
@@ -24,7 +31,7 @@ export function ProductSlide({ type, data, onChangeView, category }) {
           onPress={() => onChangeView(category)}
         >
           <CustomText
-            style={[btnTitle, textLg, textCenter, primaryColor]}
+            style={[btnTitle, , textCenter, primaryColor]}
             fontF={"bold"}
           >
             See complete list
@@ -41,34 +48,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
 
     width: "100%",
-    paddingVertical: 10,
+    paddingVertical: pixelSizeVertical(6),
     borderBottomWidth: 1.2,
     borderTopWidth: 1.2,
   },
   title: {
-    marginBottom: 10,
+    fontSize: fontPixel(16),
+    marginVertical: pixelSizeVertical(10),
   },
 
   btn: {
-    minWidth: 200,
-    width: 300,
-    maxWidth: "100%",
-    padding: 3,
+    width: widthPixel(200),
+    paddingVertical: pixelSizeVertical(2),
+    paddingHorizontal: pixelSizeHorizontal(2),
     marginTop: 15,
     borderWidth: 2,
 
     borderRadius: 20,
   },
-  btnTitle: {},
+  btnTitle: {
+    fontSize: fontPixel(10),
+  },
 });
 
 const { container, btn, btnTitle, title } = styles;
 
-const {
-  textLg,
-  textCenter,
-  text3Xl,
-  primaryBorderColor,
-  primaryColor,
-  secondaryBorderColor,
-} = themes;
+const { textCenter, primaryBorderColor, primaryColor, secondaryBorderColor } =
+  themes;

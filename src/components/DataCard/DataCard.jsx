@@ -3,6 +3,13 @@ import { Image, StyleSheet, View, TouchableNativeFeedback } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
+import {
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+  widthPixel,
+  heightPixel,
+} from "../../styles/normalize";
 
 export function DataCard({ data }) {
   const { name, price } = data;
@@ -15,7 +22,7 @@ export function DataCard({ data }) {
     <TouchableNativeFeedback onPress={() => route(data)}>
       <View style={container}>
         <CustomText
-          style={[nameText, textSm, primaryColor, textCenter]}
+          style={[nameText, , primaryColor, textCenter]}
           fontF={"bold"}
         >
           {name}
@@ -24,10 +31,7 @@ export function DataCard({ data }) {
           style={[img, secondaryBorderColor]}
           source={{ uri: "http://www.smashbros.com/images/og/pikachu.jpg" }}
         />
-        <CustomText
-          style={[priceText, textLg, secondaryColor]}
-          fontF={"semiBold"}
-        >
+        <CustomText style={[priceText, , secondaryColor]} fontF={"semiBold"}>
           ${price / 1_000}k
         </CustomText>
       </View>
@@ -39,30 +43,27 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-
-    marginHorizontal: 8,
-    paddingVertical: 10,
+    
+    marginHorizontal: pixelSizeHorizontal(8),
+    paddingVertical: pixelSizeVertical(10),
   },
 
   priceText: {
     marginTop: 7,
+    fontSize: fontPixel(10),
   },
-  nameText: { marginBottom: 7 },
+  nameText: {
+    marginBottom: 7,
+    fontSize: fontPixel(10),
+  },
   img: {
     width: 100,
     height: 100,
-
     borderWidth: 1.2,
   },
 });
 
 const { container, img, nameText, priceText } = styles;
 
-const {
-  textSm,
-  textCenter,
-  textLg,
-  primaryColor,
-  secondaryColor,
-  secondaryBorderColor,
-} = themes;
+const { textCenter, primaryColor, secondaryColor, secondaryBorderColor } =
+  themes;

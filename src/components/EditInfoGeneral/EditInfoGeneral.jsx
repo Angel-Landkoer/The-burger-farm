@@ -5,6 +5,13 @@ import { themes } from "../../styles/themes";
 import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
 import { Modall } from "../../components/Modal/Modall";
 import { updateDataUser } from "../../store/authUser/actions/authUser.action";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
 export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -62,7 +69,7 @@ export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
     <View style={[container]}>
       <View style={[contentInput, primaryBorderColor]}>
         <TextInput
-          style={[input, primaryColor, textBase, fontBold, tertiaryBorderColor]}
+          style={[input, primaryColor, , fontBold, tertiaryBorderColor]}
           placeholder="Name"
           placeholderTextColor={tertiaryColor.color}
           inputMode="text"
@@ -71,13 +78,7 @@ export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
           defaultValue={name ? name : "null"}
         />
         <TextInput
-          style={[
-            input,
-            tertiaryColor,
-            textBase,
-            fontBold,
-            tertiaryBorderColor,
-          ]}
+          style={[input, tertiaryColor, , fontBold, tertiaryBorderColor]}
           placeholder="Last Name"
           placeholderTextColor={tertiaryColor.color}
           inputMode="text"
@@ -86,13 +87,7 @@ export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
           defaultValue={lastName ? lastName : "null"}
         />
         <TextInput
-          style={[
-            input,
-            tertiaryColor,
-            textBase,
-            fontBold,
-            tertiaryBorderColor,
-          ]}
+          style={[input, tertiaryColor, , fontBold, tertiaryBorderColor]}
           placeholder="Phone"
           placeholderTextColor={tertiaryColor.color}
           inputMode="numeric"
@@ -101,13 +96,7 @@ export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
           defaultValue={phone ? phone.toString() : "null"}
         />
         <TextInput
-          style={[
-            input,
-            tertiaryColor,
-            textBase,
-            fontBold,
-            tertiaryBorderColor,
-          ]}
+          style={[input, tertiaryColor, , fontBold, tertiaryBorderColor]}
           placeholder="Email"
           placeholderTextColor={tertiaryColor.color}
           inputMode="email"
@@ -169,29 +158,23 @@ const styles = StyleSheet.create({
     minWidth: 280,
     width: "90%",
     maxWidth: "100%",
-    padding: 12,
+    paddingHorizontal: pixelSizeHorizontal(6),
+    paddingVertical: pixelSizeVertical(6),
     borderWidth: 1,
 
     borderRadius: 15,
   },
   input: {
     width: "100%",
-    padding: 5,
-    marginVertical: 10,
+    paddingHorizontal: pixelSizeHorizontal(3),
+    paddingVertical: pixelSizeVertical(3),
+    marginVertical: pixelSizeVertical(5),
 
     borderBottomWidth: 1,
   },
   contentBtns: {
     alignItems: "center",
     justifyContent: "center",
-  },
-  modalBtn: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 100,
-    height: 40,
-
-    borderRadius: 20,
   },
 });
 
@@ -200,7 +183,6 @@ const { input, container, contentBtns, contentInput } = styles;
 const {
   primaryColor,
   primaryBorderColor,
-  textBase,
   fontBold,
   tertiaryColor,
   tertiaryBorderColor,

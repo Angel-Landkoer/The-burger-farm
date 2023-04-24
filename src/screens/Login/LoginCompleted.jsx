@@ -7,6 +7,13 @@ import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
 import { Modall } from "../../components/Modal/Modall";
 import { getOrder } from "../../store/globalData/actions/globalData.action";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
 export function LoginCompleted({ navigation }) {
   const [toggleModal, setToggleModal] = useState(false);
@@ -62,8 +69,8 @@ export function LoginCompleted({ navigation }) {
   ];
 
   return (
-    <View style={[containerFontBox, container, primaryBackground]}>
-      <CustomText style={[title, text4Xl, primaryColor]} fontF={"bold"}>
+    <View style={[container, primaryBackground]}>
+      <CustomText style={[title, primaryColor]} fontF={"bold"}>
         Information Genaral
       </CustomText>
 
@@ -97,19 +104,19 @@ export function LoginCompleted({ navigation }) {
       >
         <FontAwesome5
           name="window-close"
-          size={45}
+          size={50}
           color={quinaryColor.color}
         />
-        <CustomText style={[text2Xl, quinaryColor]} fontF={"semiBold"}>
+        <CustomText
+          style={[textBtnCloseLogin, quinaryColor]}
+          fontF={"semiBold"}
+        >
           Deleted Account
         </CustomText>
       </TouchableOpacity>
 
       <View style={infoAddress}>
-        <CustomText
-          style={[addressTitle, text4Xl, primaryColor]}
-          fontF={"bold"}
-        >
+        <CustomText style={[addressTitle, primaryColor]} fontF={"bold"}>
           Address
         </CustomText>
         <TouchableOpacity style={btnEditAddress} onPress={routeAddressData}>
@@ -133,34 +140,44 @@ export function LoginCompleted({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: "80%",
+    width: "100%",
+    minHeight: "100%",
+    height: heightPixel(480),
+    paddingHorizontal: pixelSizeHorizontal(15),
   },
   title: {
     alignSelf: "flex-start",
 
-    width: "70%",
+    minWidth: "70%",
+    width: widthPixel(200),
+    paddingTop: 15,
+    paddingLeft: 20,
+
+    fontSize: fontPixel(20),
   },
   infoUser: {
     justifyContent: "space-evenly",
     alignItems: "flex-start",
 
     width: "100%",
-    padding: 10,
-    marginVertical: 40,
+    paddingHorizontal: pixelSizeHorizontal(5),
+    paddingVertical: pixelSizeVertical(5),
+    marginVertical: pixelSizeVertical(25),
 
     borderColor: "black",
   },
   infoAddress: {
     width: "100%",
-    padding: 10,
-    marginVertical: 40,
+    paddingHorizontal: pixelSizeHorizontal(5),
+    paddingVertical: pixelSizeVertical(5),
+    marginVertical: pixelSizeVertical(25),
   },
   addressTitle: {
     alignSelf: "flex-start",
   },
   btnEditUser: {
     position: "absolute",
-    left: "95%",
+    left: "92%",
     top: -30,
   },
   btnEditAddress: {
@@ -173,7 +190,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
 
-    padding: 10,
+    paddingHorizontal: pixelSizeHorizontal(5),
+    paddingVertical: pixelSizeVertical(5),
     width: "100%",
     borderWidth: 1,
   },
@@ -182,26 +200,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
 
     width: "100%",
-    padding: 10,
-    marginVertical: 15,
+    paddingHorizontal: pixelSizeHorizontal(5),
+    paddingVertical: pixelSizeVertical(5),
+    marginVertical: pixelSizeVertical(10),
     borderBottomWidth: 1,
   },
   addressText: {
-    paddingHorizontal: 3,
+    paddingHorizontal: pixelSizeHorizontal(3),
   },
   btnCloseLogin: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     alignItems: "center",
-    width: "80%",
-  },
-  modalBtn: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 100,
-    height: 40,
 
-    borderRadius: 20,
+    minWidth: 200,
+    width: widthPixel(250),
+    paddingHorizontal: pixelSizeHorizontal(5),
+    paddingVertical: pixelSizeVertical(5),
+  },
+  textBtnCloseLogin: {
+    fontSize: fontPixel(13),
   },
 });
 
@@ -216,14 +234,12 @@ const {
   subCotainerInfoUser,
   subCotainerInfoAddress,
   addressText,
+  textBtnCloseLogin,
   btnCloseLogin,
 } = styles;
 
 const {
-  containerFontBox,
   primaryBackground,
-  text4Xl,
-  text2Xl,
   secondaryColor,
   primaryBorderColor,
   quinaryColor,

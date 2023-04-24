@@ -17,6 +17,13 @@ import {
   getOrder,
 } from "../../store/globalData/actions/globalData.action";
 import { deletedAllItemCart } from "../../store/cartSistem/actions/cartSistem.action";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
 export function FinalizeOrder({ navigation, route }) {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -110,46 +117,41 @@ export function FinalizeOrder({ navigation, route }) {
     <ScrollView>
       <View style={[container, primaryBackground]}>
         <View style={[contentTitle]}>
-          <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
+          <CustomText style={[titles, primaryColor]} fontF={"bold"}>
             PERSONAL DATA
           </CustomText>
           <View style={[subContainer]}>
-            <CustomText
-              style={[subTitle, secondaryColor, text2Xl]}
-              fontF={"bold"}
-            >
+            <CustomText style={[subTitle, secondaryColor]} fontF={"bold"}>
               Name:
             </CustomText>
-            <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
+            <CustomText style={[styleText]} fontF={"semiBold"}>
               {`${largeTimeUserData.name} ${largeTimeUserData.lastName}`}
             </CustomText>
           </View>
           <View style={[subContainer]}>
-            <CustomText
-              style={[subTitle, secondaryColor, text2Xl]}
-              fontF={"bold"}
-            >
+            <CustomText style={[subTitle, secondaryColor]} fontF={"bold"}>
               Phone:
             </CustomText>
-            <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
+            <CustomText style={[styleText]} fontF={"semiBold"}>
               {`${largeTimeUserData.phone}`}
             </CustomText>
           </View>
 
           <View style={[subContainer]}>
-            <CustomText
-              style={[subTitle, secondaryColor, text2Xl]}
-              fontF={"bold"}
-            >
+            <CustomText style={[subTitle, secondaryColor]} fontF={"bold"}>
               Address:
             </CustomText>
             <View
               style={[
-                { width: "100%", borderWidth: 2, paddingHorizontal: 5 },
+                {
+                  width: "100%",
+                  borderWidth: 2,
+                  paddingHorizontal: pixelSizeHorizontal(3),
+                },
                 primaryBorderColor,
               ]}
             >
-              <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
+              <CustomText style={[styleText]} fontF={"semiBold"}>
                 {`${largeTimeAddressData.route} ${largeTimeAddressData.dataDirection} ${largeTimeAddressData.district}`}
               </CustomText>
             </View>
@@ -172,25 +174,19 @@ export function FinalizeOrder({ navigation, route }) {
         />
 
         <View style={[contentTitle]}>
-          <CustomText style={[text4Xl, primaryColor]} fontF={"bold"}>
+          <CustomText style={[titles, primaryColor]} fontF={"bold"}>
             PAYMENT INFORMATION
           </CustomText>
           <View style={[subContainer]}>
-            <CustomText
-              style={[subTitle, secondaryColor, text2Xl]}
-              fontF={"bold"}
-            >
+            <CustomText style={[subTitle, secondaryColor]} fontF={"bold"}>
               TOTAL:
             </CustomText>
-            <CustomText style={[styleText, textXl]} fontF={"semiBold"}>
+            <CustomText style={[styleText]} fontF={"semiBold"}>
               {`${math}K + Delivery`}
             </CustomText>
           </View>
           <View style={[subContainer]}>
-            <CustomText
-              style={[subTitle, secondaryColor, text2Xl]}
-              fontF={"bold"}
-            >
+            <CustomText style={[subTitle, secondaryColor]} fontF={"bold"}>
               Pay:
             </CustomText>
             <SelectDropdown
@@ -222,14 +218,11 @@ export function FinalizeOrder({ navigation, route }) {
           </View>
 
           <View style={[subContainer]}>
-            <CustomText
-              style={[subTitle, secondaryColor, text2Xl]}
-              fontF={"bold"}
-            >
+            <CustomText style={[subTitle, secondaryColor]} fontF={"bold"}>
               ADDITIONAL:
             </CustomText>
             <TextInput
-              style={[styleText, textXl, styleInput]}
+              style={[styleText, styleInput]}
               autoCapitalize="none"
               inputMode="text"
               keyboardType="default"
@@ -251,7 +244,7 @@ export function FinalizeOrder({ navigation, route }) {
             size={36}
             color={senaryColor.color}
           />
-          <CustomText style={[textBtn, text3Xl, senaryColor]} fontF={"bold"}>
+          <CustomText style={[textBtn, , senaryColor]} fontF={"bold"}>
             Finalize Order
           </CustomText>
         </TouchableOpacity>
@@ -294,47 +287,73 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "flex-start",
 
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingHorizontal: pixelSizeHorizontal(15),
+    paddingVertical: pixelSizeVertical(5),
     marginTop: 13,
     width: "100%",
   },
-  contentTitle: { marginTop: 10, paddingVertical: 5 },
-  subContainer: {
-    marginVertical: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 5,
+  contentTitle: {
+    marginTop: 10,
+    paddingVertical: pixelSizeVertical(3),
   },
-  subTitle: {},
-  styleText: {},
+  titles: {
+    fontSize: fontPixel(20),
+  },
+  subContainer: {
+    marginVertical: pixelSizeVertical(5),
+    paddingVertical: pixelSizeVertical(5),
+    paddingHorizontal: pixelSizeHorizontal(3),
+  },
+  subTitle: {
+    fontSize: fontPixel(15),
+  },
+  styleText: {
+    fontSize: fontPixel(12),
+  },
   selectDropdowns: {
     alignItems: "flex-start",
     justifyContent: "center",
-    width: 140,
-    height: 30,
+
+    minWidth: widthPixel(100),
+    width: widthPixel(140),
+    minHeight: heightPixel(15),
+    height: heightPixel(20),
     borderWidth: 2,
 
     borderColor: "#CD973D",
-    borderRadius: 20,
+    borderRadius: "50%",
   },
   selectDropdownText: {
+    fontSize: fontPixel(13),
     fontWeight: "700",
 
     color: "#54423A",
   },
-  styleInput: { height: 100, width: 200, borderWidth: 1, padding: 4 },
+  styleInput: {
+    minHeight: heightPixel(80),
+    height: heightPixel(100),
+    minWidth: widthPixel(150),
+    width: widthPixel(180),
+    borderWidth: 1,
+    paddingHorizontal: pixelSizeHorizontal(2),
+    paddingVertical: pixelSizeVertical(2),
+  },
   btn: {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
+    minWidth: widthPixel(150),
+    width: widthPixel(280),
+    minHeight: heightPixel(25),
+    height: heightPixel(30),
+    marginVertial: pixelSizeVertical(20),
+    paddingVertical: pixelSizeVertical(2),
 
-    width: "100%",
-    marginTop: 25,
-    paddingTop: 10,
-
-    borderRadius: 20,
+    borderRadius: "50%",
   },
-  textBtn: {},
+  textBtn: {
+    fontSize: fontPixel(18),
+  },
 });
 
 const {
@@ -344,6 +363,7 @@ const {
   container,
   styleText,
   styleInput,
+  titles,
   contentTitle,
   subContainer,
   selectDropdowns,
@@ -357,8 +377,4 @@ const {
   secondaryColor,
   primaryColor,
   senaryColor,
-  textXl,
-  text2Xl,
-  text3Xl,
-  text4Xl,
 } = themes;

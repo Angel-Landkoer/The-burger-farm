@@ -6,6 +6,13 @@ import { CartProduct } from "../CartProduct/CartProduct";
 import { RenderList } from "../RenderList/RenderList";
 import { CustomText } from "../CustomText/CustomText";
 import { deletedItemCart } from "../../store/cartSistem/actions/cartSistem.action";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
 export function Cart({ userCanAccess }) {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -31,12 +38,15 @@ export function Cart({ userCanAccess }) {
       />
       <View style={[resultData]}>
         <CustomText
-          style={[text2Xl, textCenter, secondaryColor]}
+          style={[textTotal, textCenter, secondaryColor]}
           fontF={"bold"}
         >
           Order Total: {`${math}K`}
         </CustomText>
-        <CustomText style={[textXl, textCenter, secondaryColor]} fontF={"bold"}>
+        <CustomText
+          style={[textDelivery, textCenter, secondaryColor]}
+          fontF={"bold"}
+        >
           Address: Between {"2K"} and {"6K"}
         </CustomText>
 
@@ -49,7 +59,7 @@ export function Cart({ userCanAccess }) {
           onPress={userCanAccess}
           disabled={!cartItemsLength}
         >
-          <CustomText style={[text2Xl, textCenter, senaryColor]} fontF={"bold"}>
+          <CustomText style={[textBtn, textCenter, senaryColor]} fontF={"bold"}>
             $ Make the Purchase
           </CustomText>
         </TouchableOpacity>
@@ -63,30 +73,32 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
 
-    minWidth: "70%",
-    width: 300,
+    minWidth: 250,
+    width: widthPixel(250),
     maxWidth: "90%",
-    marginVertical: 10,
-    paddingVertical: 10,
+    marginVertical: pixelSizeVertical(5),
+    paddingVertical: pixelSizeVertical(10),
   },
   btnData: {
-    minWidth: 250,
-    width: 300,
+    minWidth: 200,
+    width: widthPixel(200),
     maxWidth: "90%",
-    paddingVertical: 5,
-    paddingHorizontal: 15,
+    paddingVertical: pixelSizeVertical(5),
+    paddingHorizontal: pixelSizeVertical(15),
     marginTop: 10,
 
     borderRadius: 30,
   },
+  textBtn: {
+    fontSize: fontPixel(12),
+  },
+  textTotal: {
+    fontSize: fontPixel(12),
+  },
+  textDelivery: {
+    fontSize: fontPixel(12),
+  },
 });
-const { resultData, btnData } = styles;
+const { textBtn, resultData, btnData, textDelivery, textTotal } = styles;
 
-const {
-  text2Xl,
-  textXl,
-  textCenter,
-  secondaryColor,
-  senaryColor,
-  secondaryBackground,
-} = themes;
+const { textCenter, secondaryColor, senaryColor, secondaryBackground } = themes;

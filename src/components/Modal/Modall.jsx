@@ -2,6 +2,13 @@ import { Modal, Pressable, StyleSheet, View } from "react-native";
 import React from "react";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
 export function Modall({ title, state, btns }) {
   return (
@@ -11,7 +18,7 @@ export function Modall({ title, state, btns }) {
           <View style={[semiContainer, senaryBackground]}>
             <View>
               <CustomText
-                style={[styleTitle, senaryColor, textLg, textCenter]}
+                style={[styleTitle, senaryColor, , textCenter]}
                 fontF={"semiBold"}
               >
                 {title}
@@ -25,7 +32,7 @@ export function Modall({ title, state, btns }) {
                   key={`btnModal-${i}`}
                 >
                   <CustomText
-                    style={[textModalBtn, senaryColor, textLg]}
+                    style={[textModalBtn, senaryColor]}
                     fontF={"semiBold"}
                   >
                     {item.textBtn}
@@ -50,29 +57,41 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
 
-    width: 300,
-    paddingHorizontal: 10,
-    paddingVertical: 15,
+    minWidth: 200,
+    width: widthPixel(240),
+    maxWidth: widthPixel(250),
+    minHeight: 180,
+    height: heightPixel(120),
+    maxHeight: heightPixel(150),
+    paddingHorizontal: pixelSizeHorizontal(10),
+    paddingVertical: pixelSizeVertical(10),
 
-    borderRadius: 5,
+    borderRadius: 10,
   },
   contentBtns: {
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
 
-    width: "90%",
+    width: "100%",
   },
-  styleTitle: {},
+  styleTitle: {
+    fontSize: fontPixel(11),
+  },
   modalBtn: {
     justifyContent: "center",
     alignItems: "center",
-    width: 100,
-    height: 40,
 
-    borderRadius: 20,
+    minWidth: 100,
+    width: widthPixel(60),
+    minHeight: 40,
+    height: heightPixel(30),
+
+    borderRadius: 40,
   },
-  textModalBtn: {},
+  textModalBtn: {
+    fontSize: fontPixel(9),
+  },
 });
 
 const {
@@ -84,10 +103,5 @@ const {
   textModalBtn,
 } = styles;
 
-const {
-  senaryBackground,
-  senaryColor,
-  textLg,
-  textCenter,
-  septenaryBackground,
-} = themes;
+const { senaryBackground, senaryColor, textCenter, septenaryBackground } =
+  themes;

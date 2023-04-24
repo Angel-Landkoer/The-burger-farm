@@ -4,6 +4,8 @@ import { MyOrders } from "../screens/MyOrders/MyOrders";
 import { IconButton } from "../components/IconButton/IconButton";
 import { themes } from "../styles/themes";
 import { FinalizeOrder } from "../screens/MyOrders/FinalizeOrder";
+import { StyleSheet } from "react-native";
+import { fontPixel } from "../styles/normalize";
 
 export function OrderStackNavigation() {
   const { Screen, Navigator } = createNativeStackNavigator();
@@ -12,7 +14,7 @@ export function OrderStackNavigation() {
     <Navigator
       screenOptions={{
         headerStyle: [primaryBackground],
-        headerTitleStyle: [text3Xl, fontBold, primaryColor],
+        headerTitleStyle: [styleTitle, fontBold, primaryColor],
         headerTitleAlign: "center",
         headerLeft: IconButton,
       }}
@@ -34,4 +36,12 @@ export function OrderStackNavigation() {
   );
 }
 
-const { primaryColor, primaryBackground, text3Xl, fontBold } = themes;
+const styles = StyleSheet.create({
+  styleTitle: {
+    fontSize: fontPixel(15),
+  },
+});
+
+const { styleTitle } = styles;
+
+const { primaryColor, primaryBackground, fontBold } = themes;

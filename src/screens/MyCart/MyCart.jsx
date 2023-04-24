@@ -3,6 +3,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Cart } from "../../components/Cart/Cart";
 import { themes } from "../../styles/themes";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize";
 
 export function MyCart({ navigation }) {
   const registed = useSelector((state) => state.auth.existemAccount);
@@ -43,7 +50,7 @@ export function MyCart({ navigation }) {
   };
 
   return (
-    <View style={[containerFontBox, primaryBackground, container]}>
+    <View style={[primaryBackground, container]}>
       <Cart userCanAccess={userCanAccess} />
     </View>
   );
@@ -51,10 +58,15 @@ export function MyCart({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: Dimensions.get("screen").height / 1.12,
+    alignItems: "center",
+    justifyContent: "center",
+
+    width: "100%",
+    height: "100%",
+    paddingHorizontal: pixelSizeHorizontal(10),
   },
 });
 
 const { container } = styles;
 
-const { containerFontBox, primaryBackground } = themes;
+const { primaryBackground } = themes;

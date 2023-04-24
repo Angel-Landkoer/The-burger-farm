@@ -3,8 +3,14 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { IconButton } from "../components/IconButton/IconButton";
 import { MyCart } from "../screens/MyCart/MyCart";
-import { ProductDetail } from "../screens/ProductDetail/ProductDetail";
 import { themes } from "../styles/themes";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../styles/normalize";
 
 export function CartStackNavigation() {
   const { Screen, Navigator } = createNativeStackNavigator();
@@ -14,7 +20,7 @@ export function CartStackNavigation() {
       screenOptions={{
         headerStyle: [primaryBackground, headerContain],
         headerTitleAlign: "center",
-        headerTitleStyle: [primaryColor, text3Xl, fontBold],
+        headerTitleStyle: [primaryColor, title, fontBold],
         headerLeft: IconButton,
       }}
     >
@@ -28,9 +34,16 @@ export function CartStackNavigation() {
 }
 
 const styles = StyleSheet.create({
-  headerContain: { height: 100, borderBottomWidth: 3 },
+  headerContain: {
+    minHeight: heightPixel(60),
+    height: heightPixel(100),
+    borderBottomWidth: 3,
+  },
+  title: {
+    fontSize: fontPixel(15),
+  },
 });
 
-const { headerContain } = styles;
+const { headerContain, title } = styles;
 
-const { primaryColor, primaryBackground, text3Xl, fontBold } = themes;
+const { primaryColor, primaryBackground, fontBold } = themes;

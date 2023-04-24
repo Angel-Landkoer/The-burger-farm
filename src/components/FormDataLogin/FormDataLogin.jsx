@@ -5,6 +5,13 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 import { login } from "../../store/authUser/actions/authUser.action";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
 export function FormDataLogin({ onRoute }) {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -25,11 +32,11 @@ export function FormDataLogin({ onRoute }) {
   return (
     <View style={[container]}>
       <View style={[contentForm]}>
-        <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
+        <CustomText style={[textLabel, primaryColor]} fontF={"bold"}>
           Email
         </CustomText>
         <TextInput
-          style={[input, primaryBorderColor, fontSemiBold, textBase]}
+          style={[input, primaryBorderColor, fontSemiBold]}
           placeholder="Email"
           placeholderTextColor={tertiaryColor.color}
           inputMode="email"
@@ -38,11 +45,11 @@ export function FormDataLogin({ onRoute }) {
           onChangeText={handleChangenValueFormEmail}
           autoCapitalize="none"
         />
-        <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
+        <CustomText style={[textLabel, primaryColor]} fontF={"bold"}>
           Password
         </CustomText>
         <TextInput
-          style={[input, primaryBorderColor, fontSemiBold, textBase]}
+          style={[input, primaryBorderColor, fontSemiBold]}
           placeholderTextColor={tertiaryColor.color}
           placeholder="Your password"
           inputMode="text"
@@ -58,7 +65,7 @@ export function FormDataLogin({ onRoute }) {
           onPress={handleSendData}
         >
           <FontAwesome5 name="key" size={29} color={senaryColor.color} />
-          <CustomText style={[btnText, senaryColor, text2Xl]} fontF={"bold"}>
+          <CustomText style={[btnText, senaryColor]} fontF={"bold"}>
             Access
           </CustomText>
         </TouchableOpacity>
@@ -67,7 +74,7 @@ export function FormDataLogin({ onRoute }) {
           onPress={onRoute}
         >
           <FontAwesome5 name="user-alt" size={29} color={senaryColor.color} />
-          <CustomText style={[btnText, senaryColor, text2Xl]} fontF={"bold"}>
+          <CustomText style={[btnText, senaryColor]} fontF={"bold"}>
             Sign Up
           </CustomText>
         </TouchableOpacity>
@@ -97,16 +104,19 @@ const styles = StyleSheet.create({
 
     width: "100%",
     height: "80%",
-    marginVertical: 40,
-    paddingVertical: 10,
+    marginVertical: pixelSizeVertical(20),
+    paddingVertical: pixelSizeHorizontal(5),
   },
   contentForm: {
-    padding: 10,
+    paddingHorizontal: pixelSizeHorizontal(5),
+    paddingVertical: pixelSizeVertical(5),
   },
   input: {
-    marginVertical: 10,
-    paddingHorizontal: 5,
+    marginVertical: pixelSizeVertical(5),
+    paddingHorizontal: pixelSizeHorizontal(5),
     borderBottomWidth: 2,
+
+    fontSize: fontPixel(9)
   },
   contentBtns: {
     alignItems: "center",
@@ -118,29 +128,37 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
 
-    width: 260,
-    marginVertical: 10,
-    paddingVertical: 6,
+    minWidth: 260,
+    width: widthPixel(220),
+    marginVertical: pixelSizeVertical(5),
+    paddingVertical: pixelSizeVertical(3),
 
-    borderRadius: 30,
+    borderRadius: 40,
   },
   btnText: {
-    marginHorizontal: 16,
+    marginHorizontal: pixelSizeHorizontal(8),
+
+    fontSize: fontPixel(15),
   },
+  textLabel: { fontSize: fontPixel(13) },
 });
 
-const { container, contentForm, input, contentBtns, touchBtn, btnText } =
-  styles;
+const {
+  container,
+  contentForm,
+  input,
+  textLabel,
+  contentBtns,
+  touchBtn,
+  btnText,
+} = styles;
 
 const {
-  text3Xl,
   primaryBorderColor,
   primaryColor,
-  text2Xl,
   secondaryBackground,
   quinaryBackground,
   senaryColor,
   tertiaryColor,
   fontSemiBold,
-  textBase,
 } = themes;

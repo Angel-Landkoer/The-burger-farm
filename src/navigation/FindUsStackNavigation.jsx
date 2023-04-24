@@ -13,7 +13,7 @@ export function FindUsStackNavigation() {
       screenOptions={{
         headerStyle: [primaryBackground, headerContain],
         headerTitleAlign: "center",
-        headerTitleStyle: [text3Xl, fontBold, primaryColor],
+        headerTitleStyle: [, fontBold, primaryColor],
         headerLeft: IconButton,
       }}
     >
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
 
 const { headerContain } = styles;
 
-const { primaryColor, primaryBackground, text3Xl, fontBold } = themes;
+const { primaryColor, primaryBackground, fontBold } = themes;

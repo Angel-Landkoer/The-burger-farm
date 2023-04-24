@@ -6,6 +6,13 @@ import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 import { Modall } from "../Modal/Modall";
 import { signUp } from "../../store/authUser/actions/authUser.action";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
 export function FormDataSignUp({ goToBack }) {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -52,24 +59,23 @@ export function FormDataSignUp({ goToBack }) {
   return (
     <View style={[container]}>
       <View style={[contentForm]}>
-        <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
+        <CustomText style={[labeltext, primaryColor]} fontF={"bold"}>
           Email
         </CustomText>
         <TextInput
-          style={[input, primaryBorderColor, fontBold, textBase]}
+          style={[input, primaryBorderColor, fontBold]}
           placeholder="Email"
-          // placeholderTextColor={tertiaryColor.color}
           inputMode="email"
           value={state.formEmail}
           keyboardType="email-address"
           onChangeText={handleChangenValueFormEmail}
           autoCapitalize="none"
         />
-        <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
+        <CustomText style={[labeltext, primaryColor]} fontF={"bold"}>
           Password
         </CustomText>
         <TextInput
-          style={[input, primaryBorderColor, fontBold, textBase]}
+          style={[input, primaryBorderColor, fontBold]}
           placeholder="Your password"
           maxLength={20}
           inputMode="text"
@@ -78,11 +84,11 @@ export function FormDataSignUp({ goToBack }) {
           keyboardType="default"
           autoCapitalize="none"
         />
-        <CustomText style={[text3Xl, primaryColor]} fontF={"bold"}>
+        <CustomText style={[labeltext, primaryColor]} fontF={"bold"}>
           Confirm Password
         </CustomText>
         <TextInput
-          style={[input, primaryBorderColor, fontBold, textBase]}
+          style={[input, primaryBorderColor, fontBold]}
           placeholder="Your password"
           maxLength={20}
           inputMode="text"
@@ -99,7 +105,13 @@ export function FormDataSignUp({ goToBack }) {
       />
       {state.incomplete && (
         <View style={[contentFormulayIncomplete]}>
-          <CustomText style={[textLg, quinaryColor]} fontF={"medium"}>
+          <CustomText
+            style={[
+              { fontSize: fontPixel(13), height: heightPixel(22) },
+              quinaryColor,
+            ]}
+            fontF={"medium"}
+          >
             Complete the Formulary
           </CustomText>
         </View>
@@ -110,7 +122,7 @@ export function FormDataSignUp({ goToBack }) {
           onPress={handleFormData}
         >
           <FontAwesome5 name="save" size={24} color={senaryColor.color} />
-          <CustomText style={[btnText, senaryColor, text2Xl]} fontF={"bold"}>
+          <CustomText style={[btnText, senaryColor]} fontF={"bold"}>
             Sign Up
           </CustomText>
         </TouchableOpacity>
@@ -155,20 +167,27 @@ const styles = StyleSheet.create({
 
     width: "100%",
     height: "80%",
-    marginVertical: 25,
-    paddingVertical: 15,
+    marginVertical: pixelSizeVertical(20),
+    paddingVertical: pixelSizeVertical(10),
   },
   input: {
-    marginVertical: 10,
-    paddingHorizontal: 5,
+    marginVertical: pixelSizeVertical(5),
+    paddingHorizontal: pixelSizeHorizontal(3),
     borderBottomWidth: 2,
+
+    fontSize: fontPixel(11),
+  },
+  labeltext: {
+    fontSize: fontPixel(15),
   },
   contentForm: {
-    padding: 10,
+    paddingHorizontal: pixelSizeHorizontal(5),
+    paddingVertical: pixelSizeVertical(5),
   },
   contentBtn: {
     alignItems: "center",
     justifyContent: "center",
+
     width: "100%",
   },
   touchBtn: {
@@ -176,24 +195,29 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
 
-    width: 300,
-    marginVertical: 10,
-    paddingVertical: 6,
+    minWidth: widthPixel(200),
+    width: widthPixel(250),
+    minHeight: heightPixel(20),
+    heigth: heightPixel(25),
+    marginVertical: pixelSizeVertical(5),
+    paddingVertical: pixelSizeVertical(3),
 
-    borderRadius: 30,
+    borderRadius: 40,
   },
   btnText: {
-    marginHorizontal: 16,
+    marginHorizontal: pixelSizeHorizontal(8),
+
+    fontSize: fontPixel(18),
   },
   contentFormulayIncomplete: {
     alignItems: "center",
     justifyContent: "center",
+
     width: "100%",
     height: 30,
     paddingBottom: 8,
     marginBottom: 20,
   },
-  contentTextFormulayIncomplete: {},
 });
 
 const {
@@ -204,18 +228,14 @@ const {
   btnText,
   contentBtn,
   contentFormulayIncomplete,
-  contentTextFormulayIncomplete,
+  labeltext,
 } = styles;
 
 const {
-  text3Xl,
   primaryBorderColor,
   primaryColor,
-  text2Xl,
-  textLg,
   quinaryColor,
   senaryColor,
   tertiaryBackground,
   fontBold,
-  textBase,
 } = themes;

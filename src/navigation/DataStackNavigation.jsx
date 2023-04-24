@@ -9,6 +9,7 @@ import { UpdateDataUser } from "../screens/Login/UpdateDataUser";
 import { SignUp } from "../screens/SignUp/SignUp";
 import { IconButton } from "../components/IconButton/IconButton";
 import { themes } from "../styles/themes";
+import { fontPixel } from "../styles/normalize";
 
 export function DataStackNavigation() {
   const { Screen, Navigator } = createNativeStackNavigator();
@@ -19,7 +20,7 @@ export function DataStackNavigation() {
     <Navigator
       screenOptions={{
         headerStyle: [primaryBackground, headerContain],
-        headerTitleStyle: [text3Xl, fontBold, primaryColor],
+        headerTitleStyle: [styleTitle, fontBold, primaryColor],
         headerTitleAlign: "center",
         headerLeft: IconButton,
       }}
@@ -66,8 +67,11 @@ const styles = StyleSheet.create({
     height: 100,
     borderBottomWidth: 3,
   },
+  styleTitle: {
+    fontSize: fontPixel(15),
+  },
 });
 
-const { headerContain } = styles;
+const { headerContain, styleTitle } = styles;
 
-const { primaryColor, primaryBackground, text3Xl, fontBold } = themes;
+const { primaryColor, primaryBackground, fontBold } = themes;

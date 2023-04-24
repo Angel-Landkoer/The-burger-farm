@@ -3,6 +3,13 @@ import React from "react";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
 export function ButtonSaveClose({ onSaveData, onGoToBack }) {
   return (
@@ -16,22 +23,16 @@ export function ButtonSaveClose({ onSaveData, onGoToBack }) {
           size={24}
           color={senaryColor.color}
         />
-        <CustomText
-          style={[btnText, btnTextCancel, senaryColor, textLg]}
-          fontF={"bold"}
-        >
+        <CustomText style={[btnText, senaryColor]} fontF={"bold"}>
           Cancel
         </CustomText>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[touchBtn, touchSave, tertiaryBackground]}
+        style={[touchBtn, touchBtnSave, tertiaryBackground]}
         onPress={onSaveData}
       >
         <FontAwesome5 name="save" size={24} color={senaryColor.color} />
-        <CustomText
-          style={[btnText, btnTextSave, senaryColor, textLg]}
-          fontF={"bold"}
-        >
+        <CustomText style={[btnText, btnTextSave, senaryColor]} fontF={"bold"}>
           Save
         </CustomText>
       </TouchableOpacity>
@@ -45,30 +46,36 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
 
-    width: 330,
+    minWidth: 200,
+    width: widthPixel(250),
   },
   touchBtn: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
 
-    paddingVertical: 6,
-    paddingHorizontal: 20,
+    paddingVertical: pixelSizeVertical(3),
+    paddingHorizontal: pixelSizeHorizontal(10),
 
     borderRadius: 30,
   },
   touchBtnCancel: {
-    width: 110,
+    minWidth: 110,
+    width: widthPixel(110),
   },
-  touchSave: {
-    width: 160,
+  touchBtnSave: {
+    minWidth: 130,
+    width: widthPixel(130),
   },
   btnText: {
-    padding: 5,
+    paddingVertical: pixelSizeVertical(3),
+    paddingHorizontal: pixelSizeHorizontal(3),
+
+    fontSize: fontPixel(11),
   },
   btnTextCancel: {},
   btnTextSave: {
-    marginHorizontal: 10,
+    marginHorizontal: pixelSizeHorizontal(5),
   },
 });
 
@@ -77,10 +84,9 @@ const {
   touchBtn,
   btnText,
   touchBtnCancel,
-  touchSave,
+  touchBtnSave,
   btnTextCancel,
   btnTextSave,
 } = styles;
 
-const { senaryColor, quaternaryBackground, tertiaryBackground, textLg } =
-  themes;
+const { senaryColor, quaternaryBackground, tertiaryBackground } = themes;

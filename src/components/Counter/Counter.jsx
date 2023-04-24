@@ -2,9 +2,15 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
+import {
+  fontPixel,
+  heightPixel,
+  pixelSizeHorizontal,
+  pixelSizeVertical,
+  widthPixel,
+} from "../../styles/normalize";
 
 export function Counter({ price, count, children }) {
-  // function ubicado en el estado global al igual que el count-state
 
   const math = (price / 1000) * count;
 
@@ -12,10 +18,7 @@ export function Counter({ price, count, children }) {
     <View style={container}>
       <View style={contentCount}>{children}</View>
       <View style={contentPrice}>
-        <CustomText
-          style={[textPrice, text2Xl, secondaryColor]}
-          fontF={"semiBold"}
-        >
+        <CustomText style={[textPrice, secondaryColor]} fontF={"semiBold"}>
           {math && `${math}K`}
         </CustomText>
       </View>
@@ -40,16 +43,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   contentPrice: {},
-  textPrice: {},
+  textPrice: {
+    fontSize: fontPixel(15),
+  },
 });
 
 const { container, contentPrice, contentCount, textPrice } = styles;
 
-const {
-  text2Xl,
-  textBase,
-  secondaryColor,
-  quinaryColor,
-  quaternaryColor,
-  tertiaryColor,
-} = themes;
+const { secondaryColor, quinaryColor, quaternaryColor, tertiaryColor } = themes;

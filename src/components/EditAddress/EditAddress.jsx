@@ -7,8 +7,14 @@ import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
 import { CustomText } from "../CustomText/CustomText";
 import { Modall } from "../Modal/Modall";
 import { updateDataAddress } from "../../store/authUser/actions/authUser.action";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
-// dato de los ciudades and departamentos
 
 const countries = [
   "Colombia",
@@ -145,7 +151,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               {""}
             </CustomText>
             <TextInput
-              style={[input, textLg, secondaryColor, fontBold]}
+              style={[input, , secondaryColor, fontBold]}
               keyboardType="default"
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
@@ -159,7 +165,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               #
             </CustomText>
             <TextInput
-              style={[input, textLg, secondaryColor, fontBold]}
+              style={[input, , secondaryColor, fontBold]}
               keyboardType="default"
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
@@ -173,7 +179,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               -
             </CustomText>
             <TextInput
-              style={[input, textLg, secondaryColor, fontBold]}
+              style={[input, , secondaryColor, fontBold]}
               keyboardType="default"
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
@@ -188,7 +194,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
             style={[
               adicionalInpunt,
               primaryBorderColor,
-              textLg,
+              ,
               secondaryColor,
               fontBold,
             ]}
@@ -201,7 +207,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
             style={[
               adicionalInpunt,
               primaryBorderColor,
-              textLg,
+              ,
               secondaryColor,
               fontBold,
             ]}
@@ -287,19 +293,22 @@ const styles = StyleSheet.create({
     height: "70%",
   },
   allForms: {
-    padding: 10,
-    marginVertical: 10,
+    paddingHorizontal: pixelSizeHorizontal(5),
+    paddingVertical: pixelSizeVertical(5),
+    marginVertical: pixelSizeVertical(10),
     borderWidth: 2,
 
     borderRadius: 15,
   },
   contentFormDropdown: {
     width: "90%",
-    marginVertical: 10,
+    marginVertical: pixelSizeVertical(5),
   },
   selectDropdowns: {
-    width: "80%",
-    height: 35,
+    minWidth: 200,
+    width: widthPixel(200),
+    minHeight: 30,
+    height: heightPixel(30),
     borderBottomWidth: 1,
 
     borderColor: "#CD973D",
@@ -307,17 +316,21 @@ const styles = StyleSheet.create({
   selectDropdownText: {
     padding: 0,
 
-    fontSize: 18,
-    lineHeight: 28,
+    fontSize: fontPixel(10),
     fontWeight: "700",
     textAlign: "center",
 
     color: "#CD973D",
   },
   input: {
-    padding: 5,
+    fontSize: fontPixel(11),
+
+    paddingVertical: pixelSizeVertical(3),
+    paddingHorizontal: pixelSizeHorizontal(3),
   },
-  labelText: {},
+  labelText: {
+    fontSize: fontPixel(13),
+  },
   contentInput: {
     flexDirection: "row",
     alignItems: "center",
@@ -327,22 +340,21 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
   },
   contentDataForm: {
-    padding: 5,
-    marginVertical: 10,
+    paddingVertical: pixelSizeVertical(3),
+    paddingHorizontal: pixelSizeHorizontal(3),
+
+    marginVertical: pixelSizeVertical(5),
   },
 
   contentBtns: {
     alignItems: "center",
     justifyContent: "center",
   },
-  adicionalInpunt: { borderBottomWidth: 1, padding: 5, marginVertical: 10 },
-  modalBtn: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: 100,
-    height: 40,
-
-    borderRadius: 20,
+  adicionalInpunt: {
+    borderBottomWidth: 1,
+    paddingVertical: pixelSizeVertical(3),
+    paddingHorizontal: pixelSizeHorizontal(3),
+    marginVertical: pixelSizeVertical(5),
   },
 });
 
@@ -360,4 +372,4 @@ const {
   selectDropdownText,
 } = styles;
 
-const { textLg, secondaryColor, fontBold, primaryBorderColor } = themes;
+const { secondaryColor, fontBold, primaryBorderColor } = themes;

@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Detail } from "../../components/Detail/Detail";
 import { themes } from "../../styles/themes";
+import { pixelSizeHorizontal } from "../../styles/normalize";
 
 export function ProductDetail({ route, navigation }) {
   const { data } = route.params;
@@ -10,14 +11,21 @@ export function ProductDetail({ route, navigation }) {
 
   return (
     <>
-      <View style={[containerFontBox, primaryBackground]}>
+      <View style={[container, primaryBackground]}>
         <Detail goToBack={goToBack} data={data} />
       </View>
     </>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
 
-const {} = styles;
-const { containerFontBox, primaryBackground } = themes;
+    paddingHorizontal: pixelSizeHorizontal(10),
+  },
+});
+
+const { container } = styles;
+const { primaryBackground } = themes;

@@ -11,6 +11,13 @@ import { OrderStackNavigation } from "./OrderStackNavigation";
 import { FindUsStackNavigation } from "./FindUsStackNavigation";
 import { themes } from "../styles/themes";
 import { CustomText } from "../components/CustomText/CustomText";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../styles/normalize";
 
 export function NavigationDrawer() {
   const { Navigator, Screen } = createDrawerNavigator();
@@ -24,10 +31,10 @@ export function NavigationDrawer() {
   return (
     <Navigator
       screenOptions={{
-        drawerLabelStyle: [primaryColor, textXl, fontBold],
+        drawerLabelStyle: [primaryColor, { fontSize: fontPixel(13) }, fontBold],
         drawerStyle: [primaryBackground],
         headerStyle: [primaryBackground, headerContain],
-        headerTitleStyle: [text3Xl, primaryColor, fontBold],
+        headerTitleStyle: [{ fontSize: fontPixel(15) }, primaryColor, fontBold],
         headerTitleAlign: "center",
       }}
     >
@@ -133,8 +140,10 @@ const styles = StyleSheet.create({
     right: 15,
     alignItems: "center",
     justifyContent: "center",
+
     width: 18,
     height: 18,
+
     backgroundColor: "red",
     borderRadius: 20,
     zIndex: 1,
@@ -142,6 +151,7 @@ const styles = StyleSheet.create({
   contentLengthCart: {
     alignItems: "center",
     justifyContent: "center",
+
     width: 84,
     height: 40,
   },
@@ -149,12 +159,4 @@ const styles = StyleSheet.create({
 
 const { headerContain, contentTextLengthCart, contentLengthCart } = styles;
 
-const {
-  primaryColor,
-  textXl,
-  text3Xl,
-  fontBold,
-  primaryBackground,
-  textCenter,
-  senaryColor,
-} = themes;
+const { primaryColor, fontBold, primaryBackground, senaryColor } = themes;

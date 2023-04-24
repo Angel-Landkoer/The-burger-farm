@@ -9,6 +9,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { Counter } from "../Counter/Counter";
 import { CustomText } from "../CustomText/CustomText";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
 export function CartProduct({ data, onDeletedItem }) {
   const {
@@ -35,12 +42,13 @@ export function CartProduct({ data, onDeletedItem }) {
           alignItems: "flex-end",
           justifyContent: "center",
           width: "70%",
-          padding: 10,
+          paddingVertical: pixelSizeVertical(5),
+          paddingHorizontal: pixelSizeVertical(5),
         }}
       >
         <View style={contentProductName}>
           <CustomText
-            style={[productName, text3Xl, textCenter, primaryColor]}
+            style={[productName, textCenter, primaryColor]}
             fontF={"bold"}
           >
             {name}
@@ -49,11 +57,11 @@ export function CartProduct({ data, onDeletedItem }) {
 
         <View style={[contentPriceAndCount]}>
           <View style={[contentCount]}>
-            <CustomText style={[textLg, primaryColor]} fontF={"bold"}>
+            <CustomText style={[textCount, primaryColor]} fontF={"bold"}>
               Count: {count}
             </CustomText>
           </View>
-          <CustomText style={[textXl, secondaryColor]} fontF={"semiBold"}>
+          <CustomText style={[textPrice, secondaryColor]} fontF={"semiBold"}>
             Price: {math ? `${math}K` : "Loading..."}
           </CustomText>
         </View>
@@ -67,12 +75,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     maxWidth: "100%",
-    padding: 10,
+    paddingHorizontal: pixelSizeHorizontal(5),
+    paddingVertical: pixelSizeVertical(5),
     borderBottomWidth: 1,
   },
   contentImg: {
-    width: 100,
-    height: 100,
+    width: 130,
+    height: 130,
   },
   picture: {
     width: 130,
@@ -86,7 +95,9 @@ const styles = StyleSheet.create({
 
     marginBottom: 33,
   },
-  productName: {},
+  productName: {
+    fontSize: fontPixel(13),
+  },
   contentIcon: {
     position: "absolute",
     justifyContent: "center",
@@ -104,9 +115,9 @@ const styles = StyleSheet.create({
   contentPriceAndCount: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "flex-start",
 
-    width: "80%",
+    width: "100%",
   },
   contentCount: {
     flexDirection: "row",
@@ -114,11 +125,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
 
     width: "50%",
-    marginHorizontal: 10,
+    marginHorizontal: pixelSizeHorizontal(5),
   },
   textCount: {
-    marginHorizontal: 7,
+    marginHorizontal: pixelSizeHorizontal(3.5),
+
+    fontSize: fontPixel(10),
   },
+  textPrice: { fontSize: fontPixel(10) },
 });
 
 const {
@@ -132,14 +146,7 @@ const {
   textCount,
   contentCount,
   contentPriceAndCount,
+  textPrice,
 } = styles;
 
-const {
-  text3Xl,
-  textLg,
-  textXl,
-  textCenter,
-  primaryColor,
-  quinaryColor,
-  secondaryColor,
-} = themes;
+const { textCenter, primaryColor, quinaryColor, secondaryColor } = themes;

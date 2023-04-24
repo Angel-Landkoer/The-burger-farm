@@ -4,6 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { ProductSlide } from "../../components/ProductSlide/ProductSlide";
 import { themes } from "../../styles/themes";
 import { filterCategory } from "../../store/globalData/actions/globalData.action";
+import {
+  pixelSizeVertical,
+  fontPixel,
+  heightPixel,
+  pixelSizeHorizontal,
+  widthPixel,
+} from "../../styles/normalize";
 
 export function Products({ navigation }) {
   const productsData = useSelector((state) => state.data.productsData);
@@ -17,7 +24,7 @@ export function Products({ navigation }) {
 
   return (
     <ScrollView>
-      <View style={[containerFontBox, primaryBackground]}>
+      <View style={[container, primaryBackground]}>
         {data.map((item, i) => (
           <ProductSlide
             key={`ProductList-${i}`}
@@ -32,7 +39,11 @@ export function Products({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: pixelSizeHorizontal(10),
+  },
+});
 
-const {} = styles;
-const { containerFontBox, primaryBackground } = themes;
+const { container } = styles;
+const { primaryBackground } = themes;

@@ -3,6 +3,13 @@ import { StyleSheet, View } from "react-native";
 import { EditInfoGeneral } from "../../components/EditInfoGeneral/EditInfoGeneral.jsx";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
+import {
+  widthPixel,
+  heightPixel,
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+} from "../../styles/normalize.js";
 
 export function UpdateDataUser({ navigation, route }) {
   const { user, userId } = route.params;
@@ -11,8 +18,8 @@ export function UpdateDataUser({ navigation, route }) {
   const goToBack = () => navigation.goBack();
 
   return (
-    <View style={[containerFontBox, primaryBackground]}>
-      <CustomText style={[text4Xl, primaryColor, textLeft]} fontF={"bold"}>
+    <View style={[container, primaryBackground]}>
+      <CustomText style={[title, primaryColor, textLeft]} fontF={"bold"}>
         Information Gerenal
       </CustomText>
       <EditInfoGeneral
@@ -24,9 +31,18 @@ export function UpdateDataUser({ navigation, route }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: heightPixel(480),
+    paddingHorizontal: pixelSizeHorizontal(10),
+  },
+  title: {
+    fontSize: fontPixel(20),
+    paddingVertical: pixelSizeVertical(5),
+  },
+});
 
-const {} = styles;
+const { container, title } = styles;
 
-const { containerFontBox, primaryBackground, text4Xl, primaryColor, textLeft } =
-  themes;
+const { primaryBackground, primaryColor, textLeft } = themes;
