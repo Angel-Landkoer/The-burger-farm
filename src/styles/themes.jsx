@@ -1,4 +1,11 @@
 import { StyleSheet } from "react-native";
+import {
+  fontPixel,
+  pixelSizeVertical,
+  pixelSizeHorizontal,
+  widthPixel,
+  heightPixel,
+} from "./normalize";
 // import Constants from "expo-constants";
 
 export const themes = StyleSheet.create({
@@ -74,39 +81,7 @@ export const themes = StyleSheet.create({
     borderColor: "#666666",
   },
 
-  // Font-Size
-  textXs: {
-    fontSize: 12,
-    lineHeight: 16,
-  },
-  textSm: {
-    fontSize: 14,
-    lineHeight: 20,
-  },
-  textBase: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-  textLg: {
-    fontSize: 18,
-    lineHeight: 28,
-  },
-  textXl: {
-    fontSize: 20,
-    lineHeight: 28,
-  },
-  text2Xl: {
-    fontSize: 24,
-    lineHeight: 32,
-  },
-  text3Xl: {
-    fontSize: 30,
-    lineHeight: 36,
-  },
-  text4Xl: {
-    fontSize: 36,
-    lineHeight: 40,
-  },
+  // // Font-Size
 
   // text-weight
   fontNormal: { fontWeight: "400" },
@@ -121,12 +96,4 @@ export const themes = StyleSheet.create({
   textJustify: { textAlign: "justify" },
 
   // styles-Screens
-  containerFontBox: {
-    alignItems: "center",
-    justifyContent: "center",
-
-    paddingHorizontal: 20,
-    width: "100%",
-    // marginTop: Constants.statusBarHeight,
-  },
 });
