@@ -42,19 +42,23 @@ export function DataCard({ data }) {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    justifyContent: "center",
-    
-    marginHorizontal: pixelSizeHorizontal(8),
+    justifyContent: "flex-end",
+
+    width: widthPixel(110),
     paddingVertical: pixelSizeVertical(10),
   },
 
   priceText: {
     marginTop: 7,
+
     fontSize: fontPixel(10),
   },
   nameText: {
+    width: "70%",
+    maxheight: 25,
     marginBottom: 7,
-    fontSize: fontPixel(10),
+
+    fontSize: fontPixel(8),
   },
   img: {
     width: 100,

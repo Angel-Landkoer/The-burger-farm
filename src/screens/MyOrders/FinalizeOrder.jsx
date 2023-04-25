@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
 
     borderColor: "#CD973D",
-    borderRadius: "50%",
+    borderRadius: 40,
   },
   selectDropdownText: {
     fontSize: fontPixel(13),
@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
     marginVertial: pixelSizeVertical(20),
     paddingVertical: pixelSizeVertical(2),
 
-    borderRadius: "50%",
+    borderRadius: 40,
   },
   textBtn: {
     fontSize: fontPixel(18),
