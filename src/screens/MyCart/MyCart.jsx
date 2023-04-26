@@ -21,31 +21,54 @@ export function MyCart({ navigation }) {
     (state) => state.auth.shortTimeAddressData
   );
 
-  const allDataUserExistem = allDataUser && allDataUser;
-  const userData = allDataUser || shortTimeUserData;
-  const addressData = allDataUser.address || shortTimeAddressData;
+  const userData = allDataUser
+    ? allDataUser
+    : shortTimeUserData
+    ? shortTimeUserData
+    : { nombre: "", apellido: "", telefono: "" };
+
+  const addressData = allDataUser.address
+    ? allDataUser.address
+    : shortTimeAddressData
+    ? shortTimeAddressData
+    : { route: "", dataDirection: "", district: "" };
 
   const userCanAccess = () => {
-    if (!registed) return navigation.navigate("DataDrawer");
+    if (!registed)
+      return navigation.navigate("DataDrawer", { screen: "LoginStack" });
+
+    if (!userData.name && !userData.lastName && !userData.phone)
+      return navigation.navigate("DataDrawer", {
+        screen: "UpdateDataUserStack",
+      });
+
     if (
-      !allDataUserExistem.name &&
-      !allDataUserExistem.lastName &&
-      !allDataUserExistem.email &&
-      !allDataUserExistem.phone
+      !addressData.city &&
+      !addressData.dataDirection &&
+      !addressData.district
     )
-      return navigation.navigate("UpdateDataUserStack");
+      return navigation.navigate("DataDrawer", {
+        screen: "UpdateAddressStack",
+      });
+
     if (
-      !allDataUserExistem.address.city &&
-      !allDataUserExistem.address.district &&
-      !allDataUserExistem.address.route &&
-      !allDataUserExistem.address.dataDirection &&
-      !allDataUserExistem.address.additionalInformation
+      userData.name &&
+      userData.lastName &&
+      userData.phone &&
+      addressData.city &&
+      addressData.dataDirection &&
+      addressData.district
     )
-      return navigation.navigate("UpdateAddressStack");
-    if (registed)
-      return navigation.navigate("FinalizeOrderStack", {
-        userData,
-        addressData,
+      return navigation.navigate("OrderDrawer", {
+        screen: "FinalizeOrderStack",
+        params: {
+          userData,
+          addressData: {
+            dataDirection: addressData.dataDirection,
+            routeA: addressData.route,
+            district: addressData.district,
+          },
+        },
       });
   };
 
