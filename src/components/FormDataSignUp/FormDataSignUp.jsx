@@ -38,7 +38,10 @@ export function FormDataSignUp({ goToBack }) {
     ];
     const maxLength = formulariesLength.every((item) => item.length > 0);
 
-    if (maxLength) {
+    const equalPassword =
+      state.formPassword.trim() == state.formConfirmPassword.trim();
+
+    if (maxLength && equalPassword) {
       const { formEmail, formPassword } = state;
 
       dispatchRedux(signUp(formEmail.trim(), formPassword.trim()));
@@ -46,7 +49,8 @@ export function FormDataSignUp({ goToBack }) {
       dispatch({ type: "@RESET_FORMULARIES" });
     }
 
-    !maxLength && dispatch({ type: "@INCOMPLETE_FORMULARY" });
+    if (!maxLength || !equalPassword)
+      return dispatch({ type: "@TOGGLE_MODAL_ERRONEOUSLY" });
   };
 
   const handleModalToggle = () => {
@@ -54,7 +58,12 @@ export function FormDataSignUp({ goToBack }) {
     goToBack();
   };
 
+  const handleModalError = () =>
+    dispatch({ type: "@TOGGLE_MODAL_ERRONEOUSLY" });
+
   const modalBtn = [{ textBtn: "OK", actionState: handleModalToggle }];
+
+  const modalBtnError = [{ textBtn: "OK", actionState: handleModalError }];
 
   return (
     <View style={[container]}>
@@ -99,23 +108,15 @@ export function FormDataSignUp({ goToBack }) {
         />
       </View>
       <Modall
-        state={state.toggleModal}
+        state={state.confirmRegister}
         title={isLoading ? "Loading" : "REGISTED"}
         btns={modalBtn}
       />
-      {state.incomplete && (
-        <View style={[contentFormulayIncomplete]}>
-          <CustomText
-            style={[
-              { fontSize: fontPixel(13), height: heightPixel(22) },
-              quinaryColor,
-            ]}
-            fontF={"medium"}
-          >
-            Complete the Formulary
-          </CustomText>
-        </View>
-      )}
+      <Modall
+        btns={modalBtnError}
+        state={state.toggleModalErroneously}
+        title={"Please fill in all fields correctly"}
+      />
       <View style={[contentBtn]}>
         <TouchableOpacity
           style={[touchBtn, tertiaryBackground]}
@@ -135,8 +136,8 @@ const initialState = {
   formEmail: "",
   formPassword: "",
   formConfirmPassword: "",
-  incomplete: false,
-  toggleModal: false,
+  confirmRegister: false,
+  toggleModalErroneously: false,
 };
 
 const reducer = (state, action) => {
@@ -154,10 +155,10 @@ const reducer = (state, action) => {
       formPassword: "",
       formConfirmPassword: "",
     };
-  if (type == "@INCOMPLETE_FORMULARY")
-    return { ...state, incomplete: !state.incomplete };
   if (type == "@TOGGLE_MODAL")
-    return { ...state, toggleModal: !state.toggleModal };
+    return { ...state, confirmRegister: !state.confirmRegister };
+  if (type == "@TOGGLE_MODAL_ERRONEOUSLY")
+    return { ...state, toggleModalErroneously: !state.toggleModalErroneously };
   return state;
 };
 
@@ -227,14 +228,12 @@ const {
   touchBtn,
   btnText,
   contentBtn,
-  contentFormulayIncomplete,
   labeltext,
 } = styles;
 
 const {
   primaryBorderColor,
   primaryColor,
-  quinaryColor,
   senaryColor,
   tertiaryBackground,
   fontBold,
