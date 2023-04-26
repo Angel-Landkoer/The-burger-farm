@@ -10,11 +10,21 @@ import {
   pixelSizeVertical,
   pixelSizeHorizontal,
 } from "../../styles/normalize.js";
+import { useSelector } from "react-redux";
 
-export function UpdateAddress({ navigation, route }) {
-  const { user, userId } = route.params;
+export function UpdateAddress({ navigation }) {
+  const allDataUser = useSelector((state) => state.auth.allDataUser);
+  const userId = useSelector((state) => state.auth.userId);
+  const shortTimeAddressData = useSelector(
+    (state) => state.auth.shortTimeAddressData
+  );
+  const addressData = allDataUser.address
+    ? allDataUser.address
+    : shortTimeAddressData
+    ? shortTimeAddressData
+    : { route: "", dataDirection: "", district: "" };
 
-  const dataDefault = user;
+  const dataDefault = addressData;
 
   const goToBack = () => navigation.goBack();
 
