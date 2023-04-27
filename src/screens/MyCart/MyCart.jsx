@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Cart } from "../../components/Cart/Cart";
 import { themes } from "../../styles/themes";
@@ -12,6 +12,20 @@ import {
 } from "../../styles/normalize";
 
 export function MyCart({ navigation }) {
+  const [user, setUser] = useState({
+    name: "",
+    lastName: "",
+    phone: "",
+    email: "",
+  });
+  const [address, setAddress] = useState({
+    dataDirection: "",
+    city: "",
+    district: "",
+    route: "",
+    additionalInformation: "",
+  });
+
   const registed = useSelector((state) => state.auth.existemAccount);
   const allDataUser = useSelector((state) => state.auth.allDataUser);
   const shortTimeUserData = useSelector(
@@ -21,52 +35,70 @@ export function MyCart({ navigation }) {
     (state) => state.auth.shortTimeAddressData
   );
 
-  const userData = allDataUser
-    ? allDataUser
-    : shortTimeUserData
-    ? shortTimeUserData
-    : { nombre: "", apellido: "", telefono: "" };
+  useEffect(() => {
+    const existems = (data1, data2) => {
+      if (data1 && data2) {
+        return {
+          name: data2.name,
+          lastName: data2.lastName,
+          phone: data2.phone,
+          email: data1.email,
+        };
+      } else if (data2) {
+        return data2;
+      } else if (data1) {
+        return data1;
+      } else {
+        return { name: "", lastName: "", phone: "", email: "" };
+      }
+    };
 
-  const addressData = allDataUser?.address
-    ? allDataUser.address
-    : shortTimeAddressData
-    ? shortTimeAddressData
-    : { route: "", dataDirection: "", district: "" };
+    const exitemsAddress = (data1, data2) => {
+      if (data2) {
+        return data2;
+      } else if (data1) {
+        return data1;
+      } else {
+        return {
+          dataDirection: "",
+          city: "",
+          district: "",
+          route: "",
+          additionalInformation: "",
+        };
+      }
+    };
+
+    setUser(existems(allDataUser, shortTimeUserData));
+    setAddress(exitemsAddress(allDataUser?.address, shortTimeAddressData));
+  }, [shortTimeUserData, shortTimeAddressData]);
 
   const userCanAccess = () => {
     if (!registed)
       return navigation.navigate("DataDrawer", { screen: "LoginStack" });
 
-    if (!userData.name && !userData.lastName && !userData.phone)
-      return navigation.navigate("DataDrawer", {
-        screen: "UpdateDataUserStack",
-      });
-
     if (
-      !addressData.city &&
-      !addressData.dataDirection &&
-      !addressData.district
+      (!user.name && !user.lastName && !user.phone) ||
+      (!address.city && !address.dataDirection && !address.district)
     )
-      return navigation.navigate("DataDrawer", {
-        screen: "UpdateAddressStack",
-      });
+      return navigation.navigate("DataDrawer");
 
     if (
-      userData.name &&
-      userData.lastName &&
-      userData.phone &&
-      addressData.city &&
-      addressData.dataDirection &&
-      addressData.district
+      user.name &&
+      user.lastName &&
+      user.phone &&
+      address.city &&
+      address.dataDirection &&
+      address.district
     )
       return navigation.navigate("OrderDrawer", {
         screen: "FinalizeOrderStack",
         params: {
-          userData,
+          user,
           addressData: {
-            dataDirection: addressData.dataDirection,
-            routeA: addressData.route,
-            district: addressData.district,
+            dataDirection: address.dataDirection,
+            routeA: address.route,
+            district: address.district,
           },
         },
       });
