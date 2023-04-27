@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { useSelector } from "react-redux";
 import { EditInfoGeneral } from "../../components/EditInfoGeneral/EditInfoGeneral.jsx";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
@@ -12,21 +11,11 @@ import {
   pixelSizeHorizontal,
 } from "../../styles/normalize.js";
 
-export function UpdateDataUser({ navigation }) {
-  const allDataUser = useSelector((state) => state.auth.allDataUser);
-  const userId = useSelector((state) => state.auth.userId);
-  const shortTimeUserData = useSelector(
-    (state) => state.auth.shortTimeUserData
-  );
-  const userData = allDataUser
-    ? allDataUser
-    : shortTimeUserData
-    ? shortTimeUserData
-    : { nombre: "", apellido: "", telefono: "" };
-
-  const dataDefault = userData;
-
+export function UpdateDataUser({ navigation, route }) {
   const goToBack = () => navigation.goBack();
+
+  const dataDefault = route.params.user;
+  const userId = route.params.userId;
 
   return (
     <View style={[container, primaryBackground]}>
