@@ -38,7 +38,7 @@ export function LoginCompleted({ navigation }) {
   );
 
   const dataUser = userData || shortTimeUserData;
-  const dataAddress = userData.address || shortTimeAddressData;
+  const dataAddress = userData?.address || shortTimeAddressData;
 
   const routeUserData = () =>
     navigation.navigate("UpdateDataUserStack", {
@@ -88,7 +88,7 @@ export function LoginCompleted({ navigation }) {
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <CustomText fontF={"bold"}>Email:</CustomText>
-          <CustomText fontF={"bold"}>{userData.email || "null"}</CustomText>
+          <CustomText fontF={"bold"}>{dataUser.email || "null"}</CustomText>
         </View>
       </View>
 

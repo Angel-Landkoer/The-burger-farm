@@ -18,7 +18,7 @@ export function UpdateAddress({ navigation }) {
   const shortTimeAddressData = useSelector(
     (state) => state.auth.shortTimeAddressData
   );
-  const addressData = allDataUser.address
+  const addressData = allDataUser?.address
     ? allDataUser.address
     : shortTimeAddressData
     ? shortTimeAddressData

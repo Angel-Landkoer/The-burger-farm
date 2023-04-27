@@ -27,7 +27,7 @@ export function MyCart({ navigation }) {
     ? shortTimeUserData
     : { nombre: "", apellido: "", telefono: "" };
 
-  const addressData = allDataUser.address
+  const addressData = allDataUser?.address
     ? allDataUser.address
     : shortTimeAddressData
     ? shortTimeAddressData
