@@ -28,7 +28,7 @@ import {
 export function FinalizeOrder({ navigation, route }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { name, lastName, phone, userId } = route.params.userData;
+  const { name, lastName, phone, userId } = route.params.user;
   const { routeA, dataDirection, district } = route.params.addressData;
 
   const dispatchRedux = useDispatch();
