@@ -17,38 +17,82 @@ import {
 
 export function LoginCompleted({ navigation }) {
   const [toggleModal, setToggleModal] = useState(false);
+  const [user, setUser] = useState({
+    name: "",
+    lastName: "",
+    phone: "",
+    email: "",
+  });
+  const [address, setAddress] = useState({
+    dataDirection: "",
+    city: "",
+    district: "",
+    route: "",
+    additionalInformation: "",
+  });
 
   const dispatch = useDispatch();
 
   const userId = useSelector((state) => state.auth.userId);
+  const allDataUser = useSelector((state) => state.auth.allDataUser);
+  const shortTimeUserData = useSelector(
+    (state) => state.auth.shortTimeUserData
+  );
+  const shortTimeAddressData = useSelector(
+    (state) => state.auth.shortTimeAddressData
+  );
 
   useEffect(() => {
     if (userId) {
       (() => dispatch(getOrder(userId)))();
     }
-  }, [userId]);
 
-  const userData = useSelector((state) => state.auth.allDataUser);
-  const shortTimeUserData = useSelector(
-    (state) => state.auth.shortTimeUserData
-  );
+    const existemsUser = (data1, data2) => {
+      if (data1 && data2) {
+        return {
+          name: data2.name,
+          lastName: data2.lastName,
+          phone: data2.phone,
+          email: data1.email,
+        };
+      } else if (data2) {
+        return data2;
+      } else if (data1) {
+        return data1;
+      } else {
+        return { name: "", lastName: "", phone: "", email: "" };
+      }
+    };
 
-  const shortTimeAddressData = useSelector(
-    (state) => state.auth.shortTimeAddressData
-  );
+    const exitemsAddress = (data1, data2) => {
+      if (data2) {
+        return data2;
+      } else if (data1) {
+        return data1;
+      } else {
+        return {
+          dataDirection: "",
+          city: "",
+          district: "",
+          route: "",
+          additionalInformation: "",
+        };
+      }
+    };
 
-  const dataUser = userData || shortTimeUserData;
-  const dataAddress = userData?.address || shortTimeAddressData;
+    setUser(existemsUser(allDataUser, shortTimeUserData));
+    setAddress(exitemsAddress(allDataUser?.address, shortTimeAddressData));
+  }, [userId, shortTimeAddressData, shortTimeUserData]);
 
   const routeUserData = () =>
     navigation.navigate("UpdateDataUserStack", {
-      user: dataUser,
+      user,
       userId,
     });
 
   const routeAddressData = () =>
     navigation.navigate("UpdateAddressStack", {
-      user: dataAddress,
+      user: address,
       userId,
     });
 
@@ -80,15 +124,15 @@ export function LoginCompleted({ navigation }) {
         </TouchableOpacity>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <CustomText fontF={"bold"}>Name:</CustomText>
-          <CustomText fontF={"bold"}>{dataUser.name || "null"}</CustomText>
+          <CustomText fontF={"bold"}>{user.name || "null"}</CustomText>
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <CustomText fontF={"bold"}>Phone:</CustomText>
-          <CustomText fontF={"bold"}>{dataUser.phone || "null"}</CustomText>
+          <CustomText fontF={"bold"}>{user.phone || "null"}</CustomText>
         </View>
         <View style={[subCotainerInfoUser, primaryBorderColor]}>
           <CustomText fontF={"bold"}>Email:</CustomText>
-          <CustomText fontF={"bold"}>{dataUser.email || "null"}</CustomText>
+          <CustomText fontF={"bold"}>{user.email || "null"}</CustomText>
         </View>
       </View>
 
@@ -128,8 +172,8 @@ export function LoginCompleted({ navigation }) {
         </TouchableOpacity>
         <View style={[subCotainerInfoAddress, primaryBorderColor]}>
           <CustomText style={[addressText]} fontF={"bold"}>
-            {(dataAddress.dataDirection &&
-              `${dataAddress.route} ${dataAddress.dataDirection} ${dataAddress.district}`) ||
+            {(address.dataDirection &&
+              `${address.route} ${address.dataDirection} ${address.district}`) ||
               "AddressText"}
           </CustomText>
         </View>
