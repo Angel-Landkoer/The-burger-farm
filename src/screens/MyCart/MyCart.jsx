@@ -27,6 +27,7 @@ export function MyCart({ navigation }) {
   });
 
   const registed = useSelector((state) => state.auth.existemAccount);
+  const userId = useSelector((state) => state.auth.userId);
   const allDataUser = useSelector((state) => state.auth.allDataUser);
   const shortTimeUserData = useSelector(
     (state) => state.auth.shortTimeUserData
@@ -94,6 +95,7 @@ export function MyCart({ navigation }) {
       return navigation.navigate("OrderDrawer", {
         screen: "FinalizeOrderStack",
         params: {
+          userId,
           user,
           addressData: {
             dataDirection: address.dataDirection,
