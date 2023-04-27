@@ -28,7 +28,8 @@ import {
 export function FinalizeOrder({ navigation, route }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { name, lastName, phone, userId } = route.params.user;
+  const { userId } = route.params;
+  const { name, lastName, phone } = route.params.user;
   const { routeA, dataDirection, district } = route.params.addressData;
 
   const dispatchRedux = useDispatch();
@@ -85,7 +86,7 @@ export function FinalizeOrder({ navigation, route }) {
     dispatch({ type: "@TOGGLE_MODAL_RESPONSE" });
     dispatchRedux(getOrder(userId));
     dispatchRedux(deletedAllItemCart());
-    navigation.navigate("MyOrderStack");
+    navigation.navigate("OrderDrawer", { screen: "MyOrderStack" });
   };
 
   const handleError = () => dispatch({ type: "@TOGGLE_MODAL_ERRONEOUSLY" });
