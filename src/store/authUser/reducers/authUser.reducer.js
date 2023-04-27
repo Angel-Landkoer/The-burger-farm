@@ -34,7 +34,7 @@ export const authReducer = (state = initialState, action) => {
     return { ...state, isLoading: false, allDataUser: newAllDataUser, shortTimeAddressData: action.shortTimeAddressData }
   }
   if (action.type == UPDATE_DATA_ADDRESS_FAIL) return { ...state, isLoading: false }
-  if (action.type == RESET_ACCOUNT) return { ...state, isLoading: false, token: null, userId: '', nameTokenUser: "", existemAccount: false };
+  if (action.type == RESET_ACCOUNT) return { ...state, isLoading: false, token: null, userId: '', nameTokenUser: "", existemAccount: false, shortTimeUserData: false, shortTimeAddressData: false };
 
   return state
 }
