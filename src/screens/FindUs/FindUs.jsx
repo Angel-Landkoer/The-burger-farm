@@ -1,20 +1,27 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { CustomText } from "../../components/CustomText/CustomText";
+import MapView from "react-native-maps";
 import { themes } from "../../styles/themes";
+import { useSelector } from "react-redux";
+import { regions } from "../../utils/regions";
 
 export function FindUs({ navigation }) {
+  const data = useSelector((state) => state.auth.shortTimeAddressData);
+
+  const findRegion = regions.find((item) => item.name == data.city);
+
   return (
-    <View style={[primaryBackground]}>
-      <CustomText style={[textCenter, primaryColor]} fontF={"bold"}>
-        Map
-      </CustomText>
+    <View style={[container, primaryBackground]}>
+      <MapView region={findRegion?.region || {}} style={styleMap} />
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {},
+  styleMap: { width: "100%", height: "100%" },
+});
 
-const {} = styles;
+const { styleMap, container } = styles;
 
-const { textCenter, primaryBackground, primaryColor } = themes;
+const { primaryBackground } = themes;
