@@ -7,6 +7,7 @@ import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
 import { CustomText } from "../CustomText/CustomText";
 import { Modall } from "../Modal/Modall";
 import { updateDataAddress } from "../../store/authUser/actions/authUser.action";
+import { regions } from '../../utils/regions'
 import {
   widthPixel,
   heightPixel,
@@ -14,18 +15,6 @@ import {
   pixelSizeVertical,
   pixelSizeHorizontal,
 } from "../../styles/normalize.js";
-
-
-const countries = [
-  "Colombia",
-  "Peru",
-  "Argentina",
-  "Bolivia",
-  "Uruguai",
-  "Mexico",
-  "Canada",
-  "Chile",
-];
 
 const seletions = ["select", "Street", "Race"];
 
@@ -119,12 +108,12 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
           <SelectDropdown
             buttonStyle={selectDropdowns}
             buttonTextStyle={selectDropdownText}
-            data={countries}
+            data={regions}
             onSelect={(selectedItem, index) =>
-              handleChangeValueFormCity(selectedItem)
+              handleChangeValueFormCity(selectedItem.name)
             }
-            buttonTextAfterSelection={(selectedItem, index) => selectedItem}
-            rowTextForSelection={(item, index) => item}
+            buttonTextAfterSelection={(selectedItem, index) => selectedItem.name}
+            rowTextForSelection={(item, index) => item.name}
             defaultValue={city}
           />
           <SelectDropdown
