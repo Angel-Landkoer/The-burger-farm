@@ -6,9 +6,9 @@ import { useSelector } from "react-redux";
 import { regions } from "../../utils/regions";
 
 export function FindUs({ navigation }) {
-  const data = useSelector((state) => state.auth.shortTimeAddressData);
+  const data = useSelector((state) => state.auth.allDataUser);
 
-  const findRegion = regions.find((item) => item.name == data.city);
+  const findRegion = regions.find((item) => item.name == data?.address.city);
 
   return (
     <View style={[container, primaryBackground]}>
