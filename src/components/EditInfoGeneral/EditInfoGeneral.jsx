@@ -92,6 +92,7 @@ export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
           placeholderTextColor={tertiaryColor.color}
           inputMode="numeric"
           keyboardType="phone-pad"
+          maxLength={10}
           onChangeText={handleChangenValueFormPhone}
           defaultValue={phone ? phone.toString() : "null"}
         />
