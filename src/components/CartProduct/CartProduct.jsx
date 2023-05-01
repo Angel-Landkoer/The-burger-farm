@@ -7,23 +7,16 @@ import {
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
-import { Counter } from "../Counter/Counter";
 import { CustomText } from "../CustomText/CustomText";
 import {
-  widthPixel,
-  heightPixel,
   fontPixel,
   pixelSizeVertical,
   pixelSizeHorizontal,
 } from "../../styles/normalize.js";
+import { Loading } from "../Loading/Loading";
 
 export function CartProduct({ data, onDeletedItem }) {
-  const {
-    name = "Name",
-    count,
-    price = 0,
-    img = "https://w0.peakpx.com/wallpaper/883/296/HD-wallpaper-hatake-kakashi-artwork-naruto-characters-manga-sharingan-samurai-portrait-naruto-kakashi-hatake.jpg",
-  } = data;
+  const { name = "Name", count, price = 0, img } = data;
 
   const math = (price / 1000) * count;
 
@@ -35,7 +28,11 @@ export function CartProduct({ data, onDeletedItem }) {
         </View>
       </TouchableWithoutFeedback>
       <View style={contentImg}>
-        <Image style={picture} source={{ uri: img }} />
+        {img ? (
+          <Image style={picture} source={{ uri: img }} />
+        ) : (
+          <Loading color={primaryColor.color} styleContainer={picture} />
+        )}
       </View>
       <View
         style={{

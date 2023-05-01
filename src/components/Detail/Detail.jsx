@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
@@ -8,19 +8,14 @@ import { Counter } from "../Counter/Counter";
 import { addItemCart } from "../../store/cartSistem/actions/cartSistem.action";
 import {
   widthPixel,
-  heightPixel,
   fontPixel,
   pixelSizeVertical,
   pixelSizeHorizontal,
 } from "../../styles/normalize.js";
+import { Loading } from "../Loading/Loading";
 
 export function Detail({ data, goToBack }) {
-  const {
-    name,
-    description,
-    price,
-    img = "http://www.smashbros.com/images/og/pikachu.jpg",
-  } = data;
+  const { name, description, price, img } = data;
 
   const [counter, setCounter] = useState({
     count: 1,
@@ -50,7 +45,12 @@ export function Detail({ data, goToBack }) {
       <CustomText style={[title, , primaryColor]} fontF={"bold"}>
         {name}
       </CustomText>
-      <Image style={picture} source={{ uri: img }} />
+      {img ? (
+        <Image style={picture} source={{ uri: img }} />
+      ) : (
+        <Loading color={primaryColor.color} styleContainer={picture} />
+      )}
+
       <CustomText
         style={[descriptions, textJustify, , primaryColor]}
         fontF={"medium"}

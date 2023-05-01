@@ -6,13 +6,12 @@ import { CustomText } from "../CustomText/CustomText";
 import {
   fontPixel,
   pixelSizeVertical,
-  pixelSizeHorizontal,
   widthPixel,
-  heightPixel,
 } from "../../styles/normalize";
+import { Loading } from "../Loading/Loading";
 
 export function DataCard({ data }) {
-  const { name, price } = data;
+  const { name, price, img } = data;
 
   const { navigate } = useNavigation();
 
@@ -27,10 +26,17 @@ export function DataCard({ data }) {
         >
           {name}
         </CustomText>
-        <Image
-          style={[img, secondaryBorderColor]}
-          source={{ uri: "http://www.smashbros.com/images/og/pikachu.jpg" }}
-        />
+        {img ? (
+          <Image
+            style={[styleImg, secondaryBorderColor]}
+            source={{
+              uri: img,
+            }}
+          />
+        ) : (
+          <Loading color={primaryColor.color} styleContainer={styleImg} />
+        )}
+
         <CustomText style={[priceText, , secondaryColor]} fontF={"semiBold"}>
           ${price / 1_000}k
         </CustomText>
@@ -60,14 +66,14 @@ const styles = StyleSheet.create({
 
     fontSize: fontPixel(8),
   },
-  img: {
+  styleImg: {
     width: 100,
     height: 100,
     borderWidth: 1.2,
   },
 });
 
-const { container, img, nameText, priceText } = styles;
+const { container, styleImg, nameText, priceText } = styles;
 
 const { textCenter, primaryColor, secondaryColor, secondaryBorderColor } =
   themes;
