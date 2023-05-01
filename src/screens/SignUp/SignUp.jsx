@@ -5,7 +5,6 @@ import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
 import { FormDataSignUp } from "../../components/FormDataSignUp/FormDataSignUp";
 import {
-  widthPixel,
   heightPixel,
   fontPixel,
   pixelSizeVertical,

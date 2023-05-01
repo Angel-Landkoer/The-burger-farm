@@ -5,7 +5,6 @@ import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
 import {
   widthPixel,
-  heightPixel,
   fontPixel,
   pixelSizeVertical,
   pixelSizeHorizontal,

@@ -4,7 +4,6 @@ import { themes } from "../../styles/themes";
 import { FormDataLogin } from "../../components/FormDataLogin/FormDataLogin";
 import { CustomText } from "../../components/CustomText/CustomText";
 import {
-  widthPixel,
   heightPixel,
   fontPixel,
   pixelSizeVertical,

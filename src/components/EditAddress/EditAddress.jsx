@@ -7,7 +7,7 @@ import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
 import { CustomText } from "../CustomText/CustomText";
 import { Modall } from "../Modal/Modall";
 import { updateDataAddress } from "../../store/authUser/actions/authUser.action";
-import { regions } from '../../utils/regions'
+import { regions } from "../../utils/regions";
 import {
   widthPixel,
   heightPixel,
@@ -112,7 +112,9 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
             onSelect={(selectedItem, index) =>
               handleChangeValueFormCity(selectedItem.name)
             }
-            buttonTextAfterSelection={(selectedItem, index) => selectedItem.name}
+            buttonTextAfterSelection={(selectedItem, index) =>
+              selectedItem.name
+            }
             rowTextForSelection={(item, index) => item.name}
             defaultValue={city}
           />

@@ -4,13 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { IconButton } from "../components/IconButton/IconButton";
 import { MyCart } from "../screens/MyCart/MyCart";
 import { themes } from "../styles/themes";
-import {
-  widthPixel,
-  heightPixel,
-  fontPixel,
-  pixelSizeVertical,
-  pixelSizeHorizontal,
-} from "../styles/normalize";
+import { heightPixel, fontPixel } from "../styles/normalize";
 
 export function CartStackNavigation() {
   const { Screen, Navigator } = createNativeStackNavigator();

@@ -6,9 +6,6 @@ import { ButtonSaveClose } from "../ButtonSaveClose/ButtonSaveClose";
 import { Modall } from "../../components/Modal/Modall";
 import { updateDataUser } from "../../store/authUser/actions/authUser.action";
 import {
-  widthPixel,
-  heightPixel,
-  fontPixel,
   pixelSizeVertical,
   pixelSizeHorizontal,
 } from "../../styles/normalize.js";

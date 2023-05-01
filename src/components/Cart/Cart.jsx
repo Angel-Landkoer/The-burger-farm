@@ -8,10 +8,8 @@ import { CustomText } from "../CustomText/CustomText";
 import { deletedItemCart } from "../../store/cartSistem/actions/cartSistem.action";
 import {
   widthPixel,
-  heightPixel,
   fontPixel,
   pixelSizeVertical,
-  pixelSizeHorizontal,
 } from "../../styles/normalize.js";
 
 export function Cart({ userCanAccess }) {

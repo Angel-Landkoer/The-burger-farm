@@ -7,7 +7,6 @@ import { CustomText } from "../CustomText/CustomText";
 import { login } from "../../store/authUser/actions/authUser.action";
 import {
   widthPixel,
-  heightPixel,
   fontPixel,
   pixelSizeVertical,
   pixelSizeHorizontal,
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: pixelSizeHorizontal(5),
     borderBottomWidth: 2,
 
-    fontSize: fontPixel(9)
+    fontSize: fontPixel(9),
   },
   contentBtns: {
     alignItems: "center",

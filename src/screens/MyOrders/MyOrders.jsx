@@ -3,13 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { themes } from "../../styles/themes";
 import { Orders } from "../../components/Orders/Orders";
-import {
-  widthPixel,
-  heightPixel,
-  fontPixel,
-  pixelSizeVertical,
-  pixelSizeHorizontal,
-} from "../../styles/normalize.js";
+import { heightPixel, pixelSizeHorizontal } from "../../styles/normalize.js";
 
 export function MyOrders({ navigation }) {
   const orders = useSelector((state) => state.data.orders);

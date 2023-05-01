@@ -9,7 +9,6 @@ import {
   pixelSizeVertical,
   pixelSizeHorizontal,
   widthPixel,
-  heightPixel,
 } from "../../styles/normalize";
 
 export function ProductSlide({ type, data, onChangeView, category }) {

@@ -3,13 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Cart } from "../../components/Cart/Cart";
 import { themes } from "../../styles/themes";
-import {
-  widthPixel,
-  heightPixel,
-  fontPixel,
-  pixelSizeVertical,
-  pixelSizeHorizontal,
-} from "../../styles/normalize";
+import { pixelSizeHorizontal } from "../../styles/normalize";
 
 export function MyCart({ navigation }) {
   const [user, setUser] = useState({

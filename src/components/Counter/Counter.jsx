@@ -2,16 +2,9 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../CustomText/CustomText";
-import {
-  fontPixel,
-  heightPixel,
-  pixelSizeHorizontal,
-  pixelSizeVertical,
-  widthPixel,
-} from "../../styles/normalize";
+import { fontPixel } from "../../styles/normalize";
 
 export function Counter({ price, count, children }) {
-
   const math = (price / 1000) * count;
 
   return (

@@ -4,7 +4,6 @@ import { themes } from "../../styles/themes";
 import { EditAddress } from "../../components/EditAddress/EditAddress";
 import { CustomText } from "../../components/CustomText/CustomText";
 import {
-  widthPixel,
   heightPixel,
   fontPixel,
   pixelSizeVertical,

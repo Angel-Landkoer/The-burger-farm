@@ -4,13 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ProductSlide } from "../../components/ProductSlide/ProductSlide";
 import { themes } from "../../styles/themes";
 import { filterCategory } from "../../store/globalData/actions/globalData.action";
-import {
-  pixelSizeVertical,
-  fontPixel,
-  heightPixel,
-  pixelSizeHorizontal,
-  widthPixel,
-} from "../../styles/normalize";
+import { pixelSizeHorizontal } from "../../styles/normalize";
 
 export function Products({ navigation }) {
   const productsData = useSelector((state) => state.data.productsData);

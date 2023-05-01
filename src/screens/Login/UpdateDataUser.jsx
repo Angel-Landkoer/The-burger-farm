@@ -4,7 +4,6 @@ import { EditInfoGeneral } from "../../components/EditInfoGeneral/EditInfoGenera
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
 import {
-  widthPixel,
   heightPixel,
   fontPixel,
   pixelSizeVertical,

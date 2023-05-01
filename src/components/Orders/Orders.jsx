@@ -5,10 +5,8 @@ import { CustomText } from "../CustomText/CustomText";
 import { themes } from "../../styles/themes";
 import { RenderList } from "../RenderList/RenderList";
 import {
-  widthPixel,
   heightPixel,
   fontPixel,
-  pixelSizeVertical,
   pixelSizeHorizontal,
 } from "../../styles/normalize.js";
 
