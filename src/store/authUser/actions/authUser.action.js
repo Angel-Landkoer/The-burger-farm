@@ -12,6 +12,9 @@ export const UPDATE_DATA_USER_START = "@UPDATE_DATA_USER_START"
 export const UPDATE_DATA_ADDRESS_START = "@UPDATE_DATA_ADDRESS_START"
 export const UPDATE_DATA_ADDRESS = "@UPDATE_DATA_ADDRESS"
 export const UPDATE_DATA_ADDRESS_FAIL = "@UPDATE_DATA_ADDRESS_FAIL"
+export const GET_DATA_START = "@GET_DATA_START"
+export const GET_DATA = "@GET_DATA"
+export const GET_DATA_FAIL = "@GET_DATA_FAIL"
 export const RESET_ACCOUNT = "@RESET_ACCOUNT"
 
 export const signUp = (email, password) => {
@@ -172,7 +175,6 @@ export const updateDataUser = (userID, data) => {
 
       const dataPatch = await responsePatch.json()
 
-      dispatch({ type: UPDATE_DATA_USER, allDataUser: findUser, shortTimeUserData: dataPatch })
     } catch (error) {
       alert(error)
       dispatch({ type: UPDATE_DATA_USER_FAIL })
@@ -218,11 +220,37 @@ export const updateDataAddress = (userID, data) => {
 
       const dataPatch = await responsePatch.json()
 
-      dispatch({ type: UPDATE_DATA_ADDRESS, allDataUser: findUser, shortTimeAddressData: dataPatch })
 
     } catch (error) {
       alert(error)
       dispatch({ type: UPDATE_DATA_ADDRESS_FAIL })
+    }
+  }
+}
+
+export const getData = (userId) => {
+  return async dispatch => {
+
+    try {
+
+      dispatch({ type: GET_DATA_START })
+
+      const response = await fetch(`${API_URL}users.json`)
+
+      if (!response.ok) {
+        const errorMessage = response.json()
+        throw new Error(errorMessage)
+      }
+
+      const data = await response.json()
+
+      const findUser = Object.keys(data).map(item => { return { id: item, ...data[item] } }).find(item => item.userId == userId)
+      dispatch({ type: GET_DATA, allDataUser: findUser })
+
+    } catch (error) {
+      dispatch({ type: GET_DATA_FAIL })
+      alert(error)
+
     }
   }
 }
