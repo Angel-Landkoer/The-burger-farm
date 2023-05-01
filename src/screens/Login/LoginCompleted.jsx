@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { RESET_ACCOUNT } from "../../store/authUser/actions/authUser.action";
+import {
+  RESET_ACCOUNT,
+  getData,
+} from "../../store/authUser/actions/authUser.action";
+import { getOrder } from "../../store/globalData/actions/globalData.action";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { themes } from "../../styles/themes";
 import { CustomText } from "../../components/CustomText/CustomText";
 import { Modall } from "../../components/Modal/Modall";
-import { getOrder } from "../../store/globalData/actions/globalData.action";
 import {
   widthPixel,
   heightPixel,
@@ -35,54 +38,18 @@ export function LoginCompleted({ navigation }) {
 
   const userId = useSelector((state) => state.auth.userId);
   const allDataUser = useSelector((state) => state.auth.allDataUser);
-  const shortTimeUserData = useSelector(
-    (state) => state.auth.shortTimeUserData
-  );
-  const shortTimeAddressData = useSelector(
-    (state) => state.auth.shortTimeAddressData
-  );
 
   useEffect(() => {
     if (userId) {
-      (() => dispatch(getOrder(userId)))();
+      (() => {
+        dispatch(getOrder(userId));
+        dispatch(getData(userId));
+      })();
     }
 
-    const existemsUser = (data1, data2) => {
-      if (data1 && data2) {
-        return {
-          name: data2.name,
-          lastName: data2.lastName,
-          phone: data2.phone,
-          email: data1.email,
-        };
-      } else if (data2) {
-        return data2;
-      } else if (data1) {
-        return data1;
-      } else {
-        return { name: "", lastName: "", phone: "", email: "" };
-      }
-    };
-
-    const exitemsAddress = (data1, data2) => {
-      if (data2) {
-        return data2;
-      } else if (data1) {
-        return data1;
-      } else {
-        return {
-          dataDirection: "",
-          city: "",
-          district: "",
-          route: "",
-          additionalInformation: "",
-        };
-      }
-    };
-
-    setUser(existemsUser(allDataUser, shortTimeUserData));
-    setAddress(exitemsAddress(allDataUser?.address, shortTimeAddressData));
-  }, [userId, shortTimeAddressData, shortTimeUserData]);
+    setUser(allDataUser);
+    setAddress(allDataUser?.address);
+  }, [userId]);
 
   const routeUserData = () =>
     navigation.navigate("UpdateDataUserStack", {

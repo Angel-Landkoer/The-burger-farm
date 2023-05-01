@@ -1,9 +1,11 @@
 import { Dimensions, StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Cart } from "../../components/Cart/Cart";
 import { themes } from "../../styles/themes";
 import { pixelSizeHorizontal } from "../../styles/normalize";
+import { getData } from "../../store/authUser/actions/authUser.action";
+import { getOrder } from "../../store/globalData/actions/globalData.action";
 
 export function MyCart({ navigation }) {
   const [user, setUser] = useState({
@@ -20,53 +22,23 @@ export function MyCart({ navigation }) {
     additionalInformation: "",
   });
 
+  const dispatch = useDispatch();
+
   const registed = useSelector((state) => state.auth.existemAccount);
   const userId = useSelector((state) => state.auth.userId);
   const allDataUser = useSelector((state) => state.auth.allDataUser);
-  const shortTimeUserData = useSelector(
-    (state) => state.auth.shortTimeUserData
-  );
-  const shortTimeAddressData = useSelector(
-    (state) => state.auth.shortTimeAddressData
-  );
 
   useEffect(() => {
-    const existems = (data1, data2) => {
-      if (data1 && data2) {
-        return {
-          name: data2.name,
-          lastName: data2.lastName,
-          phone: data2.phone,
-          email: data1.email,
-        };
-      } else if (data2) {
-        return data2;
-      } else if (data1) {
-        return data1;
-      } else {
-        return { name: "", lastName: "", phone: "", email: "" };
-      }
-    };
+    if (userId) {
+      (() => {
+        dispatch(getOrder(userId));
+        dispatch(getData(userId));
+      })();
+    }
 
-    const exitemsAddress = (data1, data2) => {
-      if (data2) {
-        return data2;
-      } else if (data1) {
-        return data1;
-      } else {
-        return {
-          dataDirection: "",
-          city: "",
-          district: "",
-          route: "",
-          additionalInformation: "",
-        };
-      }
-    };
-
-    setUser(existems(allDataUser, shortTimeUserData));
-    setAddress(exitemsAddress(allDataUser?.address, shortTimeAddressData));
-  }, [shortTimeUserData, shortTimeAddressData]);
+    setUser(allDataUser);
+    setAddress(allDataUser?.address);
+  }, [userId]);
 
   const userCanAccess = () => {
     if (!registed)
