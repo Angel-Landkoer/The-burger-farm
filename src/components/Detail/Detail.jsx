@@ -35,9 +35,9 @@ export function Detail({ data, goToBack }) {
   const dispatch = useDispatch();
 
   const handleCaptureItem = (item) => {
-    const { name, price } = item;
+    const { name, price, img } = item;
     goToBack();
-    dispatch(addItemCart({ name, price, count: counter.count }));
+    dispatch(addItemCart({ name, price, img, count: counter.count }));
   };
 
   return (
