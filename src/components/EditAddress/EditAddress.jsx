@@ -147,7 +147,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
               inputMode="text"
-              value={dataDirectionSplit[0] || state.formDirectionFirst}
+              defaultValue={dataDirectionSplit[0] || state.formDirectionFirst}
               onChangeText={(e) => handleChangeValueFormDirection("@first", e)}
             />
           </View>
@@ -156,12 +156,12 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               #
             </CustomText>
             <TextInput
-              style={[input, , secondaryColor, fontBold]}
+              style={[input, secondaryColor, fontBold]}
               keyboardType="default"
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
               inputMode="numeric"
-              value={dataDirectionSplit[1] || state.formDirectionSecond}
+              defaultValue={dataDirectionSplit[1] || state.formDirectionSecond}
               onChangeText={(e) => handleChangeValueFormDirection("@second", e)}
             />
           </View>
@@ -175,7 +175,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
               inputMode="text"
-              value={dataDirectionSplit[2] || state.formDirectionThird}
+              defaultValue={dataDirectionSplit[2] || state.formDirectionThird}
               onChangeText={(e) => handleChangeValueFormDirection("@third", e)}
             />
           </View>
@@ -185,26 +185,24 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
             style={[
               adicionalInpunt,
               primaryBorderColor,
-              ,
               secondaryColor,
               fontBold,
             ]}
             placeholder="District"
             placeholderTextColor={secondaryColor.color}
-            value={district ? district : state.formDistrict}
+            defaultValue={district ? district : state.formDistrict}
             onChangeText={handleChangeValueFormDistrict}
           />
           <TextInput
             style={[
               adicionalInpunt,
               primaryBorderColor,
-              ,
               secondaryColor,
               fontBold,
             ]}
             placeholder="Additional Infotmation"
             placeholderTextColor={secondaryColor.color}
-            value={
+            defaultValue={
               additionalInformation
                 ? additionalInformation
                 : state.formAdditional
