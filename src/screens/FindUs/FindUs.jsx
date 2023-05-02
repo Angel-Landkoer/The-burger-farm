@@ -1,18 +1,31 @@
 import { StyleSheet, View } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MapView from "react-native-maps";
 import { themes } from "../../styles/themes";
 import { useSelector } from "react-redux";
 import { regions } from "../../utils/regions";
 
 export function FindUs({ navigation }) {
-  const data = useSelector((state) => state.auth.allDataUser);
+  const [findRegion, setFindRegion] = useState(null);
 
-  const findRegion = regions.find((item) => item.name == data?.address.city);
+  const data = useSelector((state) => state.auth.allDataUser);
+  const registed = useSelector((state) => state.auth.existemAccount);
+
+  useEffect(() => {
+    (() => {
+      const existemData = data?.address;
+
+      if (!existemData) return setFindRegion({});
+
+      return setFindRegion(
+        regions.find((item) => item.name == data?.address.city)
+      );
+    })();
+  }, [registed]);
 
   return (
     <View style={[container, primaryBackground]}>
-      <MapView region={findRegion?.region || {}} style={styleMap} />
+      <MapView region={findRegion?.region} style={styleMap} />
     </View>
   );
 }
