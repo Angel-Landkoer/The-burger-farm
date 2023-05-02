@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "La_Granja_Burger",
-    "slug": "La_Granja_Burger",
+    "slug": "theburgerfarm",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/img/icon.png",
@@ -30,8 +30,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "8de98d29-678c-46a6-bf03-fbb74678fc86"
+        "projectId": "44ef821e-3274-4b0c-8fdb-d7c86b4a87ff"
       }
-    }
+    },
+    "owner": "angel_landkoer"
   }
 }
