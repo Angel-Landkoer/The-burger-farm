@@ -11,13 +11,7 @@ import { OrderStackNavigation } from "./OrderStackNavigation";
 import { FindUsStackNavigation } from "./FindUsStackNavigation";
 import { themes } from "../styles/themes";
 import { CustomText } from "../components/CustomText/CustomText";
-import {
-  widthPixel,
-  heightPixel,
-  fontPixel,
-  pixelSizeVertical,
-  pixelSizeHorizontal,
-} from "../styles/normalize";
+import { fontPixel } from "../styles/normalize";
 
 export function NavigationDrawer() {
   const { Navigator, Screen } = createDrawerNavigator();

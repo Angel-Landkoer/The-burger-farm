@@ -30,7 +30,7 @@ export function ProductSlide({ type, data, onChangeView, category }) {
           onPress={() => onChangeView(category)}
         >
           <CustomText
-            style={[btnTitle, , textCenter, primaryColor]}
+            style={[btnTitle, textCenter, primaryColor]}
             fontF={"bold"}
           >
             See complete list

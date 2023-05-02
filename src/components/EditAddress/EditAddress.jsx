@@ -142,7 +142,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               {""}
             </CustomText>
             <TextInput
-              style={[input, , secondaryColor, fontBold]}
+              style={[input, secondaryColor, fontBold]}
               keyboardType="default"
               placeholder="00"
               placeholderTextColor={secondaryColor.color}
@@ -170,7 +170,7 @@ export function EditAddress({ dataDefault, goToBack, userId }) {
               -
             </CustomText>
             <TextInput
-              style={[input, , secondaryColor, fontBold]}
+              style={[input, secondaryColor, fontBold]}
               keyboardType="default"
               placeholder="00"
               placeholderTextColor={secondaryColor.color}

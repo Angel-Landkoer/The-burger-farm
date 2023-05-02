@@ -84,7 +84,6 @@ const {
   btnText,
   touchBtnCancel,
   touchBtnSave,
-  btnTextCancel,
   btnTextSave,
 } = styles;
 

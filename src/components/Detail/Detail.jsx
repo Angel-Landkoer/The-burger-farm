@@ -42,7 +42,7 @@ export function Detail({ data, goToBack }) {
 
   return (
     <View style={container}>
-      <CustomText style={[title, , primaryColor]} fontF={"bold"}>
+      <CustomText style={[title, primaryColor]} fontF={"bold"}>
         {name}
       </CustomText>
       {img ? (
@@ -52,7 +52,7 @@ export function Detail({ data, goToBack }) {
       )}
 
       <CustomText
-        style={[descriptions, textJustify, , primaryColor]}
+        style={[descriptions, textJustify, primaryColor]}
         fontF={"medium"}
       >
         {description}

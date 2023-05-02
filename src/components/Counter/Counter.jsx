@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
 
 const { container, contentPrice, contentCount, textPrice } = styles;
 
-const { secondaryColor, quinaryColor, quaternaryColor, tertiaryColor } = themes;
+const { secondaryColor } = themes;

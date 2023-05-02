@@ -13,7 +13,7 @@ export function FindUsStackNavigation() {
       screenOptions={{
         headerStyle: [primaryBackground, headerContain],
         headerTitleAlign: "center",
-        headerTitleStyle: [, fontBold, primaryColor],
+        headerTitleStyle: [fontBold, primaryColor],
         headerLeft: IconButton,
       }}
     >

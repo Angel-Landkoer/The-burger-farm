@@ -18,7 +18,7 @@ export function Modall({ title, state, btns }) {
           <View style={[semiContainer, senaryBackground]}>
             <View>
               <CustomText
-                style={[styleTitle, senaryColor, , textCenter]}
+                style={[styleTitle, senaryColor, textCenter]}
                 fontF={"semiBold"}
               >
                 {title}

@@ -20,25 +20,22 @@ export function DataCard({ data }) {
   return (
     <TouchableNativeFeedback onPress={() => route(data)}>
       <View style={container}>
-        <CustomText
-          style={[nameText, , primaryColor, textCenter]}
-          fontF={"bold"}
-        >
+        <CustomText style={[nameText, primaryColor, textCenter]} fontF={"bold"}>
           {name}
         </CustomText>
         {img ? (
           <Image
             style={[styleImg, secondaryBorderColor]}
             source={{
-              uri: img,
+              uri: img
             }}
           />
         ) : (
           <Loading color={primaryColor.color} styleContainer={styleImg} />
         )}
 
-        <CustomText style={[priceText, , secondaryColor]} fontF={"semiBold"}>
-          ${price / 1_000}k
+        <CustomText style={[priceText, secondaryColor]} fontF={"semiBold"}>
+          ${price / 1000}k
         </CustomText>
       </View>
     </TouchableNativeFeedback>
@@ -51,26 +48,26 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
 
     width: widthPixel(110),
-    paddingVertical: pixelSizeVertical(10),
+    paddingVertical: pixelSizeVertical(10)
   },
 
   priceText: {
     marginTop: 7,
 
-    fontSize: fontPixel(10),
+    fontSize: fontPixel(10)
   },
   nameText: {
     width: "70%",
     maxheight: 25,
     marginBottom: 7,
 
-    fontSize: fontPixel(8),
+    fontSize: fontPixel(8)
   },
   styleImg: {
     width: 100,
     height: 100,
-    borderWidth: 1.2,
-  },
+    borderWidth: 1.2
+  }
 });
 
 const { container, styleImg, nameText, priceText } = styles;

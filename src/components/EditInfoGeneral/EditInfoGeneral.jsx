@@ -66,7 +66,7 @@ export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
     <View style={[container]}>
       <View style={[contentInput, primaryBorderColor]}>
         <TextInput
-          style={[input, primaryColor, , fontBold, tertiaryBorderColor]}
+          style={[input, primaryColor, fontBold, tertiaryBorderColor]}
           placeholder="Name"
           placeholderTextColor={tertiaryColor.color}
           inputMode="text"
@@ -75,7 +75,7 @@ export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
           defaultValue={name ? name : "null"}
         />
         <TextInput
-          style={[input, tertiaryColor, , fontBold, tertiaryBorderColor]}
+          style={[input, tertiaryColor, fontBold, tertiaryBorderColor]}
           placeholder="Last Name"
           placeholderTextColor={tertiaryColor.color}
           inputMode="text"
@@ -84,7 +84,7 @@ export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
           defaultValue={lastName ? lastName : "null"}
         />
         <TextInput
-          style={[input, tertiaryColor, , fontBold, tertiaryBorderColor]}
+          style={[input, tertiaryColor, fontBold, tertiaryBorderColor]}
           placeholder="Phone"
           placeholderTextColor={tertiaryColor.color}
           inputMode="numeric"
@@ -94,7 +94,7 @@ export function EditInfoGeneral({ goToBack, dataDefault, userId }) {
           defaultValue={phone ? phone.toString() : "null"}
         />
         <TextInput
-          style={[input, tertiaryColor, , fontBold, tertiaryBorderColor]}
+          style={[input, tertiaryColor, fontBold, tertiaryBorderColor]}
           placeholder="Email"
           placeholderTextColor={tertiaryColor.color}
           inputMode="email"

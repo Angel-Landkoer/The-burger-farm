@@ -242,7 +242,7 @@ export function FinalizeOrder({ navigation, route }) {
             size={36}
             color={senaryColor.color}
           />
-          <CustomText style={[textBtn, , senaryColor]} fontF={"bold"}>
+          <CustomText style={[textBtn, senaryColor]} fontF={"bold"}>
             Finalize Order
           </CustomText>
         </TouchableOpacity>
