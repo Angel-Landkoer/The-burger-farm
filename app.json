@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets//img/adaptive-icon.png",
+        "foregroundImage": "./src/assets/img/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.angel_landkoer.La_Granja_Burger"
