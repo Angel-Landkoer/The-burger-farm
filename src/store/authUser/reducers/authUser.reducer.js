@@ -21,6 +21,7 @@ export const authReducer = (state = initialState, action) => {
   if (action.type == SIGN_UP_START) return { ...state, isLoading: true };
   if (action.type == SIGN_UP) return { ...state, isLoading: false, token: action.token, userId: action.userId, nameTokenUser: action.nameToken };
   if (action.type == SIGN_UP_FAIL) return { ...state, isLoading: false };
+
   if (action.type == LOGIN_START) return { ...state, isLoading: true };
   if (action.type == LOGIN) {
     const newAllDataUser = action.allDataUser
@@ -40,7 +41,7 @@ export const authReducer = (state = initialState, action) => {
   if (action.type == GET_DATA) return { ...state, isLoading: false, allDataUser: action.allDataUser }
   if (action.type == GET_DATA_FAIL) return { ...state, isLoading: false }
 
-  if (action.type == RESET_ACCOUNT) return { ...state, isLoading: false, token: null, userId: '', nameTokenUser: "", existemAccount: false };
+  if (action.type == RESET_ACCOUNT) return { ...state, isLoading: false, token: null, userId: '', nameTokenUser: "", existemAccount: false, allDataUser: false };
 
   return state
 }
