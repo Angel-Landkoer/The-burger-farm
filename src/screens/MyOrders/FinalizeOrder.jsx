@@ -28,15 +28,16 @@ import {
 export function FinalizeOrder({ navigation, route }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const productsCart = useSelector((state) => state.cart.cartItems);
+  const totalProducts = useSelector((state) => state.cart.total);
+  const orderId = useSelector((state) => state.data.orderId);
+
   const { userId } = route.params;
   const { name, lastName, phone } = route.params.user;
   const { routeA, dataDirection, district } = route.params.addressData;
 
   const dispatchRedux = useDispatch();
 
-  const productsCart = useSelector((state) => state.cart.cartItems);
-  const totalProducts = useSelector((state) => state.cart.total);
-  const orderId = useSelector((state) => state.data.orderId);
   const dataPayment = ["Money", "Card"];
 
   const math = totalProducts / 1000;
@@ -181,7 +182,7 @@ export function FinalizeOrder({ navigation, route }) {
               TOTAL:
             </CustomText>
             <CustomText style={[styleText]} fontF={"semiBold"}>
-              {`${math}K + Delivery`}
+              {math ? `${math}K + Delivery` : ""}
             </CustomText>
           </View>
           <View style={[subContainer]}>
