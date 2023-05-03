@@ -47,7 +47,7 @@ export function Orders({ orders }) {
             </View>
             <View style={[stateStyle]}>
               <CustomText style={[text]} fontF={"bold"}>
-                {item.id ? "En camino" : "No camina"}
+                {item.id ? "On the way" : "No camina"}
               </CustomText>
             </View>
             <View style={[dateStyle]}>
