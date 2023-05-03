@@ -10,9 +10,13 @@ import { SignUp } from "../screens/SignUp/SignUp";
 import { IconButton } from "../components/IconButton/IconButton";
 import { themes } from "../styles/themes";
 import { fontPixel } from "../styles/normalize";
+import { useNavigation } from "@react-navigation/native";
 
 export function DataStackNavigation() {
   const { Screen, Navigator } = createNativeStackNavigator();
+
+  const { goBack } = useNavigation();
+  const goToBack = () => goBack();
 
   const registed = useSelector((state) => state.auth.existemAccount);
 
@@ -22,7 +26,7 @@ export function DataStackNavigation() {
         headerStyle: [primaryBackground, headerContain],
         headerTitleStyle: [styleTitle, fontBold, primaryColor],
         headerTitleAlign: "center",
-        headerLeft: IconButton,
+        headerLeft: () => <IconButton callback={goToBack} />,
       }}
     >
       {registed ? (

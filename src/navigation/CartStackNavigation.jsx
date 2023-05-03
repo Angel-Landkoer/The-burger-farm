@@ -5,9 +5,13 @@ import { IconButton } from "../components/IconButton/IconButton";
 import { MyCart } from "../screens/MyCart/MyCart";
 import { themes } from "../styles/themes";
 import { heightPixel, fontPixel } from "../styles/normalize";
+import { useNavigation } from "@react-navigation/native";
 
 export function CartStackNavigation() {
   const { Screen, Navigator } = createNativeStackNavigator();
+
+  const { goBack } = useNavigation();
+  const goToBack = () => goBack();
 
   return (
     <Navigator
@@ -15,7 +19,7 @@ export function CartStackNavigation() {
         headerStyle: [primaryBackground, headerContain],
         headerTitleAlign: "center",
         headerTitleStyle: [primaryColor, title, fontBold],
-        headerLeft: IconButton,
+        headerLeft: () => <IconButton callback={goToBack} />,
       }}
     >
       <Screen
