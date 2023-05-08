@@ -20,23 +20,12 @@ import {
 
 export function LoginCompleted({ navigation }) {
   const [toggleModal, setToggleModal] = useState(false);
-  const [user, setUser] = useState({
-    name: "",
-    lastName: "",
-    phone: "",
-    email: "",
-  });
-  const [address, setAddress] = useState({
-    dataDirection: "",
-    city: "",
-    district: "",
-    route: "",
-    additionalInformation: "",
-  });
 
   const dispatch = useDispatch();
 
   const userId = useSelector((state) => state.auth.userId);
+  const updateUser = useSelector((state) => state.auth.updateUser);
+  const updateAddress = useSelector((state) => state.auth.updateAddress);
   const allDataUser = useSelector((state) => state.auth.allDataUser);
 
   useEffect(() => {
@@ -46,10 +35,10 @@ export function LoginCompleted({ navigation }) {
         dispatch(getData(userId));
       })();
     }
+  }, [userId, updateUser, updateAddress]);
 
-    setUser(allDataUser);
-    setAddress(allDataUser?.address);
-  }, [userId]);
+  const user = allDataUser;
+  const address = allDataUser?.address;
 
   const routeUserData = () =>
     navigation.navigate("UpdateDataUserStack", {
