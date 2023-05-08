@@ -15,7 +15,7 @@ export function FindUs({ navigation }) {
     (() => {
       const existemData = data?.address;
 
-      if (!existemData) return setFindRegion({});
+      if (!existemData) return setFindRegion(null);
 
       return setFindRegion(
         regions.find((item) => item.name == data?.address.city)
@@ -25,7 +25,7 @@ export function FindUs({ navigation }) {
 
   return (
     <View style={[container, primaryBackground]}>
-      <MapView region={findRegion?.region} style={styleMap} />
+      <MapView region={findRegion?.region || {}} style={styleMap} />
     </View>
   );
 }
