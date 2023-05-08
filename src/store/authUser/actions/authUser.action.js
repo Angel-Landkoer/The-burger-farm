@@ -174,6 +174,7 @@ export const updateDataUser = (userID, data) => {
       }
 
       const dataPatch = await responsePatch.json()
+      dispatch({ type: UPDATE_DATA_USER, updateUser: dataPatch })
 
     } catch (error) {
       alert(error)
@@ -219,6 +220,7 @@ export const updateDataAddress = (userID, data) => {
       }
 
       const dataPatch = await responsePatch.json()
+      dispatch({ type: UPDATE_DATA_ADDRESS, updateAddress: dataPatch })
 
 
     } catch (error) {
