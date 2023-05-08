@@ -14,6 +14,8 @@ const initialState = {
   nameTokenUser: '',
   existemAccount: false,
   allDataUser: false,
+  updateUser: false,
+  updateAddress: false,
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -30,18 +32,18 @@ export const authReducer = (state = initialState, action) => {
   if (action.type == LOGIN_FAIL) return { ...state, isLoading: false };
 
   if (action.type == UPDATE_DATA_USER_START) return { ...state, isLoading: true }
-  if (action.type == UPDATE_DATA_USER) return { ...state, isLoading: false, }
+  if (action.type == UPDATE_DATA_USER) return { ...state, isLoading: false, updateUser: action.updateUser }
   if (action.type == UPDATE_DATA_USER_FAIL) return { ...state, isLoading: false }
 
   if (action.type == UPDATE_DATA_ADDRESS_START) return { ...state, isLoading: true }
-  if (action.type == UPDATE_DATA_ADDRESS) return { ...state, isLoading: false, }
+  if (action.type == UPDATE_DATA_ADDRESS) return { ...state, isLoading: false, updateAddress: action.updateAddress }
   if (action.type == UPDATE_DATA_ADDRESS_FAIL) return { ...state, isLoading: false }
 
   if (action.type == GET_DATA_START) return { ...state, isLoading: true }
   if (action.type == GET_DATA) return { ...state, isLoading: false, allDataUser: action.allDataUser }
   if (action.type == GET_DATA_FAIL) return { ...state, isLoading: false }
 
-  if (action.type == RESET_ACCOUNT) return { ...state, isLoading: false, token: null, userId: '', nameTokenUser: "", existemAccount: false, allDataUser: false };
+  if (action.type == RESET_ACCOUNT) return { ...state, isLoading: false, token: null, userId: '', nameTokenUser: "", existemAccount: false, allDataUser: false, updateAddress: false, updateUser: false };
 
   return state
 }
